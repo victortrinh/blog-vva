@@ -1,0 +1,81 @@
+{
+    "person": {
+        "role": "Ingénieur Designer"
+    },
+    "newsletter": {
+        "title": "Abonnez-vous à la Newsletter de {firstName}",
+        "description": "J'écris occasionnellement sur le design, la technologie, et je partage des réflexions sur l'intersection de la créativité et de l'ingénierie",
+        "button": "S'inscrire"
+    },
+    "home": {
+        "label": "Accueil",
+        "title": "Portfolio de {name}",
+        "description": "Site portfolio mettant en avant mon travail en tant que {role}",
+        "headline": "Ingénieur designer et créateur",
+        "subline": "Je suis Victor, une ingénieure designer chez FLY, où je conçois des expériences utilisateur intuitives. Après le travail, je développe mes propres projets."
+    },
+    "about": {
+        "label": "À propos",
+        "title": "À propos de moi",
+        "description": "Découvrez {name}, {role} de {location}",
+        "intro": {
+            "title": "Introduction",
+            "description": "Victor est une ingénieure designer basée à Jakarta, passionnée par la transformation de défis complexes en solutions de design simples et élégantes. Son travail couvre les interfaces numériques, les expériences interactives et la convergence entre design et technologie."
+        },
+        "work": {
+            "title": "Expérience professionnelle",
+            "experiences": {
+                "FLY": {
+                    "timeframe": "2022 - Présent",
+                    "role": "Ingénieure Designer Senior",
+                    "achievements": "Refonte de l'interface utilisateur/expérience utilisateur de la plateforme FLY, entraînant une augmentation de 20% de l'engagement utilisateur et un temps de chargement 30% plus rapide.;A dirigé l'intégration d'outils IA dans les flux de travail de conception, permettant aux concepteurs de itérer 50% plus rapidement."
+                },
+                "Creativ3": {
+                    "timeframe": "2018 - 2022",
+                    "role": "Designer Principal",
+                    "achievements": "Développement d'un système de design unifiant la marque sur plusieurs plateformes, améliorant la cohérence du design de 40%.;A dirigé une équipe interfonctionnelle pour lancer une nouvelle gamme de produits, contribuant à une augmentation de 15% des revenus globaux de l'entreprise."
+                }
+            }
+        },
+        "studies": {
+            "title": "Études",
+            "institutions": {
+                "University of Jakarta": {
+                    "description": "Études en ingénierie logicielle."
+                },
+                "Build the Future": {
+                    "description": "Études en marketing en ligne et en branding personnel."
+                }
+            }
+        },
+        "technical": {
+            "title": "Compétences techniques",
+            "skills": {
+                "Figma": {
+                    "description": "Capable de prototyper avec Figma et Once UI à une vitesse incroyable."
+                },
+                "Nextjs": {
+                    "description": "Création d'applications de nouvelle génération avec Next.js + Once UI + Supabase."
+                }
+            }
+        }
+    },
+    "blog": {
+        "label": "Blog",
+        "title": "Écrire sur le design et la tech...",
+        "description": "Lisez ce que {name} a fait récemment"
+    },
+    "work": {
+        "label": "Travail",
+        "title": "Mes projets",
+        "description": "Projets de design et développement par {name}"
+    },
+    "gallery": {
+        "label": "Galerie",
+        "title": "Ma galerie photo",
+        "description": "Une collection de photos par {name}"
+    },
+    "projectCard": {
+        "label": "Lire l'étude de cas"
+    }
+}
