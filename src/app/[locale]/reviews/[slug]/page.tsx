@@ -114,7 +114,7 @@ export default function Blog({ params }: BlogParams) {
 				}}
 			/>
 			<Button
-				href={`/${params.locale}/recireviewspes`}
+				href={`/${params.locale}/reviews`}
 				variant="tertiary"
 				size="s"
 				prefixIcon="chevronLeft">
