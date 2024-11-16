@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from "next/navigation";
-import { DropdownWrapper, Flex, NavIcon, SmartLink, ToggleButton } from '@/once-ui/components';
+import { DropdownWrapper, Flex, NavIcon, SmartLink, ToggleButton, Text } from '@/once-ui/components';
 import React, { useTransition } from 'react';
 import { renderContent, routes } from '@/app/resources';
 import { useTranslations } from "next-intl";
@@ -34,14 +34,18 @@ export const Header = () => {
                 borderBottom: '1px solid var(--neutral-border-medium)'
             }}
             as="header"
-            fillWidth paddingX="m" height="56"
+            fillWidth paddingX="m" height="64"
             alignItems="center"
             background="surface">
             <Flex hide="s">
-                <Link href={`/${params?.locale}/`}>Logo</Link>
+                <Link href={`/${params?.locale}/`}>
+                    <Text style={{whiteSpace: "nowrap"}} variant="display-strong-xs">VICTOR VU</Text>
+                </Link>
             </Flex>
             <Flex fillWidth show="s" alignItems="center" justifyContent="space-between">
-                <Link href={`/${params?.locale}/`}>Logo</Link>
+                <Link href={`/${params?.locale}/`}>
+                    <Text style={{whiteSpace: "nowrap"}} variant="display-strong-xs">VICTOR VU</Text>
+                </Link>
                 <DropdownWrapper 
                     dropdownOptions={[
                         {
@@ -69,7 +73,7 @@ export const Header = () => {
             </Flex>
             <Flex
                 fillWidth
-                justifyContent="center"
+                justifyContent="flex-end"
                 hide="s"
                 textVariant="label-default-s"
                 gap="4"
@@ -95,18 +99,16 @@ export const Header = () => {
                             <Flex paddingX="2" hide="s">{reviews.label}</Flex>
                         </SmartLink>
                     )}
-            </Flex>
-            <Flex>
-                {routing.locales.map((locale, index) => (
-                    <ToggleButton
-                        key={index}
-                        selected={params?.locale === locale}
-                        onClick={() => handleLanguageChange(locale)}
-                        className={isPending && 'pointer-events-none opacity-60' || ''}
-                        >
-                        {locale.toUpperCase()}
-                    </ToggleButton>
-                ))}
+                    {routing.locales.map((locale, index) => (
+                        <ToggleButton
+                            key={index}
+                            selected={params?.locale === locale}
+                            onClick={() => handleLanguageChange(locale)}
+                            className={isPending && 'pointer-events-none opacity-60' || ''}
+                            >
+                            {locale.toUpperCase()}
+                        </ToggleButton>
+                    ))}
             </Flex>
         </Flex>
     );
