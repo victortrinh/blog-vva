@@ -110,7 +110,7 @@ export default function Home(
 					</Flex>
 					<Flex
 						flex={3} paddingX="20">
-						<Posts page="blog" range={[1,2]} columns="2" locale={locale}/>
+						<Posts page="blog" range={[1,2]} columns="2" locale={locale} thumbnail />
 					</Flex>
 				</Flex>
 			)}
@@ -128,7 +128,7 @@ export default function Home(
 					</Flex>
 					<Flex
 						flex={3} paddingX="20">
-						<Posts page="recipes" range={[1,2]} columns="2" locale={locale}/>
+						<Posts page="recipes" range={[1,2]} columns="2" locale={locale} thumbnail />
 					</Flex>
 				</Flex>
 			)}
@@ -146,7 +146,7 @@ export default function Home(
 					</Flex>
 					<Flex
 						flex={3} paddingX="20">
-						<Posts page="tips" range={[1,2]} columns="2" locale={locale}/>
+						<Posts page="tips" range={[1,2]} columns="2" locale={locale} thumbnail />
 					</Flex>
 				</Flex>
 			)}
