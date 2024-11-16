@@ -92,5 +92,8 @@
     },
     "projectCard": {
         "label": "Read Case Study"
+    },
+    "common": {
+        "view": "View {type}"
     }
 }

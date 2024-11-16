@@ -92,5 +92,8 @@
     },
     "projectCard": {
         "label": "Lire l'étude de cas"
+    },
+    "common": {
+        "view": "Voir {type}"
     }
 }

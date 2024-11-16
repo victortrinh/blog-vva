@@ -1,8 +1,9 @@
 "use client";
 
-import { Flex, Heading, SmartImage, SmartLink, Tag, Text } from '@/once-ui/components';
+import { Button, Flex, Heading, SmartImage, SmartLink, Tag, Text } from '@/once-ui/components';
 import styles from './Post.module.scss';
 import { formatDate } from '@/app/utils/formatDate';
+import { useTranslations } from 'next-intl';
 
 interface PostProps {
     post: any;
@@ -10,6 +11,8 @@ interface PostProps {
 }
 
 export default function Post({ post, thumbnail }: PostProps) {
+    const t = useTranslations();
+
     return (
         <SmartLink
             className={styles.hover}
@@ -57,6 +60,9 @@ export default function Post({ post, thumbnail }: PostProps) {
                         {formatDate(post.metadata.publishedAt, false)}
                     </Text>
                 </Flex>
+                <Button href={post.slug} variant="tertiary" fillWidth>
+                    {t("common.view", {type: post.metadata.tag }).toUpperCase()}
+                </Button>
             </Flex>
         </SmartLink>
     );
