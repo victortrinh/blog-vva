@@ -7,37 +7,42 @@ interface PostsProps {
     columns?: '1' | '2' | '3';
     locale: string;
     thumbnail?: boolean;
+    page: string;
 }
 
 export function Posts({
     range,
     columns = '1',
     locale = 'en',
-    thumbnail = false
+    thumbnail = false,
+    page
 }: PostsProps) {
-    let allBlogs = getPosts(['src', 'app', '[locale]', 'blog', 'posts', locale]);
+    let allPosts = getPosts(['src', 'app', '[locale]', page, 'posts', locale]);
 
-    const sortedBlogs = allBlogs.sort((a, b) => {
+    const sortedPosts = allPosts.sort((a, b) => {
         return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
     });
 
-    const displayedBlogs = range
-        ? sortedBlogs.slice(
+    const displayedPosts = range
+        ? sortedPosts.slice(
               range[0] - 1,
-              range.length === 2 ? range[1] : sortedBlogs.length 
+              range.length === 2 ? range[1] : sortedPosts.length 
           )
-        : sortedBlogs;
+        : sortedPosts;
 
     return (
         <>
-            {displayedBlogs.length > 0 && (
+            {displayedPosts.length > 0 && (
                 <Grid
                     columns={`repeat(${columns}, 1fr)`} mobileColumns="1col"
                     fillWidth marginBottom="40" gap="m">
-                    {displayedBlogs.map((post) => (
+                    {displayedPosts.map((post) => (
                         <Post
                             key={post.slug}
-                            post={post}
+                            post={{
+                                ...post,
+                                slug: `${page}/${post.slug}`
+                            }}
                             thumbnail={thumbnail}
                         />
                     ))}

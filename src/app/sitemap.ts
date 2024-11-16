@@ -13,6 +13,27 @@ export default async function sitemap() {
         }))
     );
 
+    let recipes = locales.flatMap((locale) => 
+        getPosts(['src', 'app', '[locale]', 'recipes', 'posts', locale]).map((post) => ({
+            url: `${baseURL}/${locale}/recipes/${post.slug}`,
+            lastModified: post.metadata.publishedAt,
+        }))
+    );
+
+    let tips = locales.flatMap((locale) => 
+        getPosts(['src', 'app', '[locale]', 'tips', 'posts', locale]).map((post) => ({
+            url: `${baseURL}/${locale}/tips/${post.slug}`,
+            lastModified: post.metadata.publishedAt,
+        }))
+    );
+
+    let reviews = locales.flatMap((locale) => 
+        getPosts(['src', 'app', '[locale]', 'reviews', 'posts', locale]).map((post) => ({
+            url: `${baseURL}/${locale}/reviews/${post.slug}`,
+            lastModified: post.metadata.publishedAt,
+        }))
+    );
+
     let works = locales.flatMap((locale) => 
         getPosts(['src', 'app', '[locale]', 'work', 'projects', locale]).map((post) => ({
             url: `${baseURL}/${locale}/work/${post.slug}`,
@@ -27,5 +48,5 @@ export default async function sitemap() {
         }))
     );
 
-    return [...routes, ...blogs, ...works]
+    return [...routes, ...blogs, ...recipes, ...tips, ...reviews, ...works]
 }

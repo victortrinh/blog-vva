@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Heading, Flex, Text, Button,  Avatar, RevealFx, Arrow } from '@/once-ui/components';
+import { Heading, Flex, Text, Button,  Avatar, Arrow } from '@/once-ui/components';
 import { Projects } from '@/components/work/Projects';
 
 import { baseURL, routes, renderContent } from '@/app/resources'; 
@@ -81,16 +81,11 @@ export default function Home(
 					<Flex
 						direction="column"
 						fillWidth maxWidth="s" gap="m">
-						<RevealFx
-							translateY="4">
 							<Heading
 								wrap="balance"
 								variant="display-strong-l">
 								{home.headline}
 							</Heading>
-						</RevealFx>
-						<RevealFx
-							translateY="8" delay={0.2}>
 							<Flex fillWidth>
 								<Text
 									wrap="balance"
@@ -99,8 +94,6 @@ export default function Home(
 									{home.subline}
 								</Text>
 							</Flex>
-						</RevealFx>
-						<RevealFx translateY="12" delay={0.4}>
 							<Flex fillWidth>
 								<Button
 									id="about"
@@ -122,13 +115,10 @@ export default function Home(
 									</Flex>
 								</Button>
 							</Flex>
-						</RevealFx>
 					</Flex>
 				
 			</Flex>
-			<RevealFx translateY="16" delay={0.6}>
 				<Projects range={[1,1]} locale={locale}/>
-			</RevealFx>
 			{routes['/blog'] && (
 				<Flex
 					fillWidth gap="24"
@@ -143,7 +133,61 @@ export default function Home(
 					</Flex>
 					<Flex
 						flex={3} paddingX="20">
-						<Posts range={[1,2]} columns="2" locale={locale}/>
+						<Posts page="blog" range={[1,2]} columns="2" locale={locale}/>
+					</Flex>
+				</Flex>
+			)}
+			{routes['/recipes'] && (
+				<Flex
+					fillWidth gap="24"
+					mobileDirection="column">
+					<Flex flex={1} paddingLeft="l">
+						<Heading
+							as="h2"
+							variant="display-strong-xs"
+							wrap="balance">
+							Latest recipes
+						</Heading>
+					</Flex>
+					<Flex
+						flex={3} paddingX="20">
+						<Posts page="recipes" range={[1,2]} columns="2" locale={locale}/>
+					</Flex>
+				</Flex>
+			)}
+			{routes['/tips'] && (
+				<Flex
+					fillWidth gap="24"
+					mobileDirection="column">
+					<Flex flex={1} paddingLeft="l">
+						<Heading
+							as="h2"
+							variant="display-strong-xs"
+							wrap="balance">
+							Latest tips
+						</Heading>
+					</Flex>
+					<Flex
+						flex={3} paddingX="20">
+						<Posts page="tips" range={[1,2]} columns="2" locale={locale}/>
+					</Flex>
+				</Flex>
+			)}
+			{routes['/reviews'] && (
+				<Flex
+					fillWidth gap="24"
+					mobileDirection="column">
+					<Flex flex={1} paddingLeft="l">
+						<Heading
+							as="h2"
+							variant="display-strong-xs"
+							wrap="balance">
+							Latest reviews
+						</Heading>
+					</Flex>
+					<Flex
+						flex={3} paddingX="20">
+						<Posts page="reviews" range={[1,2]} columns="2" locale={locale}/>
 					</Flex>
 				</Flex>
 			)}

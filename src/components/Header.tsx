@@ -31,7 +31,7 @@ export const Header = () => {
     }
 
     const t = useTranslations();
-    const { person, home, about, blog, work, gallery } = renderContent(t);
+    const { home, about, blog, recipes, tips, reviews, work, gallery } = renderContent(t);
 
     return (
         <>
@@ -89,6 +89,30 @@ export const Header = () => {
                                     href={`/${params?.locale}/blog`}
                                     selected={pathname.startsWith('/blog')}>
                                     <Flex paddingX="2" hide="s">{blog.label}</Flex>
+                                </ToggleButton>
+                            )}
+                            { routes['/recipes'] && (
+                                <ToggleButton
+                                    prefixIcon="book"
+                                    href={`/${params?.locale}/recipes`}
+                                    selected={pathname.startsWith('/recipes')}>
+                                    <Flex paddingX="2" hide="s">{recipes.label}</Flex>
+                                </ToggleButton>
+                            )}
+                            { routes['/tips'] && (
+                                <ToggleButton
+                                    prefixIcon="book"
+                                    href={`/${params?.locale}/tips`}
+                                    selected={pathname.startsWith('/tips')}>
+                                    <Flex paddingX="2" hide="s">{tips.label}</Flex>
+                                </ToggleButton>
+                            )}
+                            { routes['/reviews'] && (
+                                <ToggleButton
+                                    prefixIcon="book"
+                                    href={`/${params?.locale}/reviews`}
+                                    selected={pathname.startsWith('/reviews')}>
+                                    <Flex paddingX="2" hide="s">{reviews.label}</Flex>
                                 </ToggleButton>
                             )}
                             { routes['/gallery'] && (

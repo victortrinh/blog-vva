@@ -65,6 +65,21 @@
         "title": "Writing about design and tech...",
         "description": "Read what {name} has been up to recently"
     },
+    "recipes": {
+        "label": "Recipes",
+        "title": "Date Night Recipes: Seductive Dishes to Set the Mood",
+        "description": "Spice up your evening with irresistible date night recipes designed to impress and ignite passion. Discover dishes that create the perfect romantic atmosphere and bring you closer together."
+    },
+    "tips": {
+        "label": "Cooking Tips",
+        "title": "Essential Cooking Tips: Master the Art of Delicious Meals",
+        "description": "Transform your kitchen skills with expert cooking tips. Learn how to enhance flavors, save time, and create restaurant-quality dishes from the comfort of your home."
+    },
+    "reviews": {
+        "label": "Restaurant reviews",
+        "title": "Restaurant Reviews: Honest Insights for Food Lovers",
+        "description": "Explore top restaurant reviews with genuine insights on food, ambiance, and service. Discover hidden gems and must-visit dining spots near you or around the world."
+    },
     "work": {
         "label": "Work",
         "title": "My projects",

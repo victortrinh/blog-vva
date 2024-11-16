@@ -1,6 +1,6 @@
 'use client';
 
-import { Flex, RevealFx, Scroller, SmartImage } from "@/once-ui/components";
+import { Flex, Scroller, SmartImage } from "@/once-ui/components";
 import { useEffect, useState } from "react";
 
 interface Image {
@@ -67,12 +67,6 @@ const Carousel: React.FC<CarouselProps> = ({
     return (
         <Flex fillWidth gap="12" direction="column">
             <Flex onClick={handleImageClick}>
-                <RevealFx
-                    revealedByDefault={revealedByDefault}
-                    style={{ width: '100%' }}
-                    trigger={isTransitioning}
-                    translateY="16"
-                    speed="fast">
                     <SmartImage
                         sizes={sizes}
                         priority
@@ -88,7 +82,6 @@ const Carousel: React.FC<CarouselProps> = ({
                             }),
                         }}
                     />
-                </RevealFx>
             </Flex>
             {images.length > 1 && (
                 <>

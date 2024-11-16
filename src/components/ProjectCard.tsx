@@ -1,6 +1,6 @@
 "use client";
 
-import { AvatarGroup, Flex, Heading, RevealFx, SmartImage, SmartLink, Text } from "@/once-ui/components";
+import { AvatarGroup, Flex, Heading, SmartImage, SmartLink, Text } from "@/once-ui/components";
 import { useEffect, useState } from "react";
 import { useTranslations } from 'next-intl';
 
@@ -58,12 +58,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             fillWidth gap="m"
             direction="column">
             {images[activeIndex] && <Flex onClick={handleImageClick}>
-                <RevealFx
-                    style={{width: '100%'}}
-                    delay={0.4}
-                    trigger={isTransitioning}
-                    speed="fast">
                     <SmartImage
+                        priority
                         tabIndex={0}
                         radius="l"
                         alt={title}
@@ -75,7 +71,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                                 cursor: 'pointer',
                             }),
                         }}/>
-                </RevealFx>
             </Flex>}
             {images.length > 1 && (
                 <Flex

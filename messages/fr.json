@@ -65,6 +65,21 @@
         "title": "Écrire sur le design et la tech...",
         "description": "Lisez ce que {name} a fait récemment"
     },
+    "recipes": {
+        "label": "Recettes",
+        "title": "Recettes pour un rendez-vous romantique : des plats séduisants pour une ambiance intime",
+        "description": "Pimentez votre soirée avec des recettes irrésistibles conçues pour impressionner et éveiller la passion. Découvrez des plats qui créent une atmosphère romantique parfaite et vous rapprochent."
+    },
+    "tips": {
+        "label": "Conseils de cuisine",
+        "title": "Conseils de cuisine essentiels : maîtrisez l'art des repas délicieux",
+        "description": "Améliorez vos compétences culinaires avec des conseils d'experts. Apprenez à sublimer les saveurs, gagner du temps et réaliser des plats dignes d'un restaurant depuis le confort de votre maison."
+    },
+    "reviews": {
+        "label": "Avis sur les restaurants",
+        "title": "Avis sur les restaurants : des critiques honnêtes pour les amateurs de gastronomie",
+        "description": "Découvrez les meilleurs avis sur les restaurants avec des perspectives authentiques sur la cuisine, l'ambiance et le service. Trouvez des pépites cachées et des lieux incontournables près de chez vous ou partout dans le monde."
+    },
     "work": {
         "label": "Travail",
         "title": "Mes projets",

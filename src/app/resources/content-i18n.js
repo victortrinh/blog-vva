@@ -3,7 +3,7 @@ import { InlineCode } from "@/once-ui/components";
 const createI18nContent = (t) => {
     const person = {
         firstName: 'Victor',
-        lastName:  'Yu',
+        lastName:  'Vu',
         get name() {
             return `${this.firstName} ${this.lastName}`;
         },
@@ -14,7 +14,7 @@ const createI18nContent = (t) => {
     }
 
     const newsletter = {
-        display: true,
+        display: false,
         title: <>{t("newsletter.title", {firstName: person.firstName})}</>,
         description: <>{t("newsletter.description")}</>
     }
@@ -159,6 +159,30 @@ const createI18nContent = (t) => {
         // All posts will be listed on the /blog route
     }
 
+    const recipes = {
+        label: t("recipes.label"),
+        title: t("recipes.title"),
+        description: t("recipes.description")
+        // Create new blog posts by adding a new .mdx file to app/blog/posts
+        // All posts will be listed on the /blog route
+    }
+
+    const tips = {
+        label: t("tips.label"),
+        title: t("tips.title"),
+        description: t("tips.description")
+        // Create new blog posts by adding a new .mdx file to app/blog/posts
+        // All posts will be listed on the /blog route
+    }
+
+    const reviews = {
+        label: t("reviews.label"),
+        title: t("reviews.title"),
+        description: t("reviews.description")
+        // Create new blog posts by adding a new .mdx file to app/blog/posts
+        // All posts will be listed on the /blog route
+    }
+
     const work = {
         label: t("work.label"),
         title: t("work.title"),
@@ -251,6 +275,9 @@ const createI18nContent = (t) => {
         newsletter,
         home,
         about,
+        recipes,
+        reviews,
+        tips,
         blog,
         work,
         gallery

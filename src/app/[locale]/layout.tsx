@@ -131,7 +131,6 @@ export default async function RootLayout({
 							</RouteGuard>
 						</Flex>
 					</Flex>
-					<Footer/>
 				</Flex>
 			</Flex>
 		</NextIntlClientProvider>
