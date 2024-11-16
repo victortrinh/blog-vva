@@ -36,7 +36,9 @@ export const Header = () => {
             as="header"
             fillWidth paddingX="m" height="64"
             alignItems="center"
+            justifyContent="center"
             background="surface">
+            <Flex fillWidth maxWidth="xl">
             <Flex hide="s">
                 <Link href={`/${params?.locale}/`}>
                     <Text style={{whiteSpace: "nowrap"}} variant="display-strong-xs">VICTOR VU</Text>
@@ -109,6 +111,7 @@ export const Header = () => {
                             {locale.toUpperCase()}
                         </ToggleButton>
                     ))}
+            </Flex>
             </Flex>
         </Flex>
     );
