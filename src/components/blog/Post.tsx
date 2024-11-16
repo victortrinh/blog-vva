@@ -29,7 +29,7 @@ export default function Post({ post, thumbnail }: PostProps) {
                 fillWidth gap="32">
                 {post.metadata.image && thumbnail && (
                     <Flex
-                        maxWidth={20} fillWidth
+                        fillWidth
                         className={styles.image}>
                         <SmartImage
                             sizes="640px"
