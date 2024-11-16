@@ -164,7 +164,7 @@ export default function Home(
 					</Flex>
 					<Flex
 						flex={3} paddingX="20">
-						<Posts page="reviews" range={[1,2]} columns="2" locale={locale}/>
+						<Posts page="reviews" range={[1,2]} columns="2" locale={locale} thumbnail />
 					</Flex>
 				</Flex>
 			)}
