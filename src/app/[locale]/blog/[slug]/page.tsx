@@ -88,7 +88,7 @@ export default function Blog({ params }: BlogParams) {
 
 	return (
 		<Flex as="section"
-			fillWidth maxWidth="xs"
+			fillWidth maxWidth="xl"
 			direction="column"
 			gap="m">
 			<script

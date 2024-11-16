@@ -49,7 +49,7 @@ export default function Blog(
 	const { person, blog, newsletter } = renderContent(t);
     return (
         <Flex
-			fillWidth maxWidth="s"
+			fillWidth maxWidth="xl"
 			direction="column">
             <script
 				type="application/ld+json"

@@ -49,7 +49,7 @@ export default function Home(
 	const { home, person, newsletter } = renderContent(t);
 	return (
 		<Flex
-			maxWidth="l" fillWidth gap="l"
+			maxWidth="xl" fillWidth gap="l"
 			direction="column" alignItems="center">
 			<script
 				type="application/ld+json"
@@ -79,7 +79,7 @@ export default function Home(
 				paddingY="l" gap="m">
 					<Flex
 						direction="column"
-						fillWidth maxWidth="l" gap="m">
+						fillWidth gap="m">
 						<Heading
 							wrap="balance"
 							variant="display-strong-l">
@@ -105,9 +105,7 @@ export default function Home(
 						wrap="balance">
 						Latest recipes
 					</Heading>
-					<Flex flex={3}>
-						<Posts page="recipes" range={[1,2]} columns="2" locale={locale} thumbnail />
-					</Flex>
+					<Posts page="recipes" range={[1,4]} columns="4" locale={locale} thumbnail />
 				</Flex>
 			)}
 			{routes['/tips'] && (
@@ -120,9 +118,7 @@ export default function Home(
 						wrap="balance">
 						Latest tips
 					</Heading>
-					<Flex flex={3}>
-						<Posts page="tips" range={[1,2]} columns="2" locale={locale} thumbnail />
-					</Flex>
+					<Posts page="tips" range={[1,4]} columns="4" locale={locale} thumbnail />
 				</Flex>
 			)}
 			{routes['/reviews'] && (
@@ -135,9 +131,7 @@ export default function Home(
 						wrap="balance">
 						Latest reviews
 					</Heading>
-					<Flex flex={3}>
-						<Posts page="reviews" range={[1,2]} columns="2" locale={locale} thumbnail />
-					</Flex>
+					<Posts page="reviews" range={[1,4]} columns="4" locale={locale} thumbnail />
 				</Flex>
 			)}
 			{ newsletter.display &&

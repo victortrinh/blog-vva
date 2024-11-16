@@ -95,7 +95,7 @@ export default function Project({ params }: WorkParams) {
 
 	return (
 		<Flex as="section"
-			fillWidth maxWidth="m"
+			fillWidth maxWidth="xl"
 			direction="column" alignItems="center"
 			gap="l">
 			<script
@@ -121,7 +121,7 @@ export default function Project({ params }: WorkParams) {
 				}}
 			/>
 			<Flex
-				fillWidth maxWidth="xs" gap="16"
+				fillWidth maxWidth="xl" gap="16"
 				direction="column">
 				<Button
 					href={`/${params.locale}/work`}
@@ -144,7 +144,7 @@ export default function Project({ params }: WorkParams) {
 			)}
 			<Flex style={{margin: 'auto'}}
 				as="article"
-				maxWidth="xs" fillWidth
+				maxWidth="xl" fillWidth
 				direction="column">
 				<Flex
 					gap="12" marginBottom="24"

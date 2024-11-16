@@ -4,7 +4,7 @@ import Post from './Post';
 
 interface PostsProps {
     range?: [number] | [number, number];
-    columns?: '1' | '2' | '3';
+    columns?: '1' | '2' | '3' | '4' | '5';
     locale: string;
     thumbnail?: boolean;
     page: string;

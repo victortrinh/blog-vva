@@ -69,7 +69,7 @@ export const Header = () => {
             </Flex>
             <Flex
                 fillWidth
-                justifyContent="flex-end"
+                justifyContent="center"
                 hide="s"
                 textVariant="label-default-s"
                 gap="4"
@@ -95,16 +95,18 @@ export const Header = () => {
                             <Flex paddingX="2" hide="s">{reviews.label}</Flex>
                         </SmartLink>
                     )}
-                    {routing.locales.map((locale, index) => (
-                        <ToggleButton
-                            key={index}
-                            selected={params?.locale === locale}
-                            onClick={() => handleLanguageChange(locale)}
-                            className={isPending && 'pointer-events-none opacity-60' || ''}
-                            >
-                            {locale.toUpperCase()}
-                        </ToggleButton>
-                    ))}
+            </Flex>
+            <Flex>
+                {routing.locales.map((locale, index) => (
+                    <ToggleButton
+                        key={index}
+                        selected={params?.locale === locale}
+                        onClick={() => handleLanguageChange(locale)}
+                        className={isPending && 'pointer-events-none opacity-60' || ''}
+                        >
+                        {locale.toUpperCase()}
+                    </ToggleButton>
+                ))}
             </Flex>
         </Flex>
     );

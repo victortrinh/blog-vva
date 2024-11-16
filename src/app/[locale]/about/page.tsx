@@ -68,7 +68,7 @@ export default function About(
     ]
     return (
         <Flex
-            fillWidth maxWidth="m"
+            fillWidth maxWidth="xl"
             direction="column">
             <script
                 type="application/ld+json"

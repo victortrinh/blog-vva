@@ -48,7 +48,7 @@ export default function Tips(
 	const { person, tips, newsletter } = renderContent(t);
     return (
         <Flex
-			fillWidth maxWidth="s"
+			fillWidth maxWidth="xl"
 			direction="column">
             <script
 				type="application/ld+json"
@@ -73,15 +73,12 @@ export default function Tips(
 				}}
 			/>
             <Heading
+				as="h1"
                 marginBottom="l"
                 variant="display-strong-s">
                 {tips.title}
             </Heading>
-			<Flex
-				fillWidth flex={1} direction="column">
-				<Posts page="tips" range={[1,3]} locale={locale} thumbnail/>
-				<Posts page="tips" range={[4]} columns="2" locale={locale}/>
-			</Flex>
+			<Posts page="tips" columns="4" locale={locale} thumbnail/>
             {newsletter.display && (
                 <Mailchimp newsletter={newsletter} />
             )}

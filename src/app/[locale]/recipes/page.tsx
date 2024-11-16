@@ -48,7 +48,7 @@ export default function Recipes(
 	const { person, recipes, newsletter } = renderContent(t);
     return (
         <Flex
-			fillWidth maxWidth="s"
+			fillWidth maxWidth="xl"
 			direction="column">
             <script
 				type="application/ld+json"
@@ -73,15 +73,12 @@ export default function Recipes(
 				}}
 			/>
             <Heading
+				as="h1"
                 marginBottom="l"
                 variant="display-strong-s">
                 {recipes.title}
             </Heading>
-			<Flex
-				fillWidth flex={1} direction="column">
-				<Posts page="recipes" range={[1,3]} locale={locale} thumbnail/>
-				<Posts page="recipes" range={[4]} columns="2" locale={locale}/>
-			</Flex>
+			<Posts page="recipes" locale={locale} columns="4" thumbnail/>
             {newsletter.display && (
                 <Mailchimp newsletter={newsletter} />
             )}

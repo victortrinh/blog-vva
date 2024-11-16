@@ -48,7 +48,7 @@ export default function Reviews(
 	const { person, reviews, newsletter } = renderContent(t);
     return (
         <Flex
-			fillWidth maxWidth="s"
+			fillWidth maxWidth="xl"
 			direction="column">
             <script
 				type="application/ld+json"
@@ -73,15 +73,12 @@ export default function Reviews(
 				}}
 			/>
             <Heading
+				as="h1"
                 marginBottom="l"
                 variant="display-strong-s">
                 {reviews.title}
             </Heading>
-			<Flex
-				fillWidth flex={1} direction="column">
-				<Posts page="reviews" range={[1,3]} locale={locale} thumbnail/>
-				<Posts page="reviews" range={[4]} columns="2" locale={locale}/>
-			</Flex>
+			<Posts page="reviews"  columns='4' locale={locale} thumbnail/>
             {newsletter.display && (
                 <Mailchimp newsletter={newsletter} />
             )}
