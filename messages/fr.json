@@ -9,10 +9,10 @@
     },
     "home": {
         "label": "Accueil",
-        "title": "Portfolio de {name}",
-        "description": "Site portfolio mettant en avant mon travail en tant que {role}",
-        "headline": "Ingénieur designer et créateur",
-        "subline": "Je suis Victor, une ingénieure designer chez FLY, où je conçois des expériences utilisateur intuitives. Après le travail, je développe mes propres projets."
+        "title": "Le blog culinaire de {name}",
+        "description": "Site mettant en avant ma passion pour la cuisine, les recettes et les avis sur les restaurants",
+        "headline": "Bienvenue sur mon blog culinaire",
+        "subline": "Visitez mon blog pour découvrir des recettes délicieuses, des conseils de cuisine et des critiques de restaurants"
     },
     "about": {
         "label": "À propos",

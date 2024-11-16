@@ -8,7 +8,8 @@ const createI18nContent = (t) => {
             return `${this.firstName} ${this.lastName}`;
         },
         role:      t("person.role"),
-        avatar:    '/images/avatar.jpg',
+        // avatar:    '/images/avatar.jpg',
+        avatar: undefined,
         location:  'Asia/Jakarta',        // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
         languages: ['English', 'Bahasa']  // optional: Leave the array empty if you don't want to display languages
     }
@@ -47,7 +48,7 @@ const createI18nContent = (t) => {
     const home = {
         label: t("home.label"),
         title: t("home.title", {name: person.name}),
-        description: t("home.description", {role: person.role}),
+        description: t("home.description"),
         headline: <>{t("home.headline")}</>,
         subline: <>{t("home.subline")}</>
     }
@@ -61,7 +62,7 @@ const createI18nContent = (t) => {
             subItems: true
         },
         avatar: {
-            display: true
+            display: false
         },
         calendar: {
             display: true,

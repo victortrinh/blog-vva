@@ -4,7 +4,7 @@ import { getPosts } from '@/app/utils/utils'
 import { Avatar, Button, Flex, Heading, Text } from '@/once-ui/components'
 
 import { baseURL, renderContent } from '@/app/resources'
-import { unstable_setRequestLocale } from 'next-intl/server'
+import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { formatDate } from '@/app/utils/formatDate'
@@ -76,7 +76,7 @@ export function generateMetadata({ params: { slug, locale } }: BlogParams) {
 }
 
 export default function Blog({ params }: BlogParams) {
-	unstable_setRequestLocale(params.locale);
+	setRequestLocale(params.locale);
 	let post = getPosts(['src', 'app', '[locale]', 'reviews', 'posts', params.locale]).find((post) => post.slug === params.slug)
 
 	if (!post) {
@@ -118,7 +118,7 @@ export default function Blog({ params }: BlogParams) {
 				variant="tertiary"
 				size="s"
 				prefixIcon="chevronLeft">
-				Posts
+				Reviews
 			</Button>
 			<Heading
 				variant="display-strong-s">

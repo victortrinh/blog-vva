@@ -4,7 +4,7 @@ import { getPosts } from '@/app/utils/utils'
 import { AvatarGroup, Button, Flex, Heading, SmartImage, Text } from '@/once-ui/components'
 import { baseURL, renderContent } from '@/app/resources';
 import { routing } from '@/i18n/routing';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import { formatDate } from '@/app/utils/formatDate';
 
@@ -79,7 +79,7 @@ export function generateMetadata({ params: { slug, locale } }: WorkParams) {
 }
 
 export default function Project({ params }: WorkParams) {
-	unstable_setRequestLocale(params.locale);
+	setRequestLocale(params.locale);
 	let post = getPosts(['src', 'app', '[locale]', 'work', 'projects', params.locale]).find((post) => post.slug === params.slug)
 
 	if (!post) {
