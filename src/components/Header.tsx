@@ -1,24 +1,19 @@
-"use client";
+'use client';
 
 import { useParams } from "next/navigation";
-import {  useTransition } from "react";
-
-import { Flex, ToggleButton } from "@/once-ui/components"
-import styles from '@/components/Header.module.scss'
-
-import { routes, display } from '@/app/resources'
-
-import { routing } from '@/i18n/routing';
-import { Locale, usePathname, useRouter } from '@/i18n/routing';
-import { renderContent } from "@/app/resources";
+import { DropdownWrapper, Flex, NavIcon, SmartLink, ToggleButton } from '@/once-ui/components';
+import React, { useTransition } from 'react';
+import { renderContent, routes } from '@/app/resources';
 import { useTranslations } from "next-intl";
-import { i18n } from "@/app/resources/config";
+import Link from "next/link";
+import { Locale, usePathname, useRouter } from '@/i18n/routing';
+import { routing } from '@/i18n/routing';
 
 export const Header = () => {
     const router = useRouter();
+    const params = useParams();
     const [isPending, startTransition] = useTransition();
     const pathname = usePathname() ?? '';
-    const params = useParams();
 
     function handleLanguageChange(locale: string) {
         const nextLocale = locale as Locale;
@@ -31,127 +26,86 @@ export const Header = () => {
     }
 
     const t = useTranslations();
-    const { home, about, blog, recipes, tips, reviews, work, gallery } = renderContent(t);
+    const { recipes, tips, reviews } = renderContent(t);
 
     return (
-        <>
-            <Flex
-                className={styles.mask}
-                position="fixed" zIndex={9}
-                fillWidth minHeight="80" justifyContent="center">
+        <Flex
+            style={{
+                borderBottom: '1px solid var(--neutral-border-medium)'
+            }}
+            as="header"
+            fillWidth paddingX="m" height="56"
+            alignItems="center"
+            background="surface">
+            <Flex hide="s">
+                <Link href={`/${params?.locale}/`}>Logo</Link>
             </Flex>
-            <Flex style={{height: 'fit-content'}}
-                className={styles.position}
-                as="header"
-                zIndex={9}
-                fillWidth padding="8"
-                justifyContent="center">
-                <Flex
-                    paddingLeft="12" fillWidth
-                    alignItems="center"
-                    textVariant="body-default-s"
-                />
-                <Flex fillWidth justifyContent="center">
-                    <Flex
-                        background="surface" border="neutral-medium" borderStyle="solid-1" radius="m-4" shadow="l"
-                        padding="4"
-                        justifyContent="center">
-                        <Flex
-                            gap="4"
-                            textVariant="body-default-s">
-                            { routes['/'] && (
-                                <ToggleButton
-                                    prefixIcon="home"
-                                    href={`/${params?.locale}`}
-                                    selected={pathname === "/"}>
-                                    <Flex paddingX="2" hide="s">{home.label}</Flex>
-                                </ToggleButton>
-                            )}
-                            { routes['/about'] && (
-                                <ToggleButton
-                                    prefixIcon="person"
-                                    href={`/${params?.locale}/about`}
-                                    selected={pathname === "/about"}>
-                                    <Flex paddingX="2" hide="s">{about.label}</Flex>
-                                </ToggleButton>
-                            )}
-                            { routes['/work'] && (
-                                <ToggleButton
-                                    prefixIcon="grid"
-                                    href={`/${params?.locale}/work`}
-                                    selected={pathname.startsWith('/work')}>
-                                    <Flex paddingX="2" hide="s">{work.label}</Flex>
-                                </ToggleButton>
-                            )}
-                            { routes['/blog'] && (
-                                <ToggleButton
-                                    prefixIcon="book"
-                                    href={`/${params?.locale}/blog`}
-                                    selected={pathname.startsWith('/blog')}>
-                                    <Flex paddingX="2" hide="s">{blog.label}</Flex>
-                                </ToggleButton>
-                            )}
-                            { routes['/recipes'] && (
-                                <ToggleButton
-                                    prefixIcon="book"
-                                    href={`/${params?.locale}/recipes`}
-                                    selected={pathname.startsWith('/recipes')}>
-                                    <Flex paddingX="2" hide="s">{recipes.label}</Flex>
-                                </ToggleButton>
-                            )}
-                            { routes['/tips'] && (
-                                <ToggleButton
-                                    prefixIcon="book"
-                                    href={`/${params?.locale}/tips`}
-                                    selected={pathname.startsWith('/tips')}>
-                                    <Flex paddingX="2" hide="s">{tips.label}</Flex>
-                                </ToggleButton>
-                            )}
-                            { routes['/reviews'] && (
-                                <ToggleButton
-                                    prefixIcon="book"
-                                    href={`/${params?.locale}/reviews`}
-                                    selected={pathname.startsWith('/reviews')}>
-                                    <Flex paddingX="2" hide="s">{reviews.label}</Flex>
-                                </ToggleButton>
-                            )}
-                            { routes['/gallery'] && (
-                                <ToggleButton
-                                    prefixIcon="gallery"
-                                    href={`/${params?.locale}/gallery`}
-                                    selected={pathname.startsWith('/gallery')}>
-                                    <Flex paddingX="2" hide="s">{gallery.label}</Flex>
-                                </ToggleButton>
-                            )}
-                        </Flex>
-                    </Flex>
-                </Flex>
-                <Flex fillWidth justifyContent="flex-end" alignItems="center">
-                    <Flex
-                        paddingRight="12"
-                        justifyContent="flex-end" alignItems="center"
-                        textVariant="body-default-s"
-                        gap="20">
-                        {routing.locales.length > 1 &&
-                            <Flex
-                                background="surface" border="neutral-medium" borderStyle="solid-1" radius="m-4" shadow="l"
-                                padding="4" gap="2"
-                                justifyContent="center">
-                                {i18n && routing.locales.map((locale, index) => (
-                                    <ToggleButton
-                                        key={index}
-                                        selected={params?.locale === locale}
-                                        onClick={() => handleLanguageChange(locale)}
-                                        className={isPending && 'pointer-events-none opacity-60' || ''}
-                                        >
-                                        {locale.toUpperCase()}
-                                    </ToggleButton>
-                                ))}
-                            </Flex>
+            <Flex fillWidth show="s" alignItems="center" justifyContent="space-between">
+                <Link href={`/${params?.locale}/`}>Logo</Link>
+                <DropdownWrapper 
+                    dropdownOptions={[
+                        {
+                            label: recipes.label,
+                            value: 'recipes'
+                        },
+                        {
+                            label: tips.label,
+                            value: 'tips'
+                        },
+                        {
+                            label: reviews.label,
+                            value: 'reviews'
                         }
-                    </Flex>
-                </Flex>
+                    ]}
+                    dropdownProps={{
+                        selectedOption: pathname.split('/').pop(),
+                        onOptionSelect: (option) => {
+                            router.replace(option.value);
+                        }
+                    }}
+                >
+                    <NavIcon/>
+                </DropdownWrapper>
             </Flex>
-        </>
-    )
-}
+            <Flex
+                fillWidth
+                justifyContent="flex-end"
+                hide="s"
+                textVariant="label-default-s"
+                gap="4"
+                alignItems="center">
+                    { routes['/recipes'] && (
+                        <SmartLink
+                            href={`/${params?.locale}/recipes`}
+                            selected={pathname.startsWith('/recipes')}>
+                            <Flex paddingX="2" hide="s">{recipes.label}</Flex>
+                        </SmartLink>
+                    )}
+                    { routes['/tips'] && (
+                        <SmartLink
+                            href={`/${params?.locale}/tips`}
+                            selected={pathname.startsWith('/tips')}>
+                            <Flex paddingX="2" hide="s">{tips.label}</Flex>
+                        </SmartLink>
+                    )}
+                    { routes['/reviews'] && (
+                        <SmartLink
+                            href={`/${params?.locale}/reviews`}
+                            selected={pathname.startsWith('/reviews')}>
+                            <Flex paddingX="2" hide="s">{reviews.label}</Flex>
+                        </SmartLink>
+                    )}
+                    {routing.locales.map((locale, index) => (
+                        <ToggleButton
+                            key={index}
+                            selected={params?.locale === locale}
+                            onClick={() => handleLanguageChange(locale)}
+                            className={isPending && 'pointer-events-none opacity-60' || ''}
+                            >
+                            {locale.toUpperCase()}
+                        </ToggleButton>
+                    ))}
+            </Flex>
+        </Flex>
+    );
+};

@@ -50,7 +50,7 @@ const style = {
     solid:       'contrast',     // color | contrast
     solidStyle:  'flat',         // flat | plastic
     border:      'playful',      // rounded | playful | conservative
-    surface:     'translucent',  // filled | translucent
+    surface:     'filled',       // filled | translucent
     transition:  'all'           // all | micro | macro
 }
 

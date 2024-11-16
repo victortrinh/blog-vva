@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Heading, Flex, Text, Button,  Avatar, Arrow } from '@/once-ui/components';
-import { Projects } from '@/components/work/Projects';
+import { Heading, Flex, Text } from '@/once-ui/components';
 
 import { baseURL, routes, renderContent } from '@/app/resources'; 
 import { Mailchimp } from '@/components';
@@ -50,7 +49,7 @@ export default function Home(
 	const { home, person, newsletter } = renderContent(t);
 	return (
 		<Flex
-			maxWidth="m" fillWidth gap="xl"
+			maxWidth="l" fillWidth gap="l"
 			direction="column" alignItems="center">
 			<script
 				type="application/ld+json"
@@ -80,7 +79,7 @@ export default function Home(
 				paddingY="l" gap="m">
 					<Flex
 						direction="column"
-						fillWidth maxWidth="s" gap="m">
+						fillWidth maxWidth="l" gap="m">
 						<Heading
 							wrap="balance"
 							variant="display-strong-l">
@@ -96,38 +95,17 @@ export default function Home(
 						</Flex>
 					</Flex>
 			</Flex>
-			{routes['/blog'] && (
-				<Flex
-					fillWidth gap="24"
-					mobileDirection="column">
-					<Flex flex={1} paddingLeft="l">
-						<Heading
-							as="h2"
-							variant="display-strong-xs"
-							wrap="balance">
-							Latest from the blog
-						</Heading>
-					</Flex>
-					<Flex
-						flex={3} paddingX="20">
-						<Posts page="blog" range={[1,2]} columns="2" locale={locale} thumbnail />
-					</Flex>
-				</Flex>
-			)}
 			{routes['/recipes'] && (
 				<Flex
 					fillWidth gap="24"
-					mobileDirection="column">
-					<Flex flex={1} paddingLeft="l">
-						<Heading
-							as="h2"
-							variant="display-strong-xs"
-							wrap="balance">
-							Latest recipes
-						</Heading>
-					</Flex>
-					<Flex
-						flex={3} paddingX="20">
+					direction="column">
+					<Heading
+						as="h2"
+						variant="display-strong-xs"
+						wrap="balance">
+						Latest recipes
+					</Heading>
+					<Flex flex={3}>
 						<Posts page="recipes" range={[1,2]} columns="2" locale={locale} thumbnail />
 					</Flex>
 				</Flex>
@@ -135,17 +113,14 @@ export default function Home(
 			{routes['/tips'] && (
 				<Flex
 					fillWidth gap="24"
-					mobileDirection="column">
-					<Flex flex={1} paddingLeft="l">
-						<Heading
-							as="h2"
-							variant="display-strong-xs"
-							wrap="balance">
-							Latest tips
-						</Heading>
-					</Flex>
-					<Flex
-						flex={3} paddingX="20">
+					direction="column">
+					<Heading
+						as="h2"
+						variant="display-strong-xs"
+						wrap="balance">
+						Latest tips
+					</Heading>
+					<Flex flex={3}>
 						<Posts page="tips" range={[1,2]} columns="2" locale={locale} thumbnail />
 					</Flex>
 				</Flex>
@@ -153,17 +128,14 @@ export default function Home(
 			{routes['/reviews'] && (
 				<Flex
 					fillWidth gap="24"
-					mobileDirection="column">
-					<Flex flex={1} paddingLeft="l">
-						<Heading
-							as="h2"
-							variant="display-strong-xs"
-							wrap="balance">
-							Latest reviews
-						</Heading>
-					</Flex>
-					<Flex
-						flex={3} paddingX="20">
+					direction="column">
+					<Heading
+						as="h2"
+						variant="display-strong-xs"
+						wrap="balance">
+						Latest reviews
+					</Heading>
+					<Flex flex={3}>
 						<Posts page="reviews" range={[1,2]} columns="2" locale={locale} thumbnail />
 					</Flex>
 				</Flex>
