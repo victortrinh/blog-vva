@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Heading, Flex, Text } from '@/once-ui/components';
+import { Heading, Flex, Text, Carousel } from '@/once-ui/components';
 
 import { baseURL, routes, renderContent } from '@/app/resources'; 
 import { Mailchimp } from '@/components';
@@ -72,6 +72,24 @@ export default function Home(
 						},
 					}),
 				}}
+			/>
+			<Carousel
+				aspectRatio="16 / 5"
+				indicator="line"
+				images={[
+					{
+						alt: 'Spaghetti carbonara',
+						src: '/images/recipes/spaghetti-carbonara.jpg'
+					},
+					{
+						alt: 'Le petit bouchon',
+						src: '/images/reviews/le-petit-bouchon.jpg'
+					},
+					{
+						alt: 'Crispy roasted vegetables',
+						src: '/images/tips/crispy-roasted-vegetables.jpg'
+					}
+				]}
 			/>
 			<Flex
 				fillWidth
