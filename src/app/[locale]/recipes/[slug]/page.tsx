@@ -8,6 +8,8 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { formatDate } from '@/app/utils/formatDate'
+import { GoToRecipeButton } from '@/components/recipes/GoToRecipeButton'
+import { Recipe } from '@/components/recipes/Recipe'
 
 interface BlogParams {
     params: { 
@@ -138,12 +140,14 @@ export default function Blog({ params }: BlogParams) {
 					{formatDate(post.metadata.publishedAt)}
 				</Text>
 			</Flex>
+			<GoToRecipeButton id={post.slug} />
 			<Flex
 				as="article"
 				direction="column"
 				fillWidth>
 				<CustomMDX source={post.content} />
 			</Flex>
+			<Recipe id={post.slug} />
 		</Flex>
 	)
 }

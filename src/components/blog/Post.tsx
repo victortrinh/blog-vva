@@ -60,7 +60,7 @@ export default function Post({ post, thumbnail }: PostProps) {
                         {formatDate(post.metadata.publishedAt, false)}
                     </Text>
                 </Flex>
-                <Button href={post.slug} variant="tertiary" fillWidth>
+                <Button variant="tertiary" fillWidth>
                     {t("common.view", {type: post.metadata.tag }).toUpperCase()}
                 </Button>
             </Flex>
