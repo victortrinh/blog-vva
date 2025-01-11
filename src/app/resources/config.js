@@ -1,8 +1,5 @@
 const baseURL = 'demo.magic-portfolio.com'
 
-// Enable localization
-const i18n = true;
-
 // Manage localized content in the messages folder
 const i18nOptions = {
     locales: ['en', 'fr'],            // A list of all locales that are supported, e.g. ['en','id']
@@ -26,22 +23,6 @@ const protectedRoutes = {
     '/work/automate-design-handovers-with-a-figma-to-code-pipeline': true
 }
 
-const effects = {
-    mask: 'cursor',             // none | cursor | topLeft | topRight | bottomLeft | bottomRight
-    gradient: {
-        display: true,
-        opacity: 0.4            // 0 - 1
-    },
-    dots: {
-        display: true,
-        opacity: 0.4,           // 0 - 1
-        size: '24'              // 2 | 4 | 8 | 12 | 16 | 20 | 24 | 32 | 40 | 48 | 56 | 634
-    },
-    lines: {
-        display: false,
-    },
-}
-
 const style = {
     theme:       'light',        // dark | light
     neutral:     'slate',        // sand | gray | slate
@@ -54,26 +35,4 @@ const style = {
     transition:  'all'           // all | micro | macro
 }
 
-const display = {
-    location: true,
-    time:     true
-}
-
-const mailchimp = {
-    action: 'https://url/subscribe/post?parameters',
-    effects: {
-        mask: 'topRight',           // none | cursor | topLeft | topRight | bottomLeft | bottomRight
-        gradient: {
-            display: true,
-            opacity: 0.6            // 0 - 1
-        },
-        dots: {
-            display: false,
-        },
-        lines: {
-            display: false,
-        },
-    }
-}
-
-export { routes, protectedRoutes, effects, style, display, mailchimp, baseURL, i18n, i18nOptions };
+export { routes, protectedRoutes, style, baseURL, i18nOptions };

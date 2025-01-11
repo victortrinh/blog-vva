@@ -1,4 +1,4 @@
-export type StaticSpacingToken = 
+type StaticSpacingToken = 
 | '0'
 | '1'
 | '2'
@@ -18,14 +18,14 @@ export type StaticSpacingToken =
 | '128'
 | '160';
 
-export type TShirtSizes = 
+type TShirtSizes = 
 | 'xs'
 | 's'
 | 'm'
 | 'l'
 | 'xl';
 
-export type ResponsiveSpacingToken = TShirtSizes;
+type ResponsiveSpacingToken = TShirtSizes;
 
 export type ShadowSize = TShirtSizes;
 
@@ -40,10 +40,6 @@ export type ColorScheme =
 | 'warning'
 | 'success';
 
-export type ColorCategory =
-| 'on-solid'
-| 'on-background';
-
 export type ColorWeight = 
 | 'weak'
 | 'medium'
@@ -55,7 +51,7 @@ export type RadiusNest =
 | '4'
 | '8';
 
-export type TextType = 
+type TextType = 
 | 'body' 
 | 'heading' 
 | 'display' 

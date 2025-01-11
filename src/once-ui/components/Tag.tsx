@@ -53,4 +53,3 @@ const Tag = forwardRef<HTMLDivElement, TagProps>(({
 Tag.displayName = 'Tag';
 
 export { Tag };
-export type { TagProps };

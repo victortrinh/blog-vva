@@ -154,4 +154,3 @@ const Grid = forwardRef<HTMLDivElement, ComponentProps>(({
 Grid.displayName = 'Grid';
 
 export { Grid };
-export type { GridProps };

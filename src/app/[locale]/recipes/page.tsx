@@ -1,5 +1,4 @@
 import { Flex, Heading } from '@/once-ui/components';
-import { Mailchimp } from '@/components';
 import { Posts } from '@/components/blog/Posts';
 import { baseURL, renderContent } from '@/app/resources'
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -45,7 +44,7 @@ export default function Recipes(
 	setRequestLocale(locale);
 
 	const t = useTranslations();
-	const { person, recipes, newsletter } = renderContent(t);
+	const { person, recipes } = renderContent(t);
     return (
         <Flex
 			fillWidth maxWidth="xl"
@@ -79,9 +78,6 @@ export default function Recipes(
                 {recipes.title}
             </Heading>
 			<Posts page="recipes" locale={locale} columns="4" thumbnail/>
-            {newsletter.display && (
-                <Mailchimp newsletter={newsletter} />
-            )}
         </Flex>
     );
 }

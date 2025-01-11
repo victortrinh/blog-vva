@@ -61,4 +61,3 @@ const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(({
 AvatarGroup.displayName = 'AvatarGroup';
 
 export { AvatarGroup };
-export type { AvatarGroupProps };

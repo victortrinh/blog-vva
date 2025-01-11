@@ -11,7 +11,7 @@ function setRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
     }
 }
 
-export interface MaskOptions {
+interface MaskOptions {
     none: 'none';
     cursor: 'cursor';
     topLeft: 'topLeft';
@@ -22,7 +22,7 @@ export interface MaskOptions {
 
 type MaskType = keyof MaskOptions;
 
-export interface BackgroundProps {
+interface BackgroundProps {
     position?: CSSProperties['position'];
     gradient?: GradientProps;
     dots?: DotsProps;
@@ -32,19 +32,19 @@ export interface BackgroundProps {
     style?: React.CSSProperties;
 }
 
-export interface GradientProps {
+interface GradientProps {
     display?: boolean;
     opacity?: number;
 }
 
-export interface DotsProps {
+interface DotsProps {
     display?: boolean;
     opacity?: number;
     color?: string;
     size?: SpacingToken;
 }
 
-export interface LinesProps {
+interface LinesProps {
     display?: boolean;
     opacity?: number;
     size?: SpacingToken;

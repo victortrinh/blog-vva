@@ -119,4 +119,3 @@ const Scroller: React.FC<ScrollerProps> = ({
 Scroller.displayName = 'Scroller';
 
 export { Scroller };
-export type { ScrollerProps };

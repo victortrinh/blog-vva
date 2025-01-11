@@ -20,8 +20,8 @@ interface CommonProps {
     style?: React.CSSProperties;
 }
 
-export type ButtonProps = CommonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
-export type AnchorProps = CommonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
+type ButtonProps = CommonProps & React.ButtonHTMLAttributes<HTMLButtonElement>;
+type AnchorProps = CommonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const isExternalLink = (url: string) => /^https?:\/\//.test(url);
 

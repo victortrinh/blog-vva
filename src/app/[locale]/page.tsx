@@ -3,7 +3,6 @@ import React from 'react';
 import { Heading, Flex, Text, Carousel } from '@/once-ui/components';
 
 import { baseURL, routes, renderContent } from '@/app/resources'; 
-import { Mailchimp } from '@/components';
 import { Posts } from '@/components/blog/Posts';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
@@ -46,7 +45,7 @@ export default function Home(
 ) {
 	setRequestLocale(locale);
 	const t = useTranslations();
-	const { home, person, newsletter } = renderContent(t);
+	const { home, person } = renderContent(t);
 	return (
 		<Flex
 			maxWidth="xl" fillWidth gap="l"
@@ -152,9 +151,6 @@ export default function Home(
 					<Posts page="reviews" range={[1,4]} columns="4" locale={locale} thumbnail />
 				</Flex>
 			)}
-			{ newsletter.display &&
-				<Mailchimp newsletter={newsletter} />
-			}
 		</Flex>
 	);
 }
