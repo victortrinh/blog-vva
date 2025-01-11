@@ -17,8 +17,10 @@ import { renderContent } from "@/app/resources";
 import { Flex } from "@/once-ui/components";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
+type Params = Promise<{ locale: string }>
+
 export async function generateMetadata(
-	{ params }: { params: { locale: string }}
+	{ params }: { params: Params }
 ) {
 	const { locale } = await params;
 	const t = await getTranslations();
@@ -77,7 +79,7 @@ const code = Source_Code_Pro({
 
 interface RootLayoutProps {
 	children: React.ReactNode;
-	params: {locale: string};
+	params: Params;
 }
 
 export function generateStaticParams() {

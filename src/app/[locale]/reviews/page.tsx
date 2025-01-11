@@ -4,8 +4,10 @@ import { baseURL, renderContent } from '@/app/resources'
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 
+type Params = Promise<{ locale: string }>;
+
 export async function generateMetadata(
-	{params}: { params: { locale: string }}
+	{params}: { params: Params}
 ) {
 	const { locale } = await params;
 	const t = await getTranslations();
@@ -40,7 +42,7 @@ export async function generateMetadata(
 }
 
 export default async function Reviews(
-	{ params }: { params: { locale: string }}
+	{ params }: { params: Params}
 ) {
 	const { locale } = await params;
 	setRequestLocale(locale);

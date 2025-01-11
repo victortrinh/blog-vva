@@ -4,8 +4,10 @@ import { baseURL, renderContent } from '@/app/resources'
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 
+type Params = Promise<{ locale: string }>;
+
 export async function generateMetadata(
-	{params}: { params: { locale: string }}
+	{params}: { params: Params }
 ) {
 	const { locale } = await params;
 	const t = await getTranslations();
@@ -39,11 +41,20 @@ export async function generateMetadata(
 	};
 }
 
-export default function Recipes(
-	{ params: {locale}}: { params: { locale: string }}
+export default async function Recipes(
+	{ params }: { params: Params}
 ) {
+	const { locale } = await params;
 	setRequestLocale(locale);
 
+	return <InnerRecipes locale={locale} />;
+}
+
+interface InnerRecipesProps {
+	locale: string;
+}
+
+const InnerRecipes = ({locale}: InnerRecipesProps) => {
 	const t = useTranslations();
 	const { person, recipes } = renderContent(t);
     return (

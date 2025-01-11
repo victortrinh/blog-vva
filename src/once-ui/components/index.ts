@@ -1,7 +1,4 @@
 export { Avatar } from './Avatar';
-export type { AvatarProps } from './Avatar';
-export { AvatarGroup } from './AvatarGroup';
-export { Background } from './Background';
 export { Button } from './Button';
 export { Carousel } from './Carousel';
 export { Dropdown } from './Dropdown';
@@ -21,7 +18,6 @@ export { SmartImage } from './SmartImage';
 export { SmartLink } from './SmartLink';
 export { Spinner } from './Spinner';
 export { StatusIndicator } from './StatusIndicator';
-export { Tag } from './Tag';
 export { Text } from './Text';
 export { Toast } from './Toast';
 export { Toaster } from './Toaster';

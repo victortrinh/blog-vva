@@ -7,8 +7,10 @@ import { Posts } from '@/components/blog/Posts';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 
+type Params = Promise<{ locale: string }>
+
 export async function generateMetadata(
-	{params}: { params: { locale: string }}
+	{params}: { params: Params}
 ) {
 	const { locale } = await params;
 	const t = await getTranslations();
@@ -41,10 +43,20 @@ export async function generateMetadata(
 	};
 }
 
-export default function Home(
-	{ params: {locale}}: { params: { locale: string }}
+export default async function Home(
+	{ params }: { params: Params }
 ) {
+	const { locale } = await params
 	setRequestLocale(locale);
+	
+	return <InnerHome locale={locale} />;
+}
+
+interface InnerHomeProps {
+	locale: string;
+}
+
+const InnerHome = ({locale}: InnerHomeProps) => {
 	const t = useTranslations();
 	const { home, person } = renderContent(t);
 	return (

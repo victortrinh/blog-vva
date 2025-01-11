@@ -9,11 +9,10 @@ import { routing } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { formatDate } from '@/app/utils/formatDate'
 
+type Params = Promise<{ locale: string, slug: string }>;
+
 interface BlogParams {
-    params: { 
-        slug: string;
-		locale: string;
-    };
+	params: Params;
 }
 
 export async function generateStaticParams() {
@@ -76,7 +75,7 @@ export async function generateMetadata({ params }: BlogParams) {
 	}
 }
 
-export default async function Blog({ params }: BlogParams) {
+export default async function Blog({ params } : BlogParams) {
 	const { locale, slug } = await params; 
 	setRequestLocale(locale);
 	const post = getPosts(['src', 'app', '[locale]', 'blog', 'posts', locale]).find((post) => post.slug === slug)

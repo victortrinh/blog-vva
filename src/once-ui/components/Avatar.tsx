@@ -125,4 +125,3 @@ const Avatar: React.FC<AvatarProps> = forwardRef<HTMLDivElement, AvatarProps>(({
 Avatar.displayName = 'Avatar';
 
 export { Avatar };
-export type { AvatarProps };

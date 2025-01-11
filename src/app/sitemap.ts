@@ -34,19 +34,12 @@ export default async function sitemap() {
         }))
     );
 
-    const works = locales.flatMap((locale) => 
-        getPosts(['src', 'app', '[locale]', 'work', 'projects', locale]).map((post) => ({
-            url: `${baseURL}/${locale}/work/${post.slug}`,
-            lastModified: post.metadata.publishedAt,
-        }))
-    );
-
     const routes = locales.flatMap((locale)=> 
-        ['', '/blog', '/work'].map((route) => ({
+        ['', '/blog'].map((route) => ({
             url: `${baseURL}/${locale}${route}`,
             lastModified: new Date().toISOString().split('T')[0],
         }))
     );
 
-    return [...routes, ...blogs, ...recipes, ...tips, ...reviews, ...works]
+    return [...routes, ...blogs, ...recipes, ...tips, ...reviews]
 }

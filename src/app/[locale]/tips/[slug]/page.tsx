@@ -10,10 +10,7 @@ import { useTranslations } from 'next-intl';
 import { formatDate } from '@/app/utils/formatDate'
 
 interface BlogParams {
-    params: { 
-        slug: string;
-		locale: string;
-    };
+    params: Promise<{ locale: string, slug: string }>;
 }
 
 export async function generateStaticParams() {

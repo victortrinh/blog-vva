@@ -8,13 +8,10 @@ const i18nOptions = {
 
 const routes = {
     '/':        true,
-    '/about':   false,
-    '/work':    false,
     '/blog':    false,
     '/recipes': true,
     '/tips':    true,
-    '/reviews': true,
-    '/gallery': false,
+    '/reviews': true
 }
 
 // Enable password protection on selected routes
