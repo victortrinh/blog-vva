@@ -39,10 +39,16 @@ export async function generateMetadata(
 	};
 }
 
-export default function About(
-    { params: {locale}}: { params: { locale: string }}
+export default async function About(
+    { params }: { params: { locale: string }}
 ) {
+    const { locale } = await params;
     setRequestLocale(locale);
+    
+    return <InnerAbout />;
+}
+
+const InnerAbout = () => {
     const t = useTranslations();
     const {person, about, social } = renderContent(t);
     const structure = [
