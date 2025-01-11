@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { CustomMDX } from '@/components/mdx'
-import { getPosts } from '@/app/utils/utils'
+import { getPosts, Metadata } from '@/app/utils/utils'
 import { Avatar, Button, Flex, Heading, Text } from '@/once-ui/components'
 
 import { baseURL, renderContent } from '@/app/resources'
@@ -36,7 +36,8 @@ export async function generateStaticParams() {
     return allPosts;
 }
 
-export function generateMetadata({ params: { slug, locale } }: BlogParams) {
+export async function generateMetadata({ params }: BlogParams) {
+	const { locale, slug } = await params;
 	const post = getPosts(['src', 'app', '[locale]', 'recipes', 'posts', locale]).find((post) => post.slug === slug)
 
 	if (!post) {
@@ -77,14 +78,31 @@ export function generateMetadata({ params: { slug, locale } }: BlogParams) {
 	}
 }
 
-export default function Blog({ params }: BlogParams) {
-	setRequestLocale(params.locale);
-	const post = getPosts(['src', 'app', '[locale]', 'recipes', 'posts', params.locale]).find((post) => post.slug === params.slug)
+export default async function Blog({ params }: BlogParams) {
+	const { locale, slug } = await params;
+	setRequestLocale(locale);
+	const post = getPosts(['src', 'app', '[locale]', 'recipes', 'posts', locale]).find((post) => post.slug === slug)
 
 	if (!post) {
 		notFound()
 	}
 
+
+	return (
+		<InnerBlog post={post} locale={locale} />
+	)
+}
+
+interface InnerBlogProps {
+	post: {
+		metadata: Metadata;
+		slug: string;
+		content: string;
+	},
+	locale: string;
+}
+
+const InnerBlog = ({ post, locale }: InnerBlogProps) => {
 	const t = useTranslations();
 	const { person } = renderContent(t);
 
@@ -107,7 +125,7 @@ export default function Blog({ params }: BlogParams) {
 						image: post.metadata.image
 							? `https://${baseURL}${post.metadata.image}`
 							: `https://${baseURL}/og?title=${post.metadata.title}`,
-							url: `https://${baseURL}/${params.locale}/recipes/${post.slug}`,
+							url: `https://${baseURL}/${locale}/recipes/${post.slug}`,
 						author: {
 							'@type': 'Person',
 							name: person.name,
@@ -116,7 +134,7 @@ export default function Blog({ params }: BlogParams) {
 				}}
 			/>
 			<Button
-				href={`/${params.locale}/recipes`}
+				href={`/${locale}/recipes`}
 				variant="tertiary"
 				size="s"
 				prefixIcon="chevronLeft">

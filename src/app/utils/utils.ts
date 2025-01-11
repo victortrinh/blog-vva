@@ -9,7 +9,7 @@ type Team = {
     linkedIn: string;
 };
 
-type Metadata = {
+export type Metadata = {
     title: string;
     publishedAt: string;
     summary: string;

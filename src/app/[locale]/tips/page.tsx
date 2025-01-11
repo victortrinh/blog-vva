@@ -5,8 +5,9 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 
 export async function generateMetadata(
-	{params: {locale}}: { params: { locale: string }}
+	{params}: { params: { locale: string }}
 ) {
+	const { locale } = await params;
 	const t = await getTranslations();
 	const { tips } = renderContent(t);
 
@@ -38,11 +39,20 @@ export async function generateMetadata(
 	};
 }
 
-export default function Tips(
-	{ params: {locale}}: { params: { locale: string }}
+export default async function Tips(
+	{ params}: { params: { locale: string }}
 ) {
+	const { locale } = await params;
 	setRequestLocale(locale);
 
+	return <InnerTips locale={locale} />;
+}
+
+interface InnerTipsProps {
+	locale: string;
+}
+
+const InnerTips = ({ locale }: InnerTipsProps) => {
 	const t = useTranslations();
 	const { person, tips } = renderContent(t);
     return (

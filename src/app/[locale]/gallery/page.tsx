@@ -5,9 +5,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 
 export async function generateMetadata(
-	{params: {locale}}: { params: { locale: string }}
+	{params}: { params: { locale: string }}
 ) {
-
+	const { locale } = await params;
 	const t = await getTranslations();
 	const { gallery } = renderContent(t);
 

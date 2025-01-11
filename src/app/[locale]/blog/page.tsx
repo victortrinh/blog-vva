@@ -5,9 +5,9 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 
 export async function generateMetadata(
-	{params: {locale}}: { params: { locale: string }}
+	{params}: { params: { locale: string }}
 ) {
-
+	const { locale } = await params;
 	const t = await getTranslations();
 	const { blog } = renderContent(t);
 
@@ -39,13 +39,23 @@ export async function generateMetadata(
 	};
 }
 
-export default function Blog(
-	{ params: {locale}}: { params: { locale: string }}
+export default async function Blog(
+	{ params }: { params: { locale: string }}
 ) {
+	const { locale } = await params;
 	setRequestLocale(locale);
 
+	return <InnerBlog locale={locale} />;
+}
+
+interface InnerBlogProps {
+	locale: string;
+}
+
+const InnerBlog = ({ locale }: InnerBlogProps) => {
 	const t = useTranslations();
 	const { person, blog } = renderContent(t);
+
     return (
         <Flex
 			fillWidth maxWidth="xl"

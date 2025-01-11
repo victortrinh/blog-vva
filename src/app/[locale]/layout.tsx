@@ -18,8 +18,9 @@ import { Flex } from "@/once-ui/components";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 export async function generateMetadata(
-	{ params: { locale }}: { params: { locale: string }}
+	{ params }: { params: { locale: string }}
 ) {
+	const { locale } = await params;
 	const t = await getTranslations();
 	const { person, home } = renderContent(t);
 
@@ -85,8 +86,9 @@ export function generateStaticParams() {
 
 export default async function RootLayout({
 	children,
-	params: {locale}
+	params
 } : RootLayoutProps) {
+	const { locale } = await params;
 	setRequestLocale(locale);
 	const messages = await getMessages();
 	return (
