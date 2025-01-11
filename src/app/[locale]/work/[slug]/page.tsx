@@ -34,13 +34,13 @@ export async function generateStaticParams() {
 }
 
 export function generateMetadata({ params: { slug, locale } }: WorkParams) {
-	let post = getPosts(['src', 'app', '[locale]', 'work', 'projects', locale]).find((post) => post.slug === slug)
+	const post = getPosts(['src', 'app', '[locale]', 'work', 'projects', locale]).find((post) => post.slug === slug)
 	
 	if (!post) {
 		return
 	}
 
-	let {
+	const {
 		title,
 		publishedAt: publishedTime,
 		summary: description,
@@ -48,7 +48,7 @@ export function generateMetadata({ params: { slug, locale } }: WorkParams) {
 		image,
 		team,
 	} = post.metadata
-	let ogImage = image
+	const ogImage = image
 		? `https://${baseURL}${image}`
 		: `https://${baseURL}/og?title=${title}`;
 
@@ -80,7 +80,7 @@ export function generateMetadata({ params: { slug, locale } }: WorkParams) {
 
 export default function Project({ params }: WorkParams) {
 	setRequestLocale(params.locale);
-	let post = getPosts(['src', 'app', '[locale]', 'work', 'projects', params.locale]).find((post) => post.slug === params.slug)
+	const post = getPosts(['src', 'app', '[locale]', 'work', 'projects', params.locale]).find((post) => post.slug === params.slug)
 
 	if (!post) {
 		notFound()

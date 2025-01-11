@@ -1,11 +1,12 @@
 "use client";
 
-import { Button, Flex, Heading, SmartImage, SmartLink, Tag, Text } from '@/once-ui/components';
+import { Button, Flex, Heading, SmartImage, SmartLink, Text } from '@/once-ui/components';
 import styles from './Post.module.scss';
 import { formatDate } from '@/app/utils/formatDate';
 import { useTranslations } from 'next-intl';
 
 interface PostProps {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     post: any;
     thumbnail: boolean;
 }

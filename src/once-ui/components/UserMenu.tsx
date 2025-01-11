@@ -10,7 +10,6 @@ import styles from './UserMenu.module.scss'
 interface UserMenuProps extends UserProps {
     selected?: boolean;
     dropdownOptions?: DropdownOptions[];
-    dropdownAlignment?: 'left' | 'center' | 'right';
     dropdownProps?: Omit<DropdownProps, 'options'> & { onOptionSelect?: (option: DropdownOptions) => void };
     className?: string;
 }
@@ -18,7 +17,6 @@ interface UserMenuProps extends UserProps {
 const UserMenu: React.FC<UserMenuProps> = ({
     selected = false,
     dropdownOptions = [],
-    dropdownAlignment = 'left',
     dropdownProps,
     className,
     ...userProps

@@ -13,7 +13,6 @@ interface CarouselProps {
     indicator?: 'line' | 'thumbnail';
     aspectRatio?: string;
     sizes?: string;
-    revealedByDefault?: boolean;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
@@ -21,18 +20,8 @@ const Carousel: React.FC<CarouselProps> = ({
     indicator = 'line',
     aspectRatio = '16 / 9',
     sizes,
-    revealedByDefault = false,
 }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
-    const [isTransitioning, setIsTransitioning] = useState(revealedByDefault);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsTransitioning(true);
-        }, 1000);
-
-        return () => clearTimeout(timer);
-    }, []);
 
     useEffect(() => {
         if (images.length > 1) {
@@ -44,7 +33,6 @@ const Carousel: React.FC<CarouselProps> = ({
 
     const handleImageClick = () => {
         if (images.length > 1) {
-            setIsTransitioning(false);
             const nextIndex = (activeIndex + 1) % images.length;
             handleControlClick(nextIndex);
         }
@@ -52,10 +40,8 @@ const Carousel: React.FC<CarouselProps> = ({
 
     const handleControlClick = (index: number) => {
         if (index !== activeIndex) {
-            setIsTransitioning(false);
             setTimeout(() => {
                 setActiveIndex(index);
-                setIsTransitioning(true);
             }, 500);
         }
     };

@@ -44,7 +44,7 @@ export default function Work(
     { params: {locale}}: { params: { locale: string }}
 ) {
     setRequestLocale(locale);
-    let allProjects = getPosts(['src', 'app', '[locale]', 'work', 'projects', locale]);
+    const allProjects = getPosts(['src', 'app', '[locale]', 'work', 'projects', locale]);
 
     const t = useTranslations();
     const { person, work } = renderContent(t);

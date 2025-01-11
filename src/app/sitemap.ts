@@ -6,42 +6,42 @@ export default async function sitemap() {
 
     const locales = routing.locales;
 
-    let blogs = locales.flatMap((locale) => 
+    const blogs = locales.flatMap((locale) => 
         getPosts(['src', 'app', '[locale]', 'blog', 'posts', locale]).map((post) => ({
             url: `${baseURL}/${locale}/blog/${post.slug}`,
             lastModified: post.metadata.publishedAt,
         }))
     );
 
-    let recipes = locales.flatMap((locale) => 
+    const recipes = locales.flatMap((locale) => 
         getPosts(['src', 'app', '[locale]', 'recipes', 'posts', locale]).map((post) => ({
             url: `${baseURL}/${locale}/recipes/${post.slug}`,
             lastModified: post.metadata.publishedAt,
         }))
     );
 
-    let tips = locales.flatMap((locale) => 
+    const tips = locales.flatMap((locale) => 
         getPosts(['src', 'app', '[locale]', 'tips', 'posts', locale]).map((post) => ({
             url: `${baseURL}/${locale}/tips/${post.slug}`,
             lastModified: post.metadata.publishedAt,
         }))
     );
 
-    let reviews = locales.flatMap((locale) => 
+    const reviews = locales.flatMap((locale) => 
         getPosts(['src', 'app', '[locale]', 'reviews', 'posts', locale]).map((post) => ({
             url: `${baseURL}/${locale}/reviews/${post.slug}`,
             lastModified: post.metadata.publishedAt,
         }))
     );
 
-    let works = locales.flatMap((locale) => 
+    const works = locales.flatMap((locale) => 
         getPosts(['src', 'app', '[locale]', 'work', 'projects', locale]).map((post) => ({
             url: `${baseURL}/${locale}/work/${post.slug}`,
             lastModified: post.metadata.publishedAt,
         }))
     );
 
-    let routes = locales.flatMap((locale)=> 
+    const routes = locales.flatMap((locale)=> 
         ['', '/blog', '/work'].map((route) => ({
             url: `${baseURL}/${locale}${route}`,
             lastModified: new Date().toISOString().split('T')[0],

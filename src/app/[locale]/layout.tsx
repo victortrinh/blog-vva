@@ -3,8 +3,8 @@ import "@/once-ui/tokens/index.scss";
 
 import classNames from 'classnames';
 
-import { Footer, Header, RouteGuard } from "@/components";
-import { baseURL, effects, style } from '@/app/resources'
+import { Header, RouteGuard } from "@/components";
+import { baseURL, style } from '@/app/resources'
 
 import { Inter } from 'next/font/google'
 import { Source_Code_Pro } from 'next/font/google';
@@ -14,12 +14,12 @@ import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server
 
 import { routing } from "@/i18n/routing";
 import { renderContent } from "@/app/resources";
-import { Background, Flex } from "@/once-ui/components";
+import { Flex } from "@/once-ui/components";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export async function generateMetadata(
 	{ params: { locale }}: { params: { locale: string }}
 ) {
-
 	const t = await getTranslations();
 	const { person, home } = renderContent(t);
 
@@ -105,6 +105,7 @@ export default async function RootLayout({
 					secondary ? secondary.variable : '',
 					tertiary ? tertiary.variable : '',
 					code.variable)}>
+				<GoogleAnalytics gaId="G-BB3M3FJ27B" />
 				<Flex style={{minHeight: '100vh'}}
 					as="body"
 					fillWidth margin="0" padding="0"

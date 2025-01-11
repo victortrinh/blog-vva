@@ -1,7 +1,7 @@
 "use client";
 
 import { AvatarGroup, Flex, Heading, SmartImage, SmartLink, Text } from "@/once-ui/components";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslations } from 'next-intl';
 
 interface ProjectCardProps {
@@ -22,21 +22,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
     avatars
 }) => {
     const [activeIndex, setActiveIndex] = useState(0);
-    const [isTransitioning, setIsTransitioning] = useState(false);
 
     const t = useTranslations();
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsTransitioning(true);
-        }, 1000);
-
-        return () => clearTimeout(timer);
-    }, []);
-
     const handleImageClick = () => {
         if(images.length > 1) {
-            setIsTransitioning(false);
             const nextIndex = (activeIndex + 1) % images.length;
             handleControlClick(nextIndex);
 
@@ -45,10 +35,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
     const handleControlClick = (index: number) => {
         if (index !== activeIndex) {
-            setIsTransitioning(false);
             setTimeout(() => {
                 setActiveIndex(index);
-                setIsTransitioning(true);
             }, 630);
         }
     };

@@ -1,5 +1,3 @@
-import { InlineCode } from "@/once-ui/components";
-
 const createI18nContent = (t) => {
     const person = {
         firstName: 'Victor',

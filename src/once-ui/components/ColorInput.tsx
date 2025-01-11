@@ -1,6 +1,6 @@
 'use client';
 
-import React, {  useRef, forwardRef } from 'react';
+import React, {  useRef } from 'react';
 import { Flex, Input, InputProps, IconButton, Icon } from '.';
 
 interface ColorInputProps extends Omit<InputProps, 'onChange' | 'value'> {
@@ -8,13 +8,13 @@ interface ColorInputProps extends Omit<InputProps, 'onChange' | 'value'> {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(({
+const ColorInput = (({
     label,
     id,
     value,
     onChange,
     ...props
-}, ref) => {
+}: ColorInputProps) => {
     const colorInputRef = useRef<HTMLInputElement>(null);
 
     const handleHexClick = () => {
@@ -106,7 +106,5 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(({
         />
     );
 });
-
-ColorInput.displayName = 'ColorInput';
 
 export { ColorInput };

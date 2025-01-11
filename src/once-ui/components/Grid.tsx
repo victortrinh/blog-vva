@@ -25,8 +25,6 @@ const Grid = forwardRef<HTMLDivElement, ComponentProps>(({
     position,
     tabletColumns,
     mobileColumns,
-    tabletRows,
-    mobileRows,
     padding,
     paddingLeft,
     paddingRight,
