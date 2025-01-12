@@ -16,6 +16,7 @@ import { routing } from "@/i18n/routing";
 import { renderContent } from "@/app/resources";
 import { Flex } from "@/once-ui/components";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 
 type Params = Promise<{ locale: string }>
 
@@ -110,6 +111,7 @@ export default async function RootLayout({
 					tertiary ? tertiary.variable : '',
 					code.variable)}>
 				<GoogleAnalytics gaId="G-BB3M3FJ27B" />
+				<Script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9035056618426040" crossOrigin="anonymous" />
 				<Flex style={{minHeight: '100vh'}}
 					as="body"
 					fillWidth margin="0" padding="0"
