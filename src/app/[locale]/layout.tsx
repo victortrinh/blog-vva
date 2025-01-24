@@ -16,7 +16,6 @@ import { routing } from "@/i18n/routing";
 import { renderContent } from "@/app/resources";
 import { Flex } from "@/once-ui/components";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import Script from "next/script";
 import Head from "next/head";
 
 type Params = Promise<{ locale: string }>
