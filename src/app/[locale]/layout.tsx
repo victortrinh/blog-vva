@@ -112,7 +112,7 @@ export default async function RootLayout({
 					code.variable)}>
 				<GoogleAnalytics gaId="G-BB3M3FJ27B" />
 				<Head>
-					<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9035056618426040" />
+					<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9035056618426040" crossOrigin="anonymous" />
 				</Head>
 				<Flex style={{minHeight: '100vh'}}
 					as="body"
