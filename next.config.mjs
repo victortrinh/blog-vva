@@ -10,7 +10,7 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
+    pageExtensions: ['ts', 'tsx', 'md', 'mdx']
 };
 
 export default withNextIntl(withMDX(nextConfig));

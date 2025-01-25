@@ -86,7 +86,6 @@ export default async function Blog({params}: BlogParams) {
 		notFound()
 	}
 
-
 	return (
 		<InnerBlog post={post} locale={locale} />
 	)

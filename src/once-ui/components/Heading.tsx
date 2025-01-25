@@ -94,7 +94,7 @@ const Heading = <T extends ElementType = 'h1'>({
     return (
         <Component
             className={combinedClasses}
-            style={{ textAlign: align, textWrap: wrap, ...style }}
+            style={{ textAlign: align, textWrap: wrap, textTransform: 'uppercase', ...style }}
             {...props}>
             {children}
         </Component>

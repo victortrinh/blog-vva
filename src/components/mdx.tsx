@@ -2,11 +2,12 @@
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
 import React, { ReactNode } from 'react';
 
-import { SmartImage, SmartLink, Text } from '@/once-ui/components';
+import { SmartLink, Text } from '@/once-ui/components';
 import { HeadingLink } from '@/components';
 
 import { TextProps } from '@/once-ui/interfaces';
-import { SmartImageProps } from '@/once-ui/components/SmartImage';
+import { LazyLoadImage } from './LazyLoad';
+import { LazyLoadImageProps } from 'react-lazy-load-image-component';
 
 type TableProps = {
     data: {
@@ -20,7 +21,7 @@ function Table({ data }: TableProps) {
         <th key={index}>{header}</th>
     ));
     const rows = data.rows.map((row, index) => (
-        <tr key={index}>
+    <tr key={index}>
         {row.map((cell, cellIndex) => (
             <td key={cellIndex}>{cell}</td>
         ))}
@@ -62,22 +63,15 @@ function CustomLink({ href, children, ...props }: CustomLinkProps) {
     );
 }
 
-function createImage({ alt, src, ...props }: SmartImageProps & { src: string }) {
+function createImage({ alt, src, ...props }: LazyLoadImageProps) {
     if (!src) {
         console.error("SmartImage requires a valid 'src' property.");
         return null;
     }
 
     return (
-        <SmartImage
-            className="my-20"
-            enlarge
-            radius="m"
-            aspectRatio="16 / 9"
-            alt={alt}
-            src={src}
-            {...props}/>
-        )
+        <LazyLoadImage alt={alt} src={src} {...props} style={{ maxWidth: "100%" }} />
+    );
 }
 
 function slugify(str: string): string {
