@@ -39,5 +39,8 @@
     },
     "common": {
         "view": "View {type}"
+    },
+    "recipe": {
+        "jump": "Jump to recipe"
     }
 }

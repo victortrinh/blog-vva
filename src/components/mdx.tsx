@@ -8,6 +8,7 @@ import { HeadingLink } from '@/components';
 import { TextProps } from '@/once-ui/interfaces';
 import { LazyLoadImage } from './LazyLoad';
 import { LazyLoadImageProps } from 'react-lazy-load-image-component';
+import { Images } from './Images';
 
 type TableProps = {
     data: {
@@ -127,6 +128,7 @@ const components = {
     img: createImage as any,
     a: CustomLink as any,
     Table,
+    Images
 };
 
 type CustomMDXProps = MDXRemoteProps & {

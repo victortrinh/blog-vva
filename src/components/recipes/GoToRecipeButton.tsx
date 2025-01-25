@@ -1,12 +1,15 @@
 "use client";
 
 import { Button } from "@/once-ui/components";
+import { useTranslations } from "next-intl";
 
 interface Props {
     id: string;
 }
 
 export const GoToRecipeButton = ({id}: Props) => {
+    const t = useTranslations();
+
     const onClick = () => {
         const element = document.getElementById(id);
         element?.scrollIntoView({
@@ -15,6 +18,6 @@ export const GoToRecipeButton = ({id}: Props) => {
     }
 
     return (
-        <Button onClick={onClick}>Recipe</Button>
+        <Button onClick={onClick}>{t("recipe.jump")}</Button>
     )
 }
