@@ -9,7 +9,6 @@ import { routing } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import { formatDate } from '@/app/utils/formatDate'
 import { GoToRecipeButton } from '@/components/recipes/GoToRecipeButton'
-import { Recipe } from '@/components/recipes/Recipe'
 
 type Params = Promise<{ locale: string, slug: string }>;
 
@@ -163,7 +162,6 @@ const InnerBlog = ({ post, locale }: InnerBlogProps) => {
 				fillWidth>
 				<CustomMDX source={post.content} />
 			</Flex>
-			<Recipe id={post.slug} />
 		</Flex>
 	)
 }

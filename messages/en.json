@@ -41,6 +41,8 @@
         "view": "View {type}"
     },
     "recipe": {
-        "jump": "Jump to recipe"
+        "jump": "Jump to recipe",
+        "ingredients": "Ingredients",
+        "instructions": "Cooking Instructions"
     }
 }

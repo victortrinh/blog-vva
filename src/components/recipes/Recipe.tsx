@@ -1,9 +1,49 @@
 "use client";
 
-interface Props {
-    id: string;
+import { useTranslations } from "next-intl";
+
+import styles from './Recipe.module.scss';
+import { Heading, SmartImage } from "@/once-ui/components";
+
+interface Ingredient {
+    name: string;
+    steps: string[];
 }
 
-export const Recipe = ({id}: Props) => {
-    return <div id={id}>Recipe</div>
+interface Props {
+    id: string;
+    src: string;
+    ingredients: Ingredient[];
+    instructions: string[];
+}
+
+export const Recipe = ({id, src, ingredients, instructions }: Props) => {
+    const t = useTranslations();
+
+    return <div id={id} className={styles.container}>
+        <SmartImage alt={id} src={src} height={20} />
+        <div className={styles.recipe}>
+            <aside className={styles.ingredients}>
+                <Heading style={{ marginBottom: '24px'}} variant="heading-strong-l" as="h3">{t("recipe.ingredients")}</Heading>
+                {ingredients.map(({ name, steps }) => (
+                    <div key={name}>
+                        <p>{name}</p>
+                        <ul>
+                            {steps.map((step, index) => (
+                                <li key={index}>{step}</li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </aside>
+            <article>
+                <Heading style={{ marginBottom: '24px'}} variant="heading-strong-l" as="h3">{t("recipe.instructions")}</Heading>
+                <ol>
+                    {instructions.map((instruction, index) => (
+                        <li key={index}>{instruction}</li>
+                    ))}
+                </ol>
+            </article>
+        </div>
+    </div>
 }
