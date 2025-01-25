@@ -70,7 +70,7 @@ function createImage({ alt, src, ...props }: LazyLoadImageProps) {
     }
 
     return (
-        <LazyLoadImage alt={alt} src={src} {...props} style={{ maxWidth: "100%" }} />
+        <LazyLoadImage className="recipe-image" alt={alt} src={src} {...props} />
     );
 }
 
