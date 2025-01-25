@@ -18,6 +18,8 @@ import { Flex } from "@/once-ui/components";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Head from "next/head";
 
+import { Analytics } from "@vercel/analytics/react"
+
 type Params = Promise<{ locale: string }>
 
 export async function generateMetadata(
@@ -118,6 +120,7 @@ export default async function RootLayout({
 					as="body"
 					fillWidth margin="0" padding="0"
 					direction="column">
+					<Analytics />
 					<Header/>
 					<Flex
 						fillWidth paddingY="l" paddingX="l"
