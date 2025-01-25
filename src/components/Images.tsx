@@ -2,7 +2,6 @@
 
 import { Grid } from "@/once-ui/components";
 import Image from "next/image";
-import { LazyLoadImage } from "./LazyLoad";
 
 interface Image {
     src: string;
@@ -20,7 +19,7 @@ export const Images = ({ columns = 2, images }: Props) => {
     fillWidth marginTop="24" gap="m">
     {images.map(({ src, alt }, index) => (
         <div key={index}>
-            <LazyLoadImage alt={alt} src={src} width="100%" />
+            <img alt={alt} src={src} width="100%" />
         </div>
     ))}
 </Grid>

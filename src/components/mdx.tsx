@@ -6,8 +6,6 @@ import { SmartLink, Text } from '@/once-ui/components';
 import { HeadingLink } from '@/components';
 
 import { TextProps } from '@/once-ui/interfaces';
-import { LazyLoadImage } from './LazyLoad';
-import { LazyLoadImageProps } from 'react-lazy-load-image-component';
 import { Images } from './Images';
 import { Recipe } from './recipes/Recipe';
 
@@ -65,14 +63,14 @@ function CustomLink({ href, children, ...props }: CustomLinkProps) {
     );
 }
 
-function createImage({ alt, src, ...props }: LazyLoadImageProps) {
+function createImage({ alt, src, ...props }: any) {
     if (!src) {
         console.error("SmartImage requires a valid 'src' property.");
         return null;
     }
 
     return (
-        <LazyLoadImage className="recipe-image" alt={alt} src={src} {...props} />
+        <img className="recipe-image" alt={alt} src={src} {...props} />
     );
 }
 
