@@ -53,8 +53,6 @@ export async function generateMetadata({ params }: BlogParams) {
 		? `https://${baseURL}${image}`
 		: `https://${baseURL}/og?title=${title}`;
 
-	console.log(ogImage);
-
 	return {
 		title,
 		description,
