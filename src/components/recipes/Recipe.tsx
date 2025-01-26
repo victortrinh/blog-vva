@@ -22,7 +22,7 @@ export const Recipe = ({id, title, src, ingredients, instructions }: Props) => {
     const t = useTranslations();
 
     return <div id={id} className={styles.container}>
-        <Heading style={{ marginTop: "16px", marginBottom: '16px', textAlign: "center" }} variant="heading-strong-xl" as="h2">{title}</Heading>
+        <Heading style={{ paddingTop: "20px", paddingBottom: '20px', textAlign: "center", backgroundColor: "rgb(36, 37, 38)", color: "rgb(226, 229, 233)" }} variant="heading-strong-xl" as="h2">{title}</Heading>
         <SmartImage alt={id} src={src} height={20} />
         <div className={styles.recipe}>
             <aside className={styles.ingredients}>
