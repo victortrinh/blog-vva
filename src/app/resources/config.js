@@ -1,4 +1,4 @@
-const baseURL = 'demo.magic-portfolio.com'
+const baseURL = 'blog-vva.vercel.app'
 
 // Manage localized content in the messages folder
 const i18nOptions = {
