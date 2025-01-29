@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState, useCallback, JSX } from "react";
-import { Flex, Heading, IconButton, Toaster } from "@/once-ui/components";
-
+import React from "react";
 import styles from "@/components/HeadingLink.module.scss";
+import { notify } from "@/app/utils";
+import { ActionIcon, Title, Tooltip, Flex } from "@mantine/core";
+import { IconExternalLink } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 
 interface HeadingLinkProps {
     id: string;
@@ -18,70 +20,36 @@ export const HeadingLink: React.FC<HeadingLinkProps> = ({
     children,
     style
 }) => {
-    const [toasts, setToasts] = useState<
-        { id: string; variant: "success" | "danger"; message: string; action?: React.ReactNode }[]
-    >([]);
-
-    const addToast = useCallback(
-        (variant: "success" | "danger", message: string, action?: React.ReactNode) => {
-            const id = `${new Date().getTime()}`;
-            setToasts((prevToasts) => [...prevToasts, { id, variant, message, action }]);
-        },
-        []
-    );
-
-    const removeToast = useCallback(
-        (id: string) => {
-            setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
-        },
-        []
-    );
-
+    const t = useTranslations();
     const copyURL = (id: string): void => {
         const url = `${window.location.origin}${window.location.pathname}#${id}`;
+
         navigator.clipboard.writeText(url).then(() => {
-            addToast("success", "Link copied to clipboard.");
+            notify("Link copied to clipboard.");
         }, () => {
-            addToast("danger", "Failed to copy link.");
+            notify("Link copied to clipboard.", "warning");
         });
     };
 
-    const variantMap = {
-        1: "heading-strong-xl",
-        2: "heading-strong-xl",
-        3: "heading-strong-l",
-        4: "heading-strong-m",
-        5: "heading-strong-s",
-        6: "heading-strong-xs",
-    } as const;
-
-    const variant = variantMap[level];
-    const asTag = `h${level}` as keyof JSX.IntrinsicElements;
-
     return (
-        <Flex>
-            <Toaster toasts={toasts} removeToast={removeToast}/>
-            <Flex
-                style={style}
-                onClick={() => copyURL(id)}
-                className={styles.control}
-                alignItems="center"
-                gap="4">
-                <Heading
-                    className={styles.text}
-                    id={id}
-                    variant={variant}
-                    as={asTag}>
-                    {children}
-                </Heading>
-                <IconButton
-                    className={styles.visibility}
-                    size="s"
-                    icon="openLink"
-                    variant="ghost"
-                    tooltip="Copy"
-                    tooltipPosition="right" />
-            </Flex>
+        <Flex
+            style={style}
+            onClick={() => copyURL(id)}
+            className={styles.control}
+            align="center"
+            gap="4">
+            <Title
+                className={styles.text}
+                id={id}
+                order={level}
+            >
+                {children}
+            </Title>
+            <Tooltip label={t("common.copy")}>
+                <ActionIcon variant="transparent" color="gray" className={styles.visibility}>
+                    <IconExternalLink />
+                </ActionIcon>
+            </Tooltip>
         </Flex>
     );
 };

@@ -1,8 +1,8 @@
-import { Flex, Heading } from "@/once-ui/components";
 import { Posts } from "@/components/blog/Posts";
 import { baseURL, renderContent } from "@/app/resources"
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
+import { Title, Container } from "@mantine/core";
 
 type Params = Promise<{ locale: string }>;
 
@@ -58,9 +58,7 @@ const InnerTips = ({ locale }: InnerTipsProps) => {
     const t = useTranslations();
     const { person, tips } = renderContent(t);
     return (
-        <Flex
-            fillWidth maxWidth="xl"
-            direction="column">
+        <Container>
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
@@ -83,13 +81,10 @@ const InnerTips = ({ locale }: InnerTipsProps) => {
                     }),
                 }}
             />
-            <Heading
-                as="h1"
-                marginBottom="l"
-                variant="display-strong-s">
+            <Title order={1}>
                 {tips.title}
-            </Heading>
-            <Posts page="tips" columns="4" locale={locale} thumbnail/>
-        </Flex>
+            </Title>
+            <Posts page="tips" columns={4} locale={locale} thumbnail/>
+        </Container>
     );
 }

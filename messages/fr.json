@@ -33,7 +33,8 @@
         "label": "Lire l'étude de cas"
     },
     "common": {
-        "view": "Voir {type}"
+        "view": "Voir {type}",
+        "copy": "Copier"
     },
     "recipe": {
         "jump": "Passer à la recette",

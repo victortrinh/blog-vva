@@ -33,7 +33,8 @@
         "label": "Read Case Study"
     },
     "common": {
-        "view": "View {type}"
+        "view": "View {type}",
+        "copy": "Copy"
     },
     "recipe": {
         "jump": "Jump to recipe",

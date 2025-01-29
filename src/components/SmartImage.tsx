@@ -3,15 +3,13 @@
 import React, { CSSProperties, useState, useRef, useEffect } from "react";
 import Image, { ImageProps } from "next/image";
 import classNames from "classnames";
-
-import { Flex, Skeleton } from "@/once-ui/components";
+import { Skeleton, Flex } from "@mantine/core";
 
 type SmartImageProps = ImageProps & {
     className?: string;
     style?: React.CSSProperties;
     aspectRatio?: string;
     height?: number;
-    radius?: string;
     alt?: string;
     isLoading?: boolean;
     objectFit?: CSSProperties["objectFit"];
@@ -25,7 +23,6 @@ const SmartImage: React.FC<SmartImageProps> = ({
     style,
     aspectRatio,
     height,
-    radius,
     alt = "",
     isLoading = false,
     objectFit = "cover",
@@ -94,8 +91,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
         <>
             <Flex
                 ref={imageRef}
-                fillWidth
-                position="relative"
+                pos="relative"
                 {...(!isEnlarged && { background: "neutral-medium" })}
                 style={{
                     outline: "none",
@@ -107,14 +103,13 @@ const SmartImage: React.FC<SmartImageProps> = ({
                             : "100%",
                     aspectRatio,
                     cursor: enlarge ? "pointer" : "default",
-                    borderRadius: isEnlarged ? "0" : radius ? `var(--radius-${radius})` : undefined,
                     ...calculateTransform(),
                     ...style,
                 }}
                 className={classNames(className)}
                 onClick={handleClick}>
                 {isLoading && (
-                    <Skeleton shape="block" />
+                    <Skeleton />
                 )}
                 {!isLoading && isVideo && (
                     <video
@@ -158,23 +153,21 @@ const SmartImage: React.FC<SmartImageProps> = ({
 
             {isEnlarged && enlarge && (
                 <Flex
-                    justifyContent="center"
-                    alignItems="center"
-                    position="fixed"
-                    zIndex={1}
+                    justify="center"
+                    align="center"
+                    pos="fixed"
                     onClick={handleClick}
                     style={{
                         top: 0,
                         left: 0,
                         width: "100vw",
                         height: "100vh",
-                        background: "var(--backdrop)",
                         cursor: "pointer",
                         transition: "opacity 0.3s ease-in-out",
                         opacity: isEnlarged ? 1 : 0,
                     }}>
                     <Flex
-                        position="relative"
+                        pos="relative"
                         style={{
                             height: "100vh",
                             transform: "translate(-50%, -50%)",

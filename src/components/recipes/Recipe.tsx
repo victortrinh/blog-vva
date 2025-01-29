@@ -3,7 +3,8 @@
 import { useTranslations } from "next-intl";
 
 import styles from "./Recipe.module.scss";
-import { Heading, SmartImage } from "@/once-ui/components";
+import { SmartImage }from "@/components";
+import { Title } from "@mantine/core";
 
 interface Ingredient {
     name: string;
@@ -22,11 +23,11 @@ export const Recipe = ({id, title, src, ingredients, instructions }: Props) => {
     const t = useTranslations();
 
     return <div id={id} className={styles.container}>
-        <Heading style={{ paddingTop: "20px", paddingBottom: "20px", textAlign: "center", backgroundColor: "rgb(36, 37, 38)", color: "rgb(226, 229, 233)" }} variant="heading-strong-xl" as="h2">{title}</Heading>
+        <Title>{title}</Title>
         <SmartImage alt={id} src={src} height={20} />
         <div className={styles.recipe}>
             <aside className={styles.ingredients}>
-                <Heading style={{ marginBottom: "24px"}} variant="heading-strong-l" as="h3">{t("recipe.ingredients")}</Heading>
+                <Title>{t("recipe.ingredients")}</Title>
                 {ingredients.map(({ name, steps }) => (
                     <div key={name}>
                         <p>{name}</p>
@@ -39,7 +40,7 @@ export const Recipe = ({id, title, src, ingredients, instructions }: Props) => {
                 ))}
             </aside>
             <article>
-                <Heading style={{ marginBottom: "24px"}} variant="heading-strong-l" as="h3">{t("recipe.instructions")}</Heading>
+                <Title>{t("recipe.instructions")}</Title>
                 <ol>
                     {instructions.map((instruction, index) => (
                         <li key={index}>{instruction}</li>

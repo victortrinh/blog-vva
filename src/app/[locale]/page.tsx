@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Heading, Flex, Text, Carousel } from "@/once-ui/components";
-
 import { baseURL, routes, renderContent } from "@/app/resources"; 
 import { Posts } from "@/components/blog/Posts";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
+import { Carousel } from "@/components";
+import { Text, Title, Flex, Container } from "@mantine/core";
 
 type Params = Promise<{ locale: string }>
 
@@ -60,9 +60,7 @@ const InnerHome = ({locale}: InnerHomeProps) => {
     const t = useTranslations();
     const { home, person } = renderContent(t);
     return (
-        <Flex
-            maxWidth="xl" fillWidth gap="l"
-            direction="column" alignItems="center">
+        <Container>
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
@@ -85,85 +83,52 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                     }),
                 }}
             />
-            <Carousel
-                aspectRatio="16 / 5"
-                indicator="line"
-                images={[
-                    {
-                        alt: "Spaghetti carbonara",
-                        src: "/images/recipes/spaghetti-carbonara.jpg"
-                    },
-                    {
-                        alt: "Le petit bouchon",
-                        src: "/images/reviews/le-petit-bouchon.jpg"
-                    },
-                    {
-                        alt: "Crispy roasted vegetables",
-                        src: "/images/tips/crispy-roasted-vegetables.jpg"
-                    }
-                ]}
-            />
+            <Carousel />
             <Flex
-                fillWidth
+                w="100%"
                 direction="column"
-                paddingY="l" gap="m">
+                gap="m">
                 <Flex
                     direction="column"
-                    fillWidth gap="m">
-                    <Heading
-                        wrap="balance"
-                        variant="display-strong-l">
+                    gap="m">
+                    <Title>
                         {home.headline}
-                    </Heading>
-                    <Flex fillWidth>
-                        <Text
-                            wrap="balance"
-                            onBackground="neutral-weak"
-                            variant="heading-default-xl">
-                            {home.subline}
-                        </Text>
-                    </Flex>
+                    </Title>
+                    <Text>
+                        {home.subline}
+                    </Text>
                 </Flex>
             </Flex>
             {routes["/recipes"] && (
                 <Flex
-                    fillWidth gap="24"
+                    gap="24"
                     direction="column">
-                    <Heading
-                        as="h2"
-                        variant="display-strong-xs"
-                        wrap="balance">
+                    <Title order={2}>
                         Latest recipes
-                    </Heading>
-                    <Posts page="recipes" range={[1,4]} columns="4" locale={locale} thumbnail />
+                    </Title>
+                    <Posts page="recipes" range={[1,4]} columns={4} locale={locale} thumbnail />
                 </Flex>
             )}
             {routes["/tips"] && (
                 <Flex
-                    fillWidth gap="24"
+                    gap="24"
                     direction="column">
-                    <Heading
-                        as="h2"
-                        variant="display-strong-xs"
-                        wrap="balance">
+                    <Title order={2}>
                         Latest tips
-                    </Heading>
-                    <Posts page="tips" range={[1,4]} columns="4" locale={locale} thumbnail />
+                    </Title>
+                    <Posts page="tips" range={[1,4]} columns={4} locale={locale} thumbnail />
                 </Flex>
             )}
             {routes["/reviews"] && (
                 <Flex
-                    fillWidth gap="24"
+                    gap="24"
                     direction="column">
-                    <Heading
-                        as="h2"
-                        variant="display-strong-xs"
-                        wrap="balance">
+                    <Title order={2}>
                         Latest reviews
-                    </Heading>
-                    <Posts page="reviews" range={[1,4]} columns="4" locale={locale} thumbnail />
+                    </Title>
+                    <Posts page="reviews" range={[1,4]} columns={4} locale={locale} thumbnail />
                 </Flex>
             )}
-        </Flex>
+        </Container>
     );
 }

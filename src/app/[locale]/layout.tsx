@@ -1,8 +1,8 @@
-import "@/once-ui/styles/index.scss";
-import "@/once-ui/tokens/index.scss";
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+import "@mantine/carousel/styles.css";
 
-import { Header, RouteGuard } from "@/components";
+import { Header } from "@/components";
 import { baseURL } from "@/app/resources"
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
@@ -11,6 +11,7 @@ import { renderContent } from "@/app/resources";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react"
 import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 
 type Params = Promise<{ locale: string }>;
 
@@ -82,10 +83,9 @@ export default async function RootLayout({
                 <body>
                     <Analytics />
                     <MantineProvider>
-                        <RouteGuard>
-                            <Header />
-                            {children}
-                        </RouteGuard>
+                        <Notifications />
+                        <Header />
+                        <main>{children}</main>
                     </MantineProvider>
                 </body>
             </html>

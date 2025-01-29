@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/once-ui/components";
+import { Button } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
 interface Props {

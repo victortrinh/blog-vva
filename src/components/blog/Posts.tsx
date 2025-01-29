@@ -1,10 +1,10 @@
 import { getPosts } from "@/app/utils/utils";
-import { Grid } from "@/once-ui/components";
 import Post from "./Post";
+import { SimpleGrid } from "@mantine/core";
 
 interface PostsProps {
     range?: [number] | [number, number];
-    columns?: "1" | "2" | "3" | "4" | "5";
+    columns?: number;
     locale: string;
     thumbnail?: boolean;
     page: string;
@@ -12,7 +12,7 @@ interface PostsProps {
 
 export function Posts({
     range,
-    columns = "1",
+    columns = 1,
     locale = "en",
     thumbnail = false,
     page
@@ -33,9 +33,7 @@ export function Posts({
     return (
         <>
             {displayedPosts.length > 0 && (
-                <Grid
-                    columns={`repeat(${columns}, 1fr)`} mobileColumns="1col"
-                    fillWidth marginBottom="40" gap="m">
+                <SimpleGrid cols={{ base: 1, sm: 2, md: columns }}>
                     {displayedPosts.map((post) => (
                         <Post
                             key={post.slug}
@@ -46,7 +44,7 @@ export function Posts({
                             thumbnail={thumbnail}
                         />
                     ))}
-                </Grid>
+                </SimpleGrid>
             )}
         </>
     );

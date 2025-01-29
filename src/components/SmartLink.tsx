@@ -3,7 +3,6 @@
 import React, { forwardRef, ReactNode } from "react";
 import classNames from "classnames";
 import Link from "next/link";
-import { Icon } from ".";
 
 interface SmartLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
     href: string;
@@ -19,9 +18,6 @@ interface SmartLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 
 const SmartLink = forwardRef<HTMLAnchorElement, SmartLinkProps>(({ 
     href,
-    prefixIcon,
-    suffixIcon,
-    iconSize="xs",
     style,
     className,
     selected,
@@ -33,9 +29,7 @@ const SmartLink = forwardRef<HTMLAnchorElement, SmartLinkProps>(({
 
     const content = (
         <>
-            {prefixIcon && <Icon name={prefixIcon} size={iconSize} />}
             {children}
-            {suffixIcon && <Icon name={suffixIcon} size={iconSize} />}
         </>
     );
 
@@ -47,8 +41,6 @@ const SmartLink = forwardRef<HTMLAnchorElement, SmartLinkProps>(({
         style: !unstyled ? {
             display: "inline-flex",
             alignItems: "center",
-            gap: "var(--static-space-8)",
-            borderRadius: "var(--radius-s)",
             ...(selected && { textDecoration: "underline" }),
             ...style
         } : { 

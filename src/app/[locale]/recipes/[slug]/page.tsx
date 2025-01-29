@@ -1,14 +1,15 @@
 import { notFound } from "next/navigation"
 import { CustomMDX } from "@/components/mdx"
 import { getPosts, Metadata } from "@/app/utils/utils"
-import { Button, Flex, Heading, Text } from "@/once-ui/components"
-
 import { baseURL, renderContent } from "@/app/resources"
 import { setRequestLocale } from "next-intl/server"
 import { routing } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import { formatDate } from "@/app/utils/formatDate"
-import { GoToRecipeButton } from "@/components/recipes/GoToRecipeButton"
+import { formatDate } from "@/app/utils/formatDate";
+import { GoToRecipeButton } from "@/components/recipes/GoToRecipeButton";
+import { Button, Text, Title, Flex, Container } from "@mantine/core"
+import Link from "next/link";
+import { IconChevronLeft } from "@tabler/icons-react";
 
 type Params = Promise<{ locale: string, slug: string }>;
 
@@ -105,59 +106,56 @@ const InnerBlog = ({ post, locale }: InnerBlogProps) => {
     const { person } = renderContent(t);
 
     return (
-        <Flex as="section"
-            fillWidth maxWidth="m"
-            direction="column"
-            gap="m">
-            <script
-                type="application/ld+json"
-                suppressHydrationWarning
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "BlogPosting",
-                        headline: post.metadata.title,
-                        datePublished: post.metadata.publishedAt,
-                        dateModified: post.metadata.publishedAt,
-                        description: post.metadata.summary,
-                        image: post.metadata.image
-                            ? `https://${baseURL}${post.metadata.image}`
-                            : `https://${baseURL}/og?title=${post.metadata.title}`,
-                        url: `https://${baseURL}/${locale}/recipes/${post.slug}`,
-                        author: {
-                            "@type": "Person",
-                            name: person.name,
-                        },
-                    }),
-                }}
-            />
-            <Button
-                href={`/${locale}/recipes`}
-                variant="tertiary"
-                size="s"
-                prefixIcon="chevronLeft">
-                Recipes
-            </Button>
-            <Heading
-                variant="display-strong-s">
-                {post.metadata.title}
-            </Heading>
-            <Flex
-                gap="12"
-                alignItems="center">
-                <Text
-                    variant="body-default-s"
-                    onBackground="neutral-weak">
-                    {formatDate(post.metadata.publishedAt)}
-                </Text>
-            </Flex>
-            <GoToRecipeButton id={post.slug} />
-            <Flex
-                as="article"
-                direction="column"
-                fillWidth>
-                <CustomMDX source={post.content} />
-            </Flex>
-        </Flex>
+        <section>
+            <Container>
+                <script
+                    type="application/ld+json"
+                    suppressHydrationWarning
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "BlogPosting",
+                            headline: post.metadata.title,
+                            datePublished: post.metadata.publishedAt,
+                            dateModified: post.metadata.publishedAt,
+                            description: post.metadata.summary,
+                            image: post.metadata.image
+                                ? `https://${baseURL}${post.metadata.image}`
+                                : `https://${baseURL}/og?title=${post.metadata.title}`,
+                            url: `https://${baseURL}/${locale}/recipes/${post.slug}`,
+                            author: {
+                                "@type": "Person",
+                                name: person.name,
+                            },
+                        }),
+                    }}
+                />
+                <Button
+                    component={Link}
+                    href={`/${locale}/recipes`}
+                    variant="default"
+                    size="xs"
+                    leftSection={<IconChevronLeft size={14} />}
+                >
+                    {t("recipes.label")}
+                </Button>
+                <Title>
+                    {post.metadata.title}
+                </Title>
+                <Flex
+                    gap="12"
+                    align="center">
+                    <Text>
+                        {formatDate(post.metadata.publishedAt)}
+                    </Text>
+                </Flex>
+                <GoToRecipeButton id={post.slug} />
+                <article>
+                    <Flex  direction="column">
+                        <CustomMDX source={post.content} />
+                    </Flex>
+                </article>
+            </Container>
+        </section>
     )
 }

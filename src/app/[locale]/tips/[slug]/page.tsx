@@ -1,13 +1,14 @@
 import { notFound } from "next/navigation"
 import { CustomMDX } from "@/components/mdx"
 import { getPosts, Metadata } from "@/app/utils/utils"
-import { Avatar, Button, Flex, Heading, Text } from "@/once-ui/components"
-
 import { baseURL, renderContent } from "@/app/resources"
 import { setRequestLocale } from "next-intl/server"
 import { routing } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { formatDate } from "@/app/utils/formatDate"
+import { Avatar, Button, Container, Text, Title, Flex } from "@mantine/core"
+import Link from "next/link"
+import { IconChevronLeft } from "@tabler/icons-react"
 
 interface BlogParams {
     params: Promise<{ locale: string, slug: string }>;
@@ -101,10 +102,7 @@ const InnerBlog = ({ post, locale }: InnerBlogProps) => {
     const { person } = renderContent(t);
 
     return (
-        <Flex as="section"
-            fillWidth maxWidth="m"
-            direction="column"
-            gap="m">
+        <Container>
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
@@ -128,36 +126,32 @@ const InnerBlog = ({ post, locale }: InnerBlogProps) => {
                 }}
             />
             <Button
+                component={Link}
                 href={`/${locale}/tips`}
-                variant="tertiary"
-                size="s"
-                prefixIcon="chevronLeft">
-                Tips
+                variant="default"
+                size="xs"
+                leftSection={<IconChevronLeft size={14} />}
+            >
+                {t("tips.label")}
             </Button>
-            <Heading
-                variant="display-strong-s">
+            <Title>
                 {post.metadata.title}
-            </Heading>
+            </Title>
             <Flex
                 gap="12"
-                alignItems="center">
+                align="center">
                 { person.avatar && (
-                    <Avatar
-                        size="s"
-                        src={person.avatar}/>
+                    <Avatar src={person.avatar} alt={person.firstName} />
                 )}
-                <Text
-                    variant="body-default-s"
-                    onBackground="neutral-weak">
+                <Text>
                     {formatDate(post.metadata.publishedAt)}
                 </Text>
             </Flex>
-            <Flex
-                as="article"
-                direction="column"
-                fillWidth>
-                <CustomMDX source={post.content} />
-            </Flex>
-        </Flex>
+            <article>
+                <Flex direction="column">
+                    <CustomMDX source={post.content} />
+                </Flex>
+            </article>
+        </Container>
     )
 }
