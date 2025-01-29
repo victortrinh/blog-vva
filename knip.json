@@ -1,3 +1,4 @@
 {
-    "ignore": ["**/*.mdx", "src/i18n/request.ts"]
+    "ignore": ["**/*.mdx", "src/i18n/request.ts"],
+    "ignoreDependencies": ["eslint-config-next"]
 }
