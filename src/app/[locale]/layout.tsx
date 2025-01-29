@@ -29,10 +29,10 @@ export async function generateMetadata({ params }: Props) {
         title: home.title,
         description: home.description,
         openGraph: {
-            title: "Flirting with Flavors",
+            title: "Date my dish",
             description: "Flirt with flavors and make your taste buds dance with these delicious recipes.",
             url: baseURL,
-            siteName: "Flirting with Flavors",
+            siteName: "Date my dish",
             locale: "en_US",
             type: "website",
         },
