@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { CustomMDX } from "@/components/mdx"
 import { getPosts, Metadata } from "@/app/utils/utils"
-import { Avatar, Button, Flex, Heading, Text } from "@/once-ui/components"
+import { Button, Flex, Heading, Text } from "@/once-ui/components"
 
 import { baseURL, renderContent } from "@/app/resources"
 import { setRequestLocale } from "next-intl/server"
@@ -145,11 +145,6 @@ const InnerBlog = ({ post, locale }: InnerBlogProps) => {
             <Flex
                 gap="12"
                 alignItems="center">
-                { person.avatar && (
-                    <Avatar
-                        size="s"
-                        src={person.avatar}/>
-                )}
                 <Text
                     variant="body-default-s"
                     onBackground="neutral-weak">

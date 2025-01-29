@@ -29,6 +29,7 @@ export function LanguagePicker() {
             radius="md"
             withinPortal
             disabled={isPending}
+            zIndex={1000001}
         >
             <Menu.Target>
                 <UnstyledButton className={classes.control} data-expanded={opened || undefined}>

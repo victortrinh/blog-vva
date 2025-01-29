@@ -1,6 +1,8 @@
 .control {
     display: flex;
     align-items: center;
+    padding-left: var(--mantine-spacing-md);
+    padding-right: var(--mantine-spacing-md);
     transition: background-color 150ms ease;
     background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-6));
   
@@ -10,5 +12,10 @@
   
     @mixin hover {
       background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-5));
+    }
+
+    @media (max-width: $mantine-breakpoint-sm) {
+      height: 42px;
+      width: 100%;
     }
 }

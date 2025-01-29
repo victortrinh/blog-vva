@@ -9,11 +9,6 @@
         "headline": "Welcome to my food blog",
         "subline": "Visit my blog for delicious recipes, cooking tips, and restaurant reviews"
     },
-    "blog": {
-        "label": "Blog",
-        "title": "Writing about design and tech...",
-        "description": "Read what {name} has been up to recently"
-    },
     "recipes": {
         "label": "Recipes",
         "title": "Date Night Recipes",

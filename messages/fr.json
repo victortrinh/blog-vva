@@ -9,11 +9,6 @@
         "headline": "Bienvenue sur mon blog culinaire",
         "subline": "Visitez mon blog pour découvrir des recettes délicieuses, des conseils de cuisine et des critiques de restaurants"
     },
-    "blog": {
-        "label": "Blog",
-        "title": "Écrire sur le design et la tech...",
-        "description": "Lisez ce que {name} a fait récemment"
-    },
     "recipes": {
         "label": "Recettes",
         "title": "Recettes pour un rendez-vous romantique",

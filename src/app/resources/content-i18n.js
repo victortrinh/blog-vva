@@ -45,14 +45,6 @@ const createI18nContent = (t) => {
         subline: t("home.subline")
     }
 
-    const blog = {
-        label: t("blog.label"),
-        title: t("blog.title"),
-        description: t("blog.description", {name: person.name})
-    // Create new blog posts by adding a new .mdx file to app/blog/posts
-    // All posts will be listed on the /blog route
-    }
-
     const recipes = {
         label: t("recipes.label"),
         title: t("recipes.title"),
@@ -83,8 +75,7 @@ const createI18nContent = (t) => {
         home,
         recipes,
         reviews,
-        tips,
-        blog
+        tips
     }
 };
 

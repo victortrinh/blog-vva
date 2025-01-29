@@ -42,7 +42,7 @@ export const Header = () => {
                         </Link>
                     </Group>
 
-                    <Group h="100%" gap={12} visibleFrom="sm">
+                    <Group h="100%" gap={0} visibleFrom="sm">
                         <LanguagePicker />
                         <ColorThemeToggle />
                     </Group>
@@ -55,7 +55,6 @@ export const Header = () => {
                 onClose={closeDrawer}
                 size="100%"
                 padding="md"
-                title="Navigation"
                 hiddenFrom="sm"
                 zIndex={1000000}
             >

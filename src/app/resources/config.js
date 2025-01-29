@@ -8,7 +8,6 @@ const i18nOptions = {
 
 const routes = {
     "/":        true,
-    "/blog":    false,
     "/recipes": true,
     "/tips":    true,
     "/reviews": true

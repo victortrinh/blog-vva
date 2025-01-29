@@ -3,15 +3,7 @@ import { baseURL } from "@/app/resources"
 import { routing } from "@/i18n/routing"
 
 export default async function sitemap() {
-
     const locales = routing.locales;
-
-    const blogs = locales.flatMap((locale) => 
-        getPosts(["src", "app", "[locale]", "blog", "posts", locale]).map((post) => ({
-            url: `${baseURL}/${locale}/blog/${post.slug}`,
-            lastModified: post.metadata.publishedAt,
-        }))
-    );
 
     const recipes = locales.flatMap((locale) => 
         getPosts(["src", "app", "[locale]", "recipes", "posts", locale]).map((post) => ({
@@ -41,5 +33,5 @@ export default async function sitemap() {
         }))
     );
 
-    return [...routes, ...blogs, ...recipes, ...tips, ...reviews]
+    return [...routes, ...recipes, ...tips, ...reviews]
 }
