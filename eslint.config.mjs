@@ -1,4 +1,4 @@
-import stylisticJs from '@stylistic/eslint-plugin-js';
+import stylisticJs from "@stylistic/eslint-plugin-js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
@@ -14,12 +14,12 @@ const eslintConfig = [
     ...compat.extends("next/core-web-vitals", "next/typescript"),
     {
         plugins: {
-            '@stylistic/js': stylisticJs
+            "@stylistic/js": stylisticJs
         },
         rules: {
             "@next/next/no-img-element": "off",
-            '@stylistic/js/indent': ['error', 4],
-            '@stylistic/js/quotes': ['error', "double"],
+            "@stylistic/js/indent": ["error", 4],
+            "@stylistic/js/quotes": ["error", "double"],
         }
     }
 ];

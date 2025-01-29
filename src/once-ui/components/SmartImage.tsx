@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 import { Flex, Skeleton } from "@/once-ui/components";
 
-export type SmartImageProps = ImageProps & {
+type SmartImageProps = ImageProps & {
     className?: string;
     style?: React.CSSProperties;
     aspectRatio?: string;

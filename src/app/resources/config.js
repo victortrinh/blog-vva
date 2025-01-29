@@ -20,16 +20,4 @@ const protectedRoutes = {
     "/work/automate-design-handovers-with-a-figma-to-code-pipeline": true
 }
 
-const style = {
-    theme:       "light",        // dark | light
-    neutral:     "slate",        // sand | gray | slate
-    brand:       "emerald",      // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-    accent:      "indigo",       // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-    solid:       "contrast",     // color | contrast
-    solidStyle:  "flat",         // flat | plastic
-    border:      "playful",      // rounded | playful | conservative
-    surface:     "filled",       // filled | translucent
-    transition:  "all"           // all | micro | macro
-}
-
-export { routes, protectedRoutes, style, baseURL, i18nOptions };
+export { routes, protectedRoutes, baseURL, i18nOptions };
