@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
-import React, { ReactNode } from 'react';
+import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
+import React, { ReactNode } from "react";
 
-import { SmartLink, Text } from '@/once-ui/components';
-import { HeadingLink } from '@/components';
+import { SmartLink, Text } from "@/once-ui/components";
+import { HeadingLink } from "@/components";
 
-import { TextProps } from '@/once-ui/interfaces';
-import { Images } from './Images';
-import { Recipe } from './recipes/Recipe';
+import { TextProps } from "@/once-ui/interfaces";
+import { Images } from "./Images";
+import { Recipe } from "./recipes/Recipe";
 
 type TableProps = {
     data: {
@@ -44,7 +44,7 @@ type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 };
 
 function CustomLink({ href, children, ...props }: CustomLinkProps) {
-    if (href.startsWith('/')) {
+    if (href.startsWith("/")) {
         return (
             <SmartLink href={href} {...props}>
                 {children}
@@ -52,7 +52,7 @@ function CustomLink({ href, children, ...props }: CustomLinkProps) {
         );
     }
 
-    if (href.startsWith('#')) {
+    if (href.startsWith("#")) {
         return <a href={href} {...props}>{children}</a>;
     }
 
@@ -79,10 +79,10 @@ function slugify(str: string): string {
         .toString()
         .toLowerCase()
         .trim() // Remove whitespace from both ends of a string
-        .replace(/\s+/g, '-') // Replace spaces with -
-        .replace(/&/g, '-and-') // Replace & with 'and'
-        .replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
-        .replace(/\-\-+/g, '-') // Replace multiple - with single -
+        .replace(/\s+/g, "-") // Replace spaces with -
+        .replace(/&/g, "-and-") // Replace & with 'and'
+        .replace(/[^\w\-]+/g, "") // Remove all non-word characters except for -
+        .replace(/\-\-+/g, "-") // Replace multiple - with single -
 }
 
 function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
@@ -90,7 +90,7 @@ function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
         const slug = slugify(children as string);
         return (
             <HeadingLink
-                style={{marginTop: 'var(--static-space-24)', marginBottom: 'var(--static-space-12)'}}
+                style={{marginTop: "var(--static-space-24)", marginBottom: "var(--static-space-12)"}}
                 level={level}
                 id={slug}
                 {...props}>
@@ -106,7 +106,7 @@ function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
 
 function createParagraph({ children }: TextProps) {
     return (
-        <Text style={{lineHeight: '150%'}}
+        <Text style={{lineHeight: "150%"}}
             variant="body-default-m"
             onBackground="neutral-medium"
             marginTop="8"

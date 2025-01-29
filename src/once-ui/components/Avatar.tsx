@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import React, { forwardRef } from 'react';
+import React, { forwardRef } from "react";
 
-import { Skeleton, Icon, Text, StatusIndicator, Flex, SmartImage } from '.';
-import styles from './Avatar.module.scss';
+import { Skeleton, Icon, Text, StatusIndicator, Flex, SmartImage } from ".";
+import styles from "./Avatar.module.scss";
 
 interface AvatarProps {
-    size?: 'xs' | 's' | 'm' | 'l' | 'xl';
+    size?: "xs" | "s" | "m" | "l" | "xl";
     value?: string;
     src?: string;
     loading?: boolean;
     empty?: boolean;
     statusIndicator?: {
-        color: 'green' | 'yellow' | 'red' | 'gray';
+        color: "green" | "yellow" | "red" | "gray";
     };
     style?: React.CSSProperties;
     className?: string;
 }
 
-const sizeMapping: Record<'xs' | 's' | 'm' | 'l' | 'xl', number> = {
+const sizeMapping: Record<"xs" | "s" | "m" | "l" | "xl", number> = {
     xs: 20,
     s: 24,
     m: 32,
@@ -26,16 +26,16 @@ const sizeMapping: Record<'xs' | 's' | 'm' | 'l' | 'xl', number> = {
     xl: 160,
 };
 
-const statusIndicatorSizeMapping: Record<'xs' | 's' | 'm' | 'l' | 'xl', 's' | 'm' | 'l'> = {
-    xs: 's',
-    s: 's',
-    m: 'm',
-    l: 'm',
-    xl: 'l',
+const statusIndicatorSizeMapping: Record<"xs" | "s" | "m" | "l" | "xl", "s" | "m" | "l"> = {
+    xs: "s",
+    s: "s",
+    m: "m",
+    l: "m",
+    xl: "l",
 };
 
 const Avatar: React.FC<AvatarProps> = forwardRef<HTMLDivElement, AvatarProps>(({
-    size = 'm',
+    size = "m",
     value,
     src,
     loading,
@@ -53,7 +53,7 @@ const Avatar: React.FC<AvatarProps> = forwardRef<HTMLDivElement, AvatarProps>(({
     if (loading) {
         return (
             <Skeleton
-                style={{border: '1px solid var(--neutral-border-medium)'}}
+                style={{border: "1px solid var(--neutral-border-medium)"}}
                 shape="circle"
                 width={size}
                 height={size}
@@ -68,7 +68,7 @@ const Avatar: React.FC<AvatarProps> = forwardRef<HTMLDivElement, AvatarProps>(({
             return <Icon
                 onBackground="neutral-medium"
                 name="person"
-                size={size as 'xs' | 's' | 'm' | 'l' | 'xl'}
+                size={size as "xs" | "s" | "m" | "l" | "xl"}
                 className={styles.icon}
                 aria-label="Empty avatar"/>;
         }
@@ -109,19 +109,19 @@ const Avatar: React.FC<AvatarProps> = forwardRef<HTMLDivElement, AvatarProps>(({
             justifyContent="center" alignItems="center"
             radius="full" border="neutral-strong" borderStyle="solid-1" background="surface"
             style={style}
-            className={`${styles.avatar} ${styles[size]} ${className || ''}`}>
+            className={`${styles.avatar} ${styles[size]} ${className || ""}`}>
             {renderContent()}
             {statusIndicator && (
                 <StatusIndicator
                     size={statusIndicatorSizeMapping[size]}
                     color={statusIndicator.color}
-                    className={`${styles.className || ''} ${styles.indicator} ${size === 'xl' ? styles.position : ''}`}
+                    className={`${styles.className || ""} ${styles.indicator} ${size === "xl" ? styles.position : ""}`}
                     aria-label={`Status: ${statusIndicator.color}`}/>
             )}
         </Flex>
     );
 });
 
-Avatar.displayName = 'Avatar';
+Avatar.displayName = "Avatar";
 
 export { Avatar };

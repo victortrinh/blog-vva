@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import React, { ReactNode, forwardRef } from 'react';
-import Link from 'next/link';
+import React, { ReactNode, forwardRef } from "react";
+import Link from "next/link";
 
-import { Spinner, Icon } from '.';
-import styles from './Button.module.scss';
+import { Spinner, Icon } from ".";
+import styles from "./Button.module.scss";
 
 interface CommonProps {
-    variant?: 'primary' | 'secondary' | 'tertiary' | 'danger';
-    size?: 's' | 'm' | 'l';
+    variant?: "primary" | "secondary" | "tertiary" | "danger";
+    size?: "s" | "m" | "l";
     label?: string;
     prefixIcon?: string;
     suffixIcon?: string;
@@ -26,8 +26,8 @@ type AnchorProps = CommonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 const isExternalLink = (url: string) => /^https?:\/\//.test(url);
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps | AnchorProps>(({
-    variant = 'primary',
-    size = 'm',
+    variant = "primary",
+    size = "m",
     label,
     children,
     prefixIcon,
@@ -39,8 +39,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps | AnchorProps>(({
     style,
     ...props
 }, ref) => {
-    const labelSize = size === 'l' ? 'font-l' : size === 'm' ? 'font-m' : 'font-s';
-    const iconSize = size === 'l' ? 'm' : size === 'm' ? 's' : 'xs';
+    const labelSize = size === "l" ? "font-l" : size === "m" ? "font-m" : "font-s";
+    const iconSize = size === "l" ? "m" : size === "m" ? "s" : "xs";
 
     const content = (
         <>
@@ -52,8 +52,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps | AnchorProps>(({
     );
 
     const commonProps = {
-        className: `${styles.button} ${styles[variant]} ${styles[size]} ${fillWidth ? styles.fillWidth : styles.fitContent} ${className || ''}`,
-        style: { ...style, textDecoration: 'none' },
+        className: `${styles.button} ${styles[variant]} ${styles[size]} ${fillWidth ? styles.fillWidth : styles.fitContent} ${className || ""}`,
+        style: { ...style, textDecoration: "none" },
     };
 
     if (href) {
@@ -94,6 +94,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps | AnchorProps>(({
     );
 });
 
-Button.displayName = 'Button';
+Button.displayName = "Button";
 
 export { Button };

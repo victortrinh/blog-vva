@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import React, { forwardRef, ReactNode } from 'react';
-import classNames from 'classnames';
-import Link from 'next/link';
-import { Icon } from '.';
+import React, { forwardRef, ReactNode } from "react";
+import classNames from "classnames";
+import Link from "next/link";
+import { Icon } from ".";
 
 interface SmartLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
     href: string;
     prefixIcon?: string;
     suffixIcon?: string;
-    iconSize?: 'xs' | 's' | 'm' | 'l' | 'xl';
+    iconSize?: "xs" | "s" | "m" | "l" | "xl";
     style?: React.CSSProperties;
     className?: string;
     selected?: boolean;
@@ -21,7 +21,7 @@ const SmartLink = forwardRef<HTMLAnchorElement, SmartLinkProps>(({
     href,
     prefixIcon,
     suffixIcon,
-    iconSize='xs',
+    iconSize="xs",
     style,
     className,
     selected,
@@ -29,7 +29,7 @@ const SmartLink = forwardRef<HTMLAnchorElement, SmartLinkProps>(({
     children,
     ...props
 }, ref) => {
-    const isExternal = href.startsWith('http') || href.startsWith('//');
+    const isExternal = href.startsWith("http") || href.startsWith("//");
 
     const content = (
         <>
@@ -41,19 +41,19 @@ const SmartLink = forwardRef<HTMLAnchorElement, SmartLinkProps>(({
 
     const commonProps = {
         ref,
-        className: classNames(className || '', {
-            'px-4 mx-4': !unstyled,
+        className: classNames(className || "", {
+            "px-4 mx-4": !unstyled,
         }),
         style: !unstyled ? {
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 'var(--static-space-8)',
-            borderRadius: 'var(--radius-s)',
-            ...(selected && { textDecoration: 'underline' }),
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "var(--static-space-8)",
+            borderRadius: "var(--radius-s)",
+            ...(selected && { textDecoration: "underline" }),
             ...style
         } : { 
-            textDecoration: 'none',
-            color: 'inherit',
+            textDecoration: "none",
+            color: "inherit",
             ...style
         },
         ...props
@@ -82,6 +82,6 @@ const SmartLink = forwardRef<HTMLAnchorElement, SmartLinkProps>(({
 }
 );
 
-SmartLink.displayName = 'SmartLink';
+SmartLink.displayName = "SmartLink";
 
 export { SmartLink };

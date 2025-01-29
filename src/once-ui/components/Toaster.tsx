@@ -1,15 +1,15 @@
-'use client'
+"use client"
 
-import React from 'react';
-import { createPortal } from 'react-dom';
+import React from "react";
+import { createPortal } from "react-dom";
 
-import { Flex, Toast } from '.';
-import styles from './Toaster.module.scss';
+import { Flex, Toast } from ".";
+import styles from "./Toaster.module.scss";
 
 interface ToasterProps {
     toasts: { 
         id: string; 
-        variant: 'success' | 'danger'; 
+        variant: "success" | "danger"; 
         message: string; 
         action?: React.ReactNode 
     }[];
@@ -34,7 +34,7 @@ const Toaster: React.FC<ToasterProps> = ({
                     key={toast.id}
                     className={styles.toastWrapper}
                     style={{
-                        transformOrigin: 'bottom center',
+                        transformOrigin: "bottom center",
                         transform: `scale(${1 - (array.length - 1 - index) * 0.05}) translateY(${1 - (array.length - 1 - index) * 10}%)`,
                         opacity: array.length - 1 - index === 0 ? 1 : 0.9
                     }}>
@@ -52,6 +52,6 @@ const Toaster: React.FC<ToasterProps> = ({
     );
 };
 
-Toaster.displayName = 'Toaster';
+Toaster.displayName = "Toaster";
 
 export { Toaster };

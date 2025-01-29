@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import React, { forwardRef, ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
-import Link from 'next/link';
+import React, { forwardRef, ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes } from "react";
+import Link from "next/link";
 
-import { Icon } from '.';
-import styles from './ToggleButton.module.scss';
+import { Icon } from ".";
+import styles from "./ToggleButton.module.scss";
 
 interface CommonProps {
     label?: string;
     selected: boolean;
-    size?: 's' | 'm' | 'l';
-    align?: 'start' | 'center';
-    width?: 'fit' | 'fill';
-    weight?: 'default' | 'strong';
+    size?: "s" | "m" | "l";
+    align?: "start" | "center";
+    width?: "fit" | "fill";
+    weight?: "default" | "strong";
     truncate?: boolean;
     prefixIcon?: string;
     suffixIcon?: string;
@@ -30,10 +30,10 @@ const isExternalLink = (url: string) => /^https?:\/\//.test(url);
 const ToggleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps | AnchorProps>(({
     label,
     selected,
-    size = 'm',
-    align = 'center',
-    width = 'fit',
-    weight = 'default',
+    size = "m",
+    align = "center",
+    width = "fit",
+    weight = "default",
     truncate = false,
     prefixIcon,
     suffixIcon,
@@ -43,7 +43,7 @@ const ToggleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
     href,
     ...props
 }, ref) => {
-    const iconSize = size === 'l' ? 'm' : 's';
+    const iconSize = size === "l" ? "m" : "s";
 
     const content = (
         <>
@@ -54,7 +54,7 @@ const ToggleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
                         size={iconSize}/>
                 )}
                 {label && (
-                    <div className={`font-s font-label ${styles.label} ${weight === 'strong' ? 'font-strong' : 'font-default'} ${truncate ? styles.truncate : ''}`}>
+                    <div className={`font-s font-label ${styles.label} ${weight === "strong" ? "font-strong" : "font-default"} ${truncate ? styles.truncate : ""}`}>
                         {label}
                     </div>
                 )}
@@ -69,9 +69,9 @@ const ToggleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
     );
 
     const commonProps = {
-        className: `${styles.button} ${selected ? styles.selected : ''} ${styles[size]} ${styles[align]} ${styles[width]} ${className || ''}`,
-        style: { ...style, textDecoration: 'none' },
-        'aria-pressed': selected,
+        className: `${styles.button} ${selected ? styles.selected : ""} ${styles[size]} ${styles[align]} ${styles[width]} ${className || ""}`,
+        style: { ...style, textDecoration: "none" },
+        "aria-pressed": selected,
         tabIndex: 0,
     };
 
@@ -111,6 +111,6 @@ const ToggleButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
     );
 });
 
-ToggleButton.displayName = 'ToggleButton';
+ToggleButton.displayName = "ToggleButton";
 
 export { ToggleButton };

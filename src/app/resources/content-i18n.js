@@ -1,39 +1,39 @@
 const createI18nContent = (t) => {
     const person = {
-        firstName: 'Victor',
-        lastName:  'Vu',
+        firstName: "Victor",
+        lastName:  "Vu",
         get name() {
             return `${this.firstName} ${this.lastName}`;
         },
         role:      t("person.role"),
         // avatar:    '/images/avatar.jpg',
         avatar: undefined,
-        location:  'Asia/Jakarta',        // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-        languages: ['English', 'Bahasa']  // optional: Leave the array empty if you don't want to display languages
+        location:  "Asia/Jakarta",        // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+        languages: ["English", "Bahasa"]  // optional: Leave the array empty if you don't want to display languages
     }
 
     const social = [
     // Links are automatically displayed.
     // Import new icons in /once-ui/icons.ts
         {
-            name: 'GitHub',
-            icon: 'github',
-            link: 'https://github.com/once-ui-system/nextjs-starter',
+            name: "GitHub",
+            icon: "github",
+            link: "https://github.com/once-ui-system/nextjs-starter",
         },
         {
-            name: 'LinkedIn',
-            icon: 'linkedin',
-            link: 'https://www.linkedin.com/company/once-ui/',
+            name: "LinkedIn",
+            icon: "linkedin",
+            link: "https://www.linkedin.com/company/once-ui/",
         },
         {
-            name: 'X',
-            icon: 'x',
-            link: '',
+            name: "X",
+            icon: "x",
+            link: "",
         },
         {
-            name: 'Email',
-            icon: 'email',
-            link: 'mailto:example@gmail.com',
+            name: "Email",
+            icon: "email",
+            link: "mailto:example@gmail.com",
         },
     ]
 

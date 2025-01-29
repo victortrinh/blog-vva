@@ -1,10 +1,10 @@
-import { baseURL } from '@/app/resources'
+import { baseURL } from "@/app/resources"
 
 export default function robots() {
     return {
         rules: [
             {
-                userAgent: '*',
+                userAgent: "*",
             },
         ],
         sitemap: `${baseURL}/sitemap.xml`,

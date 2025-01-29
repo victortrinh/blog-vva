@@ -1,8 +1,8 @@
-import { Flex, Heading } from '@/once-ui/components';
-import { Posts } from '@/components/blog/Posts';
-import { baseURL, renderContent } from '@/app/resources'
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { Flex, Heading } from "@/once-ui/components";
+import { Posts } from "@/components/blog/Posts";
+import { baseURL, renderContent } from "@/app/resources"
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 type Params = Promise<{ locale: string }>
 
@@ -23,7 +23,7 @@ export async function generateMetadata(
         openGraph: {
             title,
             description,
-            type: 'website',
+            type: "website",
             url: `https://${baseURL}/${locale}/blog`,
             images: [
                 {
@@ -33,7 +33,7 @@ export async function generateMetadata(
             ],
         },
         twitter: {
-            card: 'summary_large_image',
+            card: "summary_large_image",
             title,
             description,
             images: [ogImage],
@@ -67,17 +67,17 @@ const InnerBlog = ({ locale }: InnerBlogProps) => {
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'Blog',
+                        "@context": "https://schema.org",
+                        "@type": "Blog",
                         headline: blog.title,
                         description: blog.description,
                         url: `https://${baseURL}/blog`,
                         image: `${baseURL}/og?title=${encodeURIComponent(blog.title)}`,
                         author: {
-                            '@type': 'Person',
+                            "@type": "Person",
                             name: person.name,
                             image: {
-                                '@type': 'ImageObject',
+                                "@type": "ImageObject",
                                 url: `${baseURL}${person.avatar}`,
                             },
                         },

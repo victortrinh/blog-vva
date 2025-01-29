@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import { Heading, Flex, Text, Carousel } from '@/once-ui/components';
+import { Heading, Flex, Text, Carousel } from "@/once-ui/components";
 
-import { baseURL, routes, renderContent } from '@/app/resources'; 
-import { Posts } from '@/components/blog/Posts';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { baseURL, routes, renderContent } from "@/app/resources"; 
+import { Posts } from "@/components/blog/Posts";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 type Params = Promise<{ locale: string }>
 
@@ -25,7 +25,7 @@ export async function generateMetadata(
         openGraph: {
             title,
             description,
-            type: 'website',
+            type: "website",
             url: `https://${baseURL}/${locale}`,
             images: [
                 {
@@ -35,7 +35,7 @@ export async function generateMetadata(
             ],
         },
         twitter: {
-            card: 'summary_large_image',
+            card: "summary_large_image",
             title,
             description,
             images: [ogImage],
@@ -68,17 +68,17 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'WebPage',
+                        "@context": "https://schema.org",
+                        "@type": "WebPage",
                         name: home.title,
                         description: home.description,
                         url: `https://${baseURL}`,
                         image: `${baseURL}/og?title=${encodeURIComponent(home.title)}`,
                         publisher: {
-                            '@type': 'Person',
+                            "@type": "Person",
                             name: person.name,
                             image: {
-                                '@type': 'ImageObject',
+                                "@type": "ImageObject",
                                 url: `${baseURL}${person.avatar}`,
                             },
                         },
@@ -90,16 +90,16 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                 indicator="line"
                 images={[
                     {
-                        alt: 'Spaghetti carbonara',
-                        src: '/images/recipes/spaghetti-carbonara.jpg'
+                        alt: "Spaghetti carbonara",
+                        src: "/images/recipes/spaghetti-carbonara.jpg"
                     },
                     {
-                        alt: 'Le petit bouchon',
-                        src: '/images/reviews/le-petit-bouchon.jpg'
+                        alt: "Le petit bouchon",
+                        src: "/images/reviews/le-petit-bouchon.jpg"
                     },
                     {
-                        alt: 'Crispy roasted vegetables',
-                        src: '/images/tips/crispy-roasted-vegetables.jpg'
+                        alt: "Crispy roasted vegetables",
+                        src: "/images/tips/crispy-roasted-vegetables.jpg"
                     }
                 ]}
             />
@@ -125,7 +125,7 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                     </Flex>
                 </Flex>
             </Flex>
-            {routes['/recipes'] && (
+            {routes["/recipes"] && (
                 <Flex
                     fillWidth gap="24"
                     direction="column">
@@ -138,7 +138,7 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                     <Posts page="recipes" range={[1,4]} columns="4" locale={locale} thumbnail />
                 </Flex>
             )}
-            {routes['/tips'] && (
+            {routes["/tips"] && (
                 <Flex
                     fillWidth gap="24"
                     direction="column">
@@ -151,7 +151,7 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                     <Posts page="tips" range={[1,4]} columns="4" locale={locale} thumbnail />
                 </Flex>
             )}
-            {routes['/reviews'] && (
+            {routes["/reviews"] && (
                 <Flex
                     fillWidth gap="24"
                     direction="column">

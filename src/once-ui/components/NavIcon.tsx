@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { useState, forwardRef } from 'react';
-import styles from './NavIcon.module.scss';
-import { Flex } from '.';
+import React, { useState, forwardRef } from "react";
+import styles from "./NavIcon.module.scss";
+import { Flex } from ".";
 
 interface NavIconProps {
     className?: string;
@@ -26,15 +26,15 @@ const NavIcon = forwardRef<HTMLDivElement, NavIconProps>(({ className, style, on
             tabIndex={0}
             radius="m"
             position="relative"
-            className={`${styles.button} ${className || ''}`}
+            className={`${styles.button} ${className || ""}`}
             style={{ ...style }}
             onClick={handleClick}>
-            <div className={`${styles.line} ${isActive ? `${styles.active}` : ''}`} />
-            <div className={`${styles.line} ${isActive ? `${styles.active}` : ''}`} />
+            <div className={`${styles.line} ${isActive ? `${styles.active}` : ""}`} />
+            <div className={`${styles.line} ${isActive ? `${styles.active}` : ""}`} />
         </Flex>
     );
 });
 
-NavIcon.displayName = 'NavIcon';
+NavIcon.displayName = "NavIcon";
 
 export { NavIcon };

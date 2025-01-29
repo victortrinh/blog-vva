@@ -1,10 +1,10 @@
-import { getPosts } from '@/app/utils/utils';
-import { Grid } from '@/once-ui/components';
-import Post from './Post';
+import { getPosts } from "@/app/utils/utils";
+import { Grid } from "@/once-ui/components";
+import Post from "./Post";
 
 interface PostsProps {
     range?: [number] | [number, number];
-    columns?: '1' | '2' | '3' | '4' | '5';
+    columns?: "1" | "2" | "3" | "4" | "5";
     locale: string;
     thumbnail?: boolean;
     page: string;
@@ -12,12 +12,12 @@ interface PostsProps {
 
 export function Posts({
     range,
-    columns = '1',
-    locale = 'en',
+    columns = "1",
+    locale = "en",
     thumbnail = false,
     page
 }: PostsProps) {
-    const allPosts = getPosts(['src', 'app', '[locale]', page, 'posts', locale]);
+    const allPosts = getPosts(["src", "app", "[locale]", page, "posts", locale]);
 
     const sortedPosts = allPosts.sort((a, b) => {
         return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();

@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, forwardRef, InputHTMLAttributes } from 'react';
-import classNames from 'classnames';
-import { Flex, Text } from '.';
-import styles from './Input.module.scss';
+import React, { useState, useEffect, forwardRef, InputHTMLAttributes } from "react";
+import classNames from "classnames";
+import { Flex, Text } from ".";
+import styles from "./Input.module.scss";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     id: string;
     label: string;
-    height?: 's' | 'm';
+    height?: "s" | "m";
     error?: React.ReactNode;
     description?: React.ReactNode;
     radius?: string;
@@ -21,7 +21,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input = forwardRef<HTMLInputElement, InputProps>(({
     id,
     label,
-    height = 'm',
+    height = "m",
     error,
     description,
     radius,
@@ -56,7 +56,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
         setIsFilled(!!props.value);
     }, [props.value]);
 
-    const inputClassNames = classNames(styles.input, 'font-body', 'font-default', 'font-m', {
+    const inputClassNames = classNames(styles.input, "font-body", "font-default", "font-m", {
         [styles.filled]: isFilled,
         [styles.focused]: isFocused,
         [styles.withPrefix]: hasPrefix,
@@ -67,7 +67,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
 
     return (
         <div className={classNames(styles.wrapper, className, { [styles.error]: error })}>
-            <div className={classNames(styles.base, { [styles.s]: height === 's'}, { [styles.m]: height === 'm'})}
+            <div className={classNames(styles.base, { [styles.s]: height === "s"}, { [styles.m]: height === "m"})}
                 style={{borderRadius: radius}}>
                 { hasPrefix && (
                     <Flex

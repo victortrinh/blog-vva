@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React, { forwardRef } from 'react';
-import classNames from 'classnames';
-import styles from './StatusIndicator.module.scss';
+import React, { forwardRef } from "react";
+import classNames from "classnames";
+import styles from "./StatusIndicator.module.scss";
 
 interface StatusIndicatorProps {
-    size: 's' | 'm' | 'l';
-    color: 'green' | 'yellow' | 'red' | 'gray';
+    size: "s" | "m" | "l";
+    color: "green" | "yellow" | "red" | "gray";
     ariaLabel?: string;
     className?: string;
     style?: React.CSSProperties;
@@ -28,6 +28,6 @@ const StatusIndicator = forwardRef<HTMLDivElement, StatusIndicatorProps>(({
     );
 });
 
-StatusIndicator.displayName = 'StatusIndicator';
+StatusIndicator.displayName = "StatusIndicator";
 
 export { StatusIndicator };

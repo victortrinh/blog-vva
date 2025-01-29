@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Flex, Scroller, SmartImage } from "@/once-ui/components";
 import { useEffect, useState } from "react";
@@ -10,15 +10,15 @@ interface Image {
 
 interface CarouselProps {
     images: Image[];
-    indicator?: 'line' | 'thumbnail';
+    indicator?: "line" | "thumbnail";
     aspectRatio?: string;
     sizes?: string;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
     images = [],
-    indicator = 'line',
-    aspectRatio = '16 / 9',
+    indicator = "line",
+    aspectRatio = "16 / 9",
     sizes,
 }) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -62,16 +62,16 @@ const Carousel: React.FC<CarouselProps> = ({
                     aspectRatio={aspectRatio}
                     src={images[activeIndex]?.src}
                     style={{
-                        border: '1px solid var(--neutral-alpha-weak)',
+                        border: "1px solid var(--neutral-alpha-weak)",
                         ...(images.length > 1 && {
-                            cursor: 'pointer',
+                            cursor: "pointer",
                         }),
                     }}
                 />
             </Flex>
             {images.length > 1 && (
                 <>
-                    {indicator === 'line' ? (
+                    {indicator === "line" ? (
                         <Flex
                             gap="4"
                             paddingX="s"
@@ -84,10 +84,10 @@ const Carousel: React.FC<CarouselProps> = ({
                                     style={{
                                         background:
                                             activeIndex === index
-                                                ? 'var(--neutral-on-background-strong)'
-                                                : 'var(--neutral-alpha-medium)',
-                                        cursor: 'pointer',
-                                        transition: 'background 0.3s ease',
+                                                ? "var(--neutral-on-background-strong)"
+                                                : "var(--neutral-alpha-medium)",
+                                        cursor: "pointer",
+                                        transition: "background 0.3s ease",
                                     }}
                                     fillWidth
                                     height="2"></Flex>
@@ -101,12 +101,12 @@ const Carousel: React.FC<CarouselProps> = ({
                                     style={{
                                         border:
                                             activeIndex === index
-                                                ? '2px solid var(--brand-solid-strong)'
-                                                : 'none',
-                                        cursor: 'pointer',
+                                                ? "2px solid var(--brand-solid-strong)"
+                                                : "none",
+                                        cursor: "pointer",
                                         borderRadius:
-                                            'var(--radius-m-nest-4)',
-                                        transition: 'border 0.3s ease',
+                                            "var(--radius-m-nest-4)",
+                                        transition: "border 0.3s ease",
                                     }}
                                     padding="4"
                                     width="80"
@@ -118,9 +118,9 @@ const Carousel: React.FC<CarouselProps> = ({
                                         src={image.src}
                                         onClick={() => handleControlClick(index)}
                                         style={{
-                                            cursor: 'pointer',
-                                            borderRadius: 'var(--radius-m)',
-                                            transition: 'background 0.3s ease',
+                                            cursor: "pointer",
+                                            borderRadius: "var(--radius-m)",
+                                            transition: "background 0.3s ease",
                                         }}
                                     />
                                 </Flex>
@@ -133,5 +133,5 @@ const Carousel: React.FC<CarouselProps> = ({
     );
 };
 
-Carousel.displayName = 'Carousel';
+Carousel.displayName = "Carousel";
 export { Carousel };

@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react';
-import classNames from 'classnames';
-import { Flex, IconButton } from '.';
-import styles from './Scroller.module.scss';
+import React, { useEffect, useRef, useState } from "react";
+import classNames from "classnames";
+import { Flex, IconButton } from ".";
+import styles from "./Scroller.module.scss";
 
 interface ScrollerProps {
     children: React.ReactNode;
-    direction?: 'row' | 'column';
+    direction?: "row" | "column";
     contained?: boolean;
     className?: string;
     style?: React.CSSProperties;
@@ -17,7 +17,7 @@ interface ScrollerProps {
 
 const Scroller: React.FC<ScrollerProps> = ({
     children,
-    direction = 'row',
+    direction = "row",
     contained = false,
     className,
     style,
@@ -31,8 +31,8 @@ const Scroller: React.FC<ScrollerProps> = ({
         const scroller = scrollerRef.current;
         const handleScroll = () => {
             if (scroller) {
-                const scrollPosition = direction === 'row' ? scroller.scrollLeft : scroller.scrollTop;
-                const maxScrollPosition = direction === 'row'
+                const scrollPosition = direction === "row" ? scroller.scrollLeft : scroller.scrollTop;
+                const maxScrollPosition = direction === "row"
                     ? scroller.scrollWidth - scroller.clientWidth
                     : scroller.scrollHeight - scroller.clientHeight;
                 setShowPrevButton(scrollPosition > 0);
@@ -40,26 +40,26 @@ const Scroller: React.FC<ScrollerProps> = ({
             }
         };
 
-        if (scroller && (direction === 'row' ? scroller.scrollWidth > scroller.clientWidth : scroller.scrollHeight > scroller.clientHeight)) {
+        if (scroller && (direction === "row" ? scroller.scrollWidth > scroller.clientWidth : scroller.scrollHeight > scroller.clientHeight)) {
             handleScroll();
-            scroller.addEventListener('scroll', handleScroll);
-            return () => scroller.removeEventListener('scroll', handleScroll);
+            scroller.addEventListener("scroll", handleScroll);
+            return () => scroller.removeEventListener("scroll", handleScroll);
         }
     }, [direction]);
 
     const handleScrollNext = () => {
         const scroller = scrollerRef.current;
         if (scroller) {
-            const scrollAmount = direction === 'row' ? scroller.clientWidth / 2 : scroller.clientHeight / 2;
-            scroller.scrollBy({ [direction === 'row' ? 'left' : 'top']: scrollAmount, behavior: 'smooth' });
+            const scrollAmount = direction === "row" ? scroller.clientWidth / 2 : scroller.clientHeight / 2;
+            scroller.scrollBy({ [direction === "row" ? "left" : "top"]: scrollAmount, behavior: "smooth" });
         }
     };
 
     const handleScrollPrev = () => {
         const scroller = scrollerRef.current;
         if (scroller) {
-            const scrollAmount = direction === 'row' ? scroller.clientWidth / 2 : scroller.clientHeight / 2;
-            scroller.scrollBy({ [direction === 'row' ? 'left' : 'top']: -scrollAmount, behavior: 'smooth' });
+            const scrollAmount = direction === "row" ? scroller.clientWidth / 2 : scroller.clientHeight / 2;
+            scroller.scrollBy({ [direction === "row" ? "left" : "top"]: -scrollAmount, behavior: "smooth" });
         }
     };
 
@@ -82,7 +82,7 @@ const Scroller: React.FC<ScrollerProps> = ({
                 <div className={classNames(styles.scrollMaskContainer, styles.scrollMaskPrev)}>
                     <div className={styles.scrollMask}></div>
                     <IconButton
-                        icon={direction === 'row' ? 'chevronLeft' : 'chevronUp'}
+                        icon={direction === "row" ? "chevronLeft" : "chevronUp"}
                         onClick={handleScrollPrev}
                         size="s"
                         variant="secondary"
@@ -94,8 +94,8 @@ const Scroller: React.FC<ScrollerProps> = ({
                 fillWidth
                 ref={scrollerRef}
                 className={classNames(styles.scroller, {
-                    [styles.row]: direction === 'row',
-                    [styles.column]: direction === 'column',
+                    [styles.row]: direction === "row",
+                    [styles.column]: direction === "column",
                 })}
                 {...props}>
                 {children}
@@ -104,7 +104,7 @@ const Scroller: React.FC<ScrollerProps> = ({
                 <div className={classNames(styles.scrollMaskContainer, styles.scrollMaskNext)}>
                     <div className={styles.scrollMask}></div>
                     <IconButton
-                        icon={direction === 'row' ? 'chevronRight' : 'chevronDown'}
+                        icon={direction === "row" ? "chevronRight" : "chevronDown"}
                         onClick={handleScrollNext}
                         size="s"
                         variant="secondary"
@@ -116,6 +116,6 @@ const Scroller: React.FC<ScrollerProps> = ({
     );
 };
 
-Scroller.displayName = 'Scroller';
+Scroller.displayName = "Scroller";
 
 export { Scroller };

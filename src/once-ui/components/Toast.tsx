@@ -1,13 +1,13 @@
-'use client'
+"use client"
 
-import React, { useEffect, useState, forwardRef } from 'react';
-import { IconButton, Icon, Flex, Text } from '.';
-import classNames from 'classnames';
-import styles from './Toast.module.scss';
+import React, { useEffect, useState, forwardRef } from "react";
+import { IconButton, Icon, Flex, Text } from ".";
+import classNames from "classnames";
+import styles from "./Toast.module.scss";
 
 interface ToastProps {
     className?: string;
-    variant: 'success' | 'danger';
+    variant: "success" | "danger";
     icon?: boolean;
     onClose?: () => void;
     action?: React.ReactNode;
@@ -15,8 +15,8 @@ interface ToastProps {
 }
 
 const iconMap = {
-    success: 'checkCircle',
-    danger: 'errorCircle'
+    success: "checkCircle",
+    danger: "errorCircle"
 };
 
 const Toast = forwardRef<HTMLDivElement, ToastProps>(({
@@ -68,7 +68,7 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(({
                 )}
                 <Text
                     variant="body-default-s"
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                     as="div">
                     {children}
                 </Text>
@@ -91,6 +91,6 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(({
     );
 });
 
-Toast.displayName = 'Toast';
+Toast.displayName = "Toast";
 
 export { Toast };

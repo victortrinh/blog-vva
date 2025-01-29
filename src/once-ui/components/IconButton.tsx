@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import React, { forwardRef, useState, useEffect, ReactNode } from 'react';
-import Link from 'next/link';
+import React, { forwardRef, useState, useEffect, ReactNode } from "react";
+import Link from "next/link";
 
-import { Icon, Tooltip } from '.';
-import buttonStyles from './Button.module.scss';
-import iconStyles from './IconButton.module.scss';
+import { Icon, Tooltip } from ".";
+import buttonStyles from "./Button.module.scss";
+import iconStyles from "./IconButton.module.scss";
 
 interface CommonProps {
     icon?: string;
-    size?: 's' | 'm' | 'l';
+    size?: "s" | "m" | "l";
     tooltip?: string;
-    tooltipPosition?: 'top' | 'bottom' | 'left' | 'right';
-    variant?: 'primary' | 'secondary' | 'tertiary' | 'danger' | 'ghost';
+    tooltipPosition?: "top" | "bottom" | "left" | "right";
+    variant?: "primary" | "secondary" | "tertiary" | "danger" | "ghost";
     className?: string;
     style?: React.CSSProperties;
     href?: string;
@@ -25,11 +25,11 @@ type AnchorProps = CommonProps & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 const isExternalLink = (url: string) => /^https?:\/\//.test(url);
 
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps | AnchorProps>(({
-    icon = 'refresh',
-    size = 'm',
+    icon = "refresh",
+    size = "m",
     tooltip,
-    tooltipPosition = 'top',
-    variant = 'primary',
+    tooltipPosition = "top",
+    variant = "primary",
     className,
     style,
     href,
@@ -68,11 +68,11 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps | AnchorProps>(
     );
 
     const commonProps = {
-        className: `${buttonStyles.button} ${buttonStyles[variant]} ${iconStyles[size]} ${className || ''}`,
+        className: `${buttonStyles.button} ${buttonStyles[variant]} ${iconStyles[size]} ${className || ""}`,
         style: { ...style },
         onMouseEnter: () => setIsHover(true),
         onMouseLeave: () => setIsHover(false),
-        'aria-label': tooltip || icon,
+        "aria-label": tooltip || icon,
     };
 
     if (href) {
@@ -113,6 +113,6 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps | AnchorProps>(
     );
 });
 
-IconButton.displayName = 'IconButton';
+IconButton.displayName = "IconButton";
 
 export { IconButton };

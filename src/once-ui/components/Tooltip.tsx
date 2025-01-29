@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { forwardRef } from 'react';
-import classNames from 'classnames';
+import React, { forwardRef } from "react";
+import classNames from "classnames";
 
-import { Flex, Text, Icon } from '.';
+import { Flex, Text, Icon } from ".";
 
 type TooltipProps = {
     label: string;
@@ -21,7 +21,7 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(({
     return (
         <Flex
             ref={ref}
-            style={{ whiteSpace: 'nowrap', userSelect: 'none' }}
+            style={{ whiteSpace: "nowrap", userSelect: "none" }}
             gap="4"
             zIndex={1}
             background="surface"
@@ -47,6 +47,6 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(({
     );
 });
 
-Tooltip.displayName = 'Tooltip';
+Tooltip.displayName = "Tooltip";
 
 export { Tooltip };

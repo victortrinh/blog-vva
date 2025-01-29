@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useState, useRef, useEffect, KeyboardEvent, ReactNode, forwardRef, HTMLAttributes, useImperativeHandle } from 'react';
-import classNames from 'classnames';
-import { Flex, Text } from '.';
-import styles from './Dropdown.module.scss';
+import React, { useState, useRef, useEffect, KeyboardEvent, ReactNode, forwardRef, HTMLAttributes, useImperativeHandle } from "react";
+import classNames from "classnames";
+import { Flex, Text } from ".";
+import styles from "./Dropdown.module.scss";
 
 interface DropdownOptions {
     label: React.ReactNode;
@@ -15,7 +15,7 @@ interface DropdownOptions {
     danger?: boolean;
 }
 
-interface DropdownProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onSelect'> {
+interface DropdownProps extends Omit<HTMLAttributes<HTMLDivElement>, "onSelect"> {
     options: DropdownOptions[];
     selectedOption?: string;
     onOptionSelect: (option: DropdownOptions) => void;
@@ -34,7 +34,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(({
     ...props
 }, ref) => {
     const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
-    const [typedChars, setTypedChars] = useState<string>('');
+    const [typedChars, setTypedChars] = useState<string>("");
     const internalRef = useRef<HTMLDivElement>(null);
     const typingTimeoutRef = useRef<number | null>(null);
 
@@ -44,20 +44,20 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(({
         if (focusedIndex === null) {
             setFocusedIndex(0);
         } else {
-            if (event.key === 'ArrowDown') {
+            if (event.key === "ArrowDown") {
                 event.preventDefault();
                 setFocusedIndex((prevIndex) => (prevIndex !== null && prevIndex < options.length - 1 ? prevIndex + 1 : 0));
-            } else if (event.key === 'ArrowUp') {
+            } else if (event.key === "ArrowUp") {
                 event.preventDefault();
                 setFocusedIndex((prevIndex) => (prevIndex !== null && prevIndex > 0 ? prevIndex - 1 : options.length - 1));
-            } else if (event.key === 'Enter' && focusedIndex !== null) {
+            } else if (event.key === "Enter" && focusedIndex !== null) {
                 onOptionSelect(options[focusedIndex]);
             } else if (/^[a-zA-Z0-9]$/.test(event.key)) {
                 setTypedChars((prevChars) => prevChars + event.key);
             }
         }
 
-        if (event.key === 'Escape') {
+        if (event.key === "Escape") {
             if (onEscape) onEscape();
         }
     };
@@ -72,9 +72,9 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(({
 
     useEffect(() => {
         if (internalRef.current && focusedIndex !== null) {
-            const focusedOption = internalRef.current.querySelectorAll<HTMLElement>('.' + styles.option)[focusedIndex];
+            const focusedOption = internalRef.current.querySelectorAll<HTMLElement>("." + styles.option)[focusedIndex];
             if (focusedOption) {
-                focusedOption.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                focusedOption.scrollIntoView({ behavior: "smooth", block: "nearest" });
                 focusedOption.focus();
             }
         }
@@ -90,7 +90,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(({
                 clearTimeout(typingTimeoutRef.current);
             }
             typingTimeoutRef.current = window.setTimeout(() => {
-                setTypedChars('');
+                setTypedChars("");
             }, 500);
         }
     }, [typedChars, options]);
@@ -100,9 +100,9 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(({
             const selectedIndex = options.findIndex(option => option.value === selectedOption);
             if (selectedIndex !== -1) {
                 setFocusedIndex(selectedIndex);
-                const selectedOptionElement = internalRef.current.querySelectorAll<HTMLElement>('.' + styles.option)[selectedIndex];
+                const selectedOptionElement = internalRef.current.querySelectorAll<HTMLElement>("." + styles.option)[selectedIndex];
                 if (selectedOptionElement) {
-                    selectedOptionElement.scrollIntoView({ behavior: 'auto', block: 'nearest' });
+                    selectedOptionElement.scrollIntoView({ behavior: "auto", block: "nearest" });
                 }
             }
         }
@@ -120,7 +120,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(({
             background="surface"
             gap="2"
             minWidth={12}
-            className={classNames(styles.dropdown, className || '')}
+            className={classNames(styles.dropdown, className || "")}
             tabIndex={0}
             onKeyDown={handleKeyDown}
             ref={internalRef}
@@ -147,7 +147,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(({
                         tabIndex={-1}
                         data-value={option.value}>
                         {option.hasPrefix && <Flex className={styles.prefix}>{option.hasPrefix}</Flex>}
-                        <Flex style={{ whiteSpace: 'nowrap' }} direction="column" className={styles.optionText}>
+                        <Flex style={{ whiteSpace: "nowrap" }} direction="column" className={styles.optionText}>
                             <Text
                                 onBackground="neutral-strong"
                                 variant="label-default-s">
@@ -176,7 +176,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(({
     );
 });
 
-Dropdown.displayName = 'Dropdown';
+Dropdown.displayName = "Dropdown";
 
 export { Dropdown };
 export type { DropdownOptions, DropdownProps };

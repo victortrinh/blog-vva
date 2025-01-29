@@ -1,9 +1,9 @@
 "use client";
 
-import { Button, Flex, Heading, SmartImage, SmartLink, Text } from '@/once-ui/components';
-import styles from './Post.module.scss';
-import { formatDate } from '@/app/utils/formatDate';
-import { useTranslations } from 'next-intl';
+import { Button, Flex, Heading, SmartImage, SmartLink, Text } from "@/once-ui/components";
+import styles from "./Post.module.scss";
+import { formatDate } from "@/app/utils/formatDate";
+import { useTranslations } from "next-intl";
 
 interface PostProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,9 +18,9 @@ export default function Post({ post, thumbnail }: PostProps) {
         <SmartLink
             className={styles.hover}
             style={{
-                textDecoration: 'none',
-                margin: '0',
-                height: 'fit-content',
+                textDecoration: "none",
+                margin: "0",
+                height: "fit-content",
             }}
             key={post.slug}
             href={post.slug}>
@@ -35,12 +35,12 @@ export default function Post({ post, thumbnail }: PostProps) {
                         <SmartImage
                             sizes="640px"
                             style={{
-                                cursor: 'pointer',
-                                border: '1px solid var(--neutral-alpha-weak)'
+                                cursor: "pointer",
+                                border: "1px solid var(--neutral-alpha-weak)"
                             }}
                             radius="m"
                             src={post.metadata.image}
-                            alt={'Thumbnail of ' + post.metadata.title}
+                            alt={"Thumbnail of " + post.metadata.title}
                             aspectRatio="16 / 9"
                         />
                     </Flex>

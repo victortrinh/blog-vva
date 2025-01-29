@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useCallback, JSX } from 'react';
-import { Flex, Heading, IconButton, Toaster } from '@/once-ui/components';
+import React, { useState, useCallback, JSX } from "react";
+import { Flex, Heading, IconButton, Toaster } from "@/once-ui/components";
 
-import styles from '@/components/HeadingLink.module.scss';
+import styles from "@/components/HeadingLink.module.scss";
 
 interface HeadingLinkProps {
     id: string;
@@ -19,11 +19,11 @@ export const HeadingLink: React.FC<HeadingLinkProps> = ({
     style
 }) => {
     const [toasts, setToasts] = useState<
-        { id: string; variant: 'success' | 'danger'; message: string; action?: React.ReactNode }[]
+        { id: string; variant: "success" | "danger"; message: string; action?: React.ReactNode }[]
     >([]);
 
     const addToast = useCallback(
-        (variant: 'success' | 'danger', message: string, action?: React.ReactNode) => {
+        (variant: "success" | "danger", message: string, action?: React.ReactNode) => {
             const id = `${new Date().getTime()}`;
             setToasts((prevToasts) => [...prevToasts, { id, variant, message, action }]);
         },
@@ -40,19 +40,19 @@ export const HeadingLink: React.FC<HeadingLinkProps> = ({
     const copyURL = (id: string): void => {
         const url = `${window.location.origin}${window.location.pathname}#${id}`;
         navigator.clipboard.writeText(url).then(() => {
-            addToast('success', 'Link copied to clipboard.');
+            addToast("success", "Link copied to clipboard.");
         }, () => {
-            addToast('danger', 'Failed to copy link.');
+            addToast("danger", "Failed to copy link.");
         });
     };
 
     const variantMap = {
-        1: 'heading-strong-xl',
-        2: 'heading-strong-xl',
-        3: 'heading-strong-l',
-        4: 'heading-strong-m',
-        5: 'heading-strong-s',
-        6: 'heading-strong-xs',
+        1: "heading-strong-xl",
+        2: "heading-strong-xl",
+        3: "heading-strong-l",
+        4: "heading-strong-m",
+        5: "heading-strong-s",
+        6: "heading-strong-xs",
     } as const;
 
     const variant = variantMap[level];

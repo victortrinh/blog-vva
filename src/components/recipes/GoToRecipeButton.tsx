@@ -13,7 +13,7 @@ export const GoToRecipeButton = ({id}: Props) => {
     const onClick = () => {
         const element = document.getElementById(id);
         element?.scrollIntoView({
-            behavior: 'smooth'
+            behavior: "smooth"
         }); 
     }
 

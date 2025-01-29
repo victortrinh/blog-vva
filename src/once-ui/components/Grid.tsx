@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import React, { CSSProperties, forwardRef } from 'react';
-import classNames from 'classnames';
+import React, { CSSProperties, forwardRef } from "react";
+import classNames from "classnames";
 
-import { GridProps, SpacingProps, SizeProps, StyleProps, CommonProps, DisplayProps, ConditionalProps } from '../interfaces';
-import { SpacingToken, ColorScheme, ColorWeight } from '../types';
+import { GridProps, SpacingProps, SizeProps, StyleProps, CommonProps, DisplayProps, ConditionalProps } from "../interfaces";
+import { SpacingToken, ColorScheme, ColorWeight } from "../types";
 
-import styles from './Grid.module.scss';
+import styles from "./Grid.module.scss";
 
 interface ComponentProps extends 
     GridProps, 
@@ -18,7 +18,7 @@ interface ComponentProps extends
     ConditionalProps {}
 
 const Grid = forwardRef<HTMLDivElement, ComponentProps>(({
-    as: Component = 'div',
+    as: Component = "div",
     columns,
     rows,
     gap,
@@ -70,20 +70,20 @@ const Grid = forwardRef<HTMLDivElement, ComponentProps>(({
 
     const generateDynamicClass = (type: string, value: string | undefined) => {
         if (!value) return undefined;
-        if (value === 'surface' || value === 'page' || value === 'transparent') {
+        if (value === "surface" || value === "page" || value === "transparent") {
             return `${value}-${type}`;
         }
-        const [scheme, weight] = value.split('-') as [ColorScheme, ColorWeight];
+        const [scheme, weight] = value.split("-") as [ColorScheme, ColorWeight];
         return `${scheme}-${type}-${weight}`;
     };
 
-    const parseDimension = (value: number | SpacingToken | undefined, type: 'width' | 'height'): string | undefined => {
+    const parseDimension = (value: number | SpacingToken | undefined, type: "width" | "height"): string | undefined => {
         if (value === undefined) return undefined;
-        if (typeof value === 'number') return `${value}rem`;
-        if (['0', '1', '2', '4', '8', '12', '16', '20', '24', '32', '40', '48', '56', '64', '80', '104', '128', '160'].includes(value)) {
+        if (typeof value === "number") return `${value}rem`;
+        if (["0", "1", "2", "4", "8", "12", "16", "20", "24", "32", "40", "48", "56", "64", "80", "104", "128", "160"].includes(value)) {
             return `var(--static-space-${value})`;
         }
-        if (['xs', 's', 'm', 'l', 'xl'].includes(value)) {
+        if (["xs", "s", "m", "l", "xl"].includes(value)) {
             return `var(--responsive-${type}-${value})`;
         }
         return undefined;
@@ -95,31 +95,31 @@ const Grid = forwardRef<HTMLDivElement, ComponentProps>(({
         fillWidth && styles.fillWidth,
         tabletColumns && styles[`tablet-${tabletColumns}`],
         mobileColumns && styles[`mobile-${mobileColumns}`],
-        generateClassName('p', padding),
-        generateClassName('pl', paddingLeft),
-        generateClassName('pr', paddingRight),
-        generateClassName('pt', paddingTop),
-        generateClassName('pb', paddingBottom),
-        generateClassName('px', paddingX),
-        generateClassName('py', paddingY),
-        generateClassName('m', margin),
-        generateClassName('ml', marginLeft),
-        generateClassName('mr', marginRight),
-        generateClassName('mt', marginTop),
-        generateClassName('mb', marginBottom),
-        generateClassName('mx', marginX),
-        generateClassName('my', marginY),
-        generateClassName('g', gap),
-        generateDynamicClass('background', background),
-        generateDynamicClass('alpha', alpha),
-        generateDynamicClass('solid', solid),
-        generateDynamicClass('border', border),
+        generateClassName("p", padding),
+        generateClassName("pl", paddingLeft),
+        generateClassName("pr", paddingRight),
+        generateClassName("pt", paddingTop),
+        generateClassName("pb", paddingBottom),
+        generateClassName("px", paddingX),
+        generateClassName("py", paddingY),
+        generateClassName("m", margin),
+        generateClassName("ml", marginLeft),
+        generateClassName("mr", marginRight),
+        generateClassName("mt", marginTop),
+        generateClassName("mb", marginBottom),
+        generateClassName("mx", marginX),
+        generateClassName("my", marginY),
+        generateClassName("g", gap),
+        generateDynamicClass("background", background),
+        generateDynamicClass("alpha", alpha),
+        generateDynamicClass("solid", solid),
+        generateDynamicClass("border", border),
         borderStyle && `border-${borderStyle}`,
-        radius === 'full' ? 'radius-full' : radius && `radius-${radius}`,
-        hide === 's' && 's-grid-hide',
-        hide === 'm' && 'm-grid-hide',
-        show === 's' && 's-grid-show',
-        show === 'm' && 'm-grid-show',
+        radius === "full" ? "radius-full" : radius && `radius-${radius}`,
+        hide === "s" && "s-grid-hide",
+        hide === "m" && "m-grid-hide",
+        show === "s" && "s-grid-show",
+        show === "m" && "m-grid-show",
         shadow && `shadow-${shadow}`,
     );
 
@@ -127,12 +127,12 @@ const Grid = forwardRef<HTMLDivElement, ComponentProps>(({
         gridTemplateColumns: columns,
         gridTemplateRows: rows,
         gap,
-        maxWidth: parseDimension(maxWidth, 'width'),
-        minWidth: parseDimension(minWidth, 'width'),
-        minHeight: parseDimension(minHeight, 'height'),
-        maxHeight: parseDimension(maxHeight, 'height'),
-        width: fillWidth ? '100%' : parseDimension(width, 'width'),
-        height: fillHeight ? '100%' : parseDimension(height, 'height'),
+        maxWidth: parseDimension(maxWidth, "width"),
+        minWidth: parseDimension(minWidth, "width"),
+        minHeight: parseDimension(minHeight, "height"),
+        maxHeight: parseDimension(maxHeight, "height"),
+        width: fillWidth ? "100%" : parseDimension(width, "width"),
+        height: fillHeight ? "100%" : parseDimension(height, "height"),
         position,
         overflowX,
         overflowY,
@@ -151,6 +151,6 @@ const Grid = forwardRef<HTMLDivElement, ComponentProps>(({
     );
 });
 
-Grid.displayName = 'Grid';
+Grid.displayName = "Grid";
 
 export { Grid };
