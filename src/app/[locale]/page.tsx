@@ -4,8 +4,7 @@ import { baseURL, routes, renderContent } from "@/app/resources";
 import { Posts } from "@/components/blog/Posts";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { Carousel } from "@/components";
-import { Text, Title, Flex, Container } from "@mantine/core";
+import { Text, Title, Flex } from "@mantine/core";
 
 type Params = Promise<{ locale: string }>
 
@@ -60,7 +59,7 @@ const InnerHome = ({locale}: InnerHomeProps) => {
     const t = useTranslations();
     const { home, person } = renderContent(t);
     return (
-        <Container>
+        <>
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
@@ -83,11 +82,7 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                     }),
                 }}
             />
-            <Carousel />
-            <Flex
-                w="100%"
-                direction="column"
-                gap="m">
+            <Flex  direction="column" gap="m">
                 <Flex
                     direction="column"
                     gap="m">
@@ -129,6 +124,6 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                     <Posts page="reviews" range={[1,4]} columns={4} locale={locale} thumbnail />
                 </Flex>
             )}
-        </Container>
+        </>
     );
 }
