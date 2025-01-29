@@ -16,7 +16,7 @@ interface BlogParams {
 }
 
 export async function generateStaticParams() {
-	const locales = routing.locales;
+    const locales = routing.locales;
     
     // Create an array to store all posts from all locales
     const allPosts = [];
@@ -34,59 +34,59 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params } : BlogParams) {
-	const { locale, slug } = await params;
-	const post = getPosts(['src', 'app', '[locale]', 'reviews', 'posts', locale]).find((post) => post.slug === slug)
+    const { locale, slug } = await params;
+    const post = getPosts(['src', 'app', '[locale]', 'reviews', 'posts', locale]).find((post) => post.slug === slug)
 
-	if (!post) {
-		return
-	}
+    if (!post) {
+        return
+    }
 
-	const {
-		title,
-		publishedAt: publishedTime,
-		summary: description,
-		image,
-	} = post.metadata;
-	const ogImage = image
-		? `https://${baseURL}${image}`
-		: `https://${baseURL}/og?title=${title}`;
+    const {
+        title,
+        publishedAt: publishedTime,
+        summary: description,
+        image,
+    } = post.metadata;
+    const ogImage = image
+        ? `https://${baseURL}${image}`
+        : `https://${baseURL}/og?title=${title}`;
 
-	return {
-		title,
-		description,
-		openGraph: {
-			title,
-			description,
-			type: 'article',
-			publishedTime,
-			url: `https://${baseURL}/${locale}/reviews/${post.slug}`,
-			images: [
-				{
-					url: ogImage,
-				},
-			],
-		},
-			twitter: {
-			card: 'summary_large_image',
-			title,
-			description,
-			images: [ogImage],
-		},
-	}
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            type: 'article',
+            publishedTime,
+            url: `https://${baseURL}/${locale}/reviews/${post.slug}`,
+            images: [
+                {
+                    url: ogImage,
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+            images: [ogImage],
+        },
+    }
 }
 
 export default async function Blog({ params } : BlogParams) {
-	const { locale, slug } = await params;
-	setRequestLocale(locale);
-	const post = getPosts(['src', 'app', '[locale]', 'reviews', 'posts', locale]).find((post) => post.slug === slug)
+    const { locale, slug } = await params;
+    setRequestLocale(locale);
+    const post = getPosts(['src', 'app', '[locale]', 'reviews', 'posts', locale]).find((post) => post.slug === slug)
 
-	if (!post) {
-		notFound()
-	}
+    if (!post) {
+        notFound()
+    }
 
-	return (
-		<InnerBlog post={post} locale={locale} />
-	)
+    return (
+        <InnerBlog post={post} locale={locale} />
+    )
 }
 
 interface InnerBlogProps {
@@ -99,67 +99,67 @@ interface InnerBlogProps {
 }
 
 const InnerBlog = ({post, locale}: InnerBlogProps) => {
-	const t = useTranslations();
-	const { person } = renderContent(t);
+    const t = useTranslations();
+    const { person } = renderContent(t);
 
-	return (
-		<Flex as="section"
-			fillWidth maxWidth="m"
-			direction="column"
-			gap="m">
-			<script
-				type="application/ld+json"
-				suppressHydrationWarning
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify({
-						'@context': 'https://schema.org',
-						'@type': 'BlogPosting',
-						headline: post.metadata.title,
-						datePublished: post.metadata.publishedAt,
-						dateModified: post.metadata.publishedAt,
-						description: post.metadata.summary,
-						image: post.metadata.image
-							? `https://${baseURL}${post.metadata.image}`
-							: `https://${baseURL}/og?title=${post.metadata.title}`,
-							url: `https://${baseURL}/${locale}/reviews/${post.slug}`,
-						author: {
-							'@type': 'Person',
-							name: person.name,
-						},
-					}),
-				}}
-			/>
-			<Button
-				href={`/${locale}/reviews`}
-				variant="tertiary"
-				size="s"
-				prefixIcon="chevronLeft">
-				Reviews
-			</Button>
-			<Heading
-				variant="display-strong-s">
-				{post.metadata.title}
-			</Heading>
-			<Flex
-				gap="12"
-				alignItems="center">
-				{ person.avatar && (
-					<Avatar
-						size="s"
-						src={person.avatar}/>
-				)}
-				<Text
-					variant="body-default-s"
-					onBackground="neutral-weak">
-					{formatDate(post.metadata.publishedAt)}
-				</Text>
-			</Flex>
-			<Flex
-				as="article"
-				direction="column"
-				fillWidth>
-				<CustomMDX source={post.content} />
-			</Flex>
-		</Flex>
-	)
+    return (
+        <Flex as="section"
+            fillWidth maxWidth="m"
+            direction="column"
+            gap="m">
+            <script
+                type="application/ld+json"
+                suppressHydrationWarning
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'BlogPosting',
+                        headline: post.metadata.title,
+                        datePublished: post.metadata.publishedAt,
+                        dateModified: post.metadata.publishedAt,
+                        description: post.metadata.summary,
+                        image: post.metadata.image
+                            ? `https://${baseURL}${post.metadata.image}`
+                            : `https://${baseURL}/og?title=${post.metadata.title}`,
+                        url: `https://${baseURL}/${locale}/reviews/${post.slug}`,
+                        author: {
+                            '@type': 'Person',
+                            name: person.name,
+                        },
+                    }),
+                }}
+            />
+            <Button
+                href={`/${locale}/reviews`}
+                variant="tertiary"
+                size="s"
+                prefixIcon="chevronLeft">
+                Reviews
+            </Button>
+            <Heading
+                variant="display-strong-s">
+                {post.metadata.title}
+            </Heading>
+            <Flex
+                gap="12"
+                alignItems="center">
+                { person.avatar && (
+                    <Avatar
+                        size="s"
+                        src={person.avatar}/>
+                )}
+                <Text
+                    variant="body-default-s"
+                    onBackground="neutral-weak">
+                    {formatDate(post.metadata.publishedAt)}
+                </Text>
+            </Flex>
+            <Flex
+                as="article"
+                direction="column"
+                fillWidth>
+                <CustomMDX source={post.content} />
+            </Flex>
+        </Flex>
+    )
 }

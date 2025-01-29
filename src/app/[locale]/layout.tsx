@@ -23,42 +23,42 @@ import { Analytics } from "@vercel/analytics/react"
 type Params = Promise<{ locale: string }>
 
 export async function generateMetadata(
-	{ params }: { params: Params }
+    { params }: { params: Params }
 ) {
-	const { locale } = await params;
-	const t = await getTranslations();
-	const { person, home } = renderContent(t);
+    const { locale } = await params;
+    const t = await getTranslations();
+    const { person, home } = renderContent(t);
 
-	return {
-		metadataBase: new URL(`https://${baseURL}/${locale}`),
-		title: home.title,
-		description: home.description,
-		openGraph: {
-			title: `${person.firstName}'s Portfolio`,
-			description: 'Portfolio website showcasing my work.',
-			url: baseURL,
-			siteName: `${person.firstName}'s Portfolio`,
-			locale: 'en_US',
-			type: 'website',
-		},
-		robots: {
-			index: true,
-			follow: true,
-			googleBot: {
-				index: true,
-				follow: true,
-				'max-video-preview': -1,
-				'max-image-preview': 'large',
-				'max-snippet': -1,
-			},
-		},
-	}
+    return {
+        metadataBase: new URL(`https://${baseURL}/${locale}`),
+        title: home.title,
+        description: home.description,
+        openGraph: {
+            title: `${person.firstName}'s Portfolio`,
+            description: 'Portfolio website showcasing my work.',
+            url: baseURL,
+            siteName: `${person.firstName}'s Portfolio`,
+            locale: 'en_US',
+            type: 'website',
+        },
+        robots: {
+            index: true,
+            follow: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                'max-video-preview': -1,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
+            },
+        },
+    }
 };
 
 const primary = Inter({
-	variable: '--font-primary',
-	subsets: ['latin'],
-	display: 'swap',
+    variable: '--font-primary',
+    subsets: ['latin'],
+    display: 'swap',
 })
 
 type FontConfig = {
@@ -75,9 +75,9 @@ const tertiary: FontConfig | undefined = undefined;
 */
 
 const code = Source_Code_Pro({
-	variable: '--font-code',
-	subsets: ['latin'],
-	display: 'swap',
+    variable: '--font-code',
+    subsets: ['latin'],
+    display: 'swap',
 });
 
 interface RootLayoutProps {
@@ -86,55 +86,55 @@ interface RootLayoutProps {
 }
 
 export function generateStaticParams() {
-	return routing.locales.map((locale) => ({locale}));
-  }
+    return routing.locales.map((locale) => ({locale}));
+}
 
 export default async function RootLayout({
-	children,
-	params
+    children,
+    params
 } : RootLayoutProps) {
-	const { locale } = await params;
-	setRequestLocale(locale);
-	const messages = await getMessages();
-	return (
-		<NextIntlClientProvider messages={messages}>
-			<Flex
-				as="html" lang="en"
-				background="page"
-				data-neutral={style.neutral} data-brand={style.brand} data-accent={style.accent}
-				data-solid={style.solid} data-solid-style={style.solidStyle}
-				data-theme={style.theme}
-				data-border={style.border}
-				data-surface={style.surface}
-				data-transition={style.transition}
-				className={classNames(
-					primary.variable,
-					secondary ? secondary.variable : '',
-					tertiary ? tertiary.variable : '',
-					code.variable)}>
-				<GoogleAnalytics gaId="G-BB3M3FJ27B" />
-				<Head>
-					<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9035056618426040" crossOrigin="anonymous" />
-				</Head>
-				<Flex style={{minHeight: '100vh'}}
-					as="body"
-					fillWidth margin="0" padding="0"
-					direction="column">
-					<Analytics />
-					<Header/>
-					<Flex
-						fillWidth paddingY="l" paddingX="l"
-						justifyContent="center" flex={1}>
-						<Flex
-							justifyContent="center"
-							fillWidth minHeight="0">
-							<RouteGuard>
-								{children}
-							</RouteGuard>
-						</Flex>
-					</Flex>
-				</Flex>
-			</Flex>
-		</NextIntlClientProvider>
-	);
+    const { locale } = await params;
+    setRequestLocale(locale);
+    const messages = await getMessages();
+    return (
+        <NextIntlClientProvider messages={messages}>
+            <Flex
+                as="html" lang="en"
+                background="page"
+                data-neutral={style.neutral} data-brand={style.brand} data-accent={style.accent}
+                data-solid={style.solid} data-solid-style={style.solidStyle}
+                data-theme={style.theme}
+                data-border={style.border}
+                data-surface={style.surface}
+                data-transition={style.transition}
+                className={classNames(
+                    primary.variable,
+                    secondary ? secondary.variable : '',
+                    tertiary ? tertiary.variable : '',
+                    code.variable)}>
+                <GoogleAnalytics gaId="G-BB3M3FJ27B" />
+                <Head>
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9035056618426040" crossOrigin="anonymous" />
+                </Head>
+                <Flex style={{minHeight: '100vh'}}
+                    as="body"
+                    fillWidth margin="0" padding="0"
+                    direction="column">
+                    <Analytics />
+                    <Header/>
+                    <Flex
+                        fillWidth paddingY="l" paddingX="l"
+                        justifyContent="center" flex={1}>
+                        <Flex
+                            justifyContent="center"
+                            fillWidth minHeight="0">
+                            <RouteGuard>
+                                {children}
+                            </RouteGuard>
+                        </Flex>
+                    </Flex>
+                </Flex>
+            </Flex>
+        </NextIntlClientProvider>
+    );
 }

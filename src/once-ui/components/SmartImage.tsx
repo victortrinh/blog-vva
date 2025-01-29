@@ -103,8 +103,8 @@ const SmartImage: React.FC<SmartImageProps> = ({
                     height: aspectRatio
                         ? undefined
                         : height
-                        ? `${height}rem`
-                        : '100%',
+                            ? `${height}rem`
+                            : '100%',
                     aspectRatio,
                     cursor: enlarge ? 'pointer' : 'default',
                     borderRadius: isEnlarged ? '0' : radius ? `var(--radius-${radius})` : undefined,

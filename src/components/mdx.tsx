@@ -21,10 +21,10 @@ function Table({ data }: TableProps) {
         <th key={index}>{header}</th>
     ));
     const rows = data.rows.map((row, index) => (
-    <tr key={index}>
-        {row.map((cell, cellIndex) => (
-            <td key={cellIndex}>{cell}</td>
-        ))}
+        <tr key={index}>
+            {row.map((cell, cellIndex) => (
+                <td key={cellIndex}>{cell}</td>
+            ))}
         </tr>
     ));
 
@@ -87,7 +87,7 @@ function slugify(str: string): string {
 
 function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
     const CustomHeading = ({ children, ...props }: TextProps) => {
-    const slug = slugify(children as string);
+        const slug = slugify(children as string);
         return (
             <HeadingLink
                 style={{marginTop: 'var(--static-space-24)', marginBottom: 'var(--static-space-12)'}}

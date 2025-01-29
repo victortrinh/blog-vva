@@ -39,47 +39,47 @@ export const Header = () => {
             justifyContent="center"
             background="surface">
             <Flex fillWidth maxWidth="xl">
-            <Flex hide="s">
-                <Link href={`/${params?.locale}/`}>
-                    <Text style={{whiteSpace: "nowrap"}} variant="display-strong-xs">VICTOR VU</Text>
-                </Link>
-            </Flex>
-            <Flex fillWidth show="s" alignItems="center" justifyContent="space-between">
-                <Link href={`/${params?.locale}/`}>
-                    <Text style={{whiteSpace: "nowrap"}} variant="display-strong-xs">VICTOR VU</Text>
-                </Link>
-                <DropdownWrapper 
-                    dropdownOptions={[
-                        {
-                            label: recipes.label,
-                            value: 'recipes'
-                        },
-                        {
-                            label: tips.label,
-                            value: 'tips'
-                        },
-                        {
-                            label: reviews.label,
-                            value: 'reviews'
-                        }
-                    ]}
-                    dropdownProps={{
-                        selectedOption: pathname.split('/').pop(),
-                        onOptionSelect: (option) => {
-                            router.replace(option.value);
-                        }
-                    }}
-                >
-                    <NavIcon/>
-                </DropdownWrapper>
-            </Flex>
-            <Flex
-                fillWidth
-                justifyContent="flex-end"
-                hide="s"
-                textVariant="label-default-s"
-                gap="4"
-                alignItems="center">
+                <Flex hide="s">
+                    <Link href={`/${params?.locale}/`}>
+                        <Text style={{whiteSpace: "nowrap"}} variant="display-strong-xs">VICTOR VU</Text>
+                    </Link>
+                </Flex>
+                <Flex fillWidth show="s" alignItems="center" justifyContent="space-between">
+                    <Link href={`/${params?.locale}/`}>
+                        <Text style={{whiteSpace: "nowrap"}} variant="display-strong-xs">VICTOR VU</Text>
+                    </Link>
+                    <DropdownWrapper 
+                        dropdownOptions={[
+                            {
+                                label: recipes.label,
+                                value: 'recipes'
+                            },
+                            {
+                                label: tips.label,
+                                value: 'tips'
+                            },
+                            {
+                                label: reviews.label,
+                                value: 'reviews'
+                            }
+                        ]}
+                        dropdownProps={{
+                            selectedOption: pathname.split('/').pop(),
+                            onOptionSelect: (option) => {
+                                router.replace(option.value);
+                            }
+                        }}
+                    >
+                        <NavIcon/>
+                    </DropdownWrapper>
+                </Flex>
+                <Flex
+                    fillWidth
+                    justifyContent="flex-end"
+                    hide="s"
+                    textVariant="label-default-s"
+                    gap="4"
+                    alignItems="center">
                     { routes['/recipes'] && (
                         <SmartLink
                             href={`/${params?.locale}/recipes`}
@@ -107,11 +107,11 @@ export const Header = () => {
                             selected={params?.locale === locale}
                             onClick={() => handleLanguageChange(locale)}
                             className={isPending && 'pointer-events-none opacity-60' || ''}
-                            >
+                        >
                             {locale.toUpperCase()}
                         </ToggleButton>
                     ))}
-            </Flex>
+                </Flex>
             </Flex>
         </Flex>
     );

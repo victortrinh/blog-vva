@@ -7,47 +7,47 @@ import { useTranslations } from 'next-intl';
 type Params = Promise<{ locale: string }>
 
 export async function generateMetadata(
-	{params}: { params: Params}
+    {params}: { params: Params}
 ) {
-	const { locale } = await params;
-	const t = await getTranslations();
-	const { blog } = renderContent(t);
+    const { locale } = await params;
+    const t = await getTranslations();
+    const { blog } = renderContent(t);
 
-	const title = blog.title;
-	const description = blog.description;
-	const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
+    const title = blog.title;
+    const description = blog.description;
+    const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
-	return {
-		title,
-		description,
-		openGraph: {
-			title,
-			description,
-			type: 'website',
-			url: `https://${baseURL}/${locale}/blog`,
-			images: [
-				{
-					url: ogImage,
-					alt: title,
-				},
-			],
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title,
-			description,
-			images: [ogImage],
-		},
-	};
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            type: 'website',
+            url: `https://${baseURL}/${locale}/blog`,
+            images: [
+                {
+                    url: ogImage,
+                    alt: title,
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
+            images: [ogImage],
+        },
+    };
 }
 
 export default async function Blog(
-	{ params }: { params: Params}
+    { params }: { params: Params}
 ) {
-	const { locale } = await params;
-	setRequestLocale(locale);
+    const { locale } = await params;
+    setRequestLocale(locale);
 
-	return <InnerBlog locale={locale} />;
+    return <InnerBlog locale={locale} />;
 }
 
 interface InnerBlogProps {
@@ -55,45 +55,45 @@ interface InnerBlogProps {
 }
 
 const InnerBlog = ({ locale }: InnerBlogProps) => {
-	const t = useTranslations();
-	const { person, blog } = renderContent(t);
+    const t = useTranslations();
+    const { person, blog } = renderContent(t);
 
     return (
         <Flex
-			fillWidth maxWidth="xl"
-			direction="column">
+            fillWidth maxWidth="xl"
+            direction="column">
             <script
-				type="application/ld+json"
-				suppressHydrationWarning
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify({
-						'@context': 'https://schema.org',
-						'@type': 'Blog',
-						headline: blog.title,
-						description: blog.description,
-						url: `https://${baseURL}/blog`,
-						image: `${baseURL}/og?title=${encodeURIComponent(blog.title)}`,
-						author: {
-							'@type': 'Person',
-							name: person.name,
+                type="application/ld+json"
+                suppressHydrationWarning
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        '@context': 'https://schema.org',
+                        '@type': 'Blog',
+                        headline: blog.title,
+                        description: blog.description,
+                        url: `https://${baseURL}/blog`,
+                        image: `${baseURL}/og?title=${encodeURIComponent(blog.title)}`,
+                        author: {
+                            '@type': 'Person',
+                            name: person.name,
                             image: {
-								'@type': 'ImageObject',
-								url: `${baseURL}${person.avatar}`,
-							},
-						},
-					}),
-				}}
-			/>
+                                '@type': 'ImageObject',
+                                url: `${baseURL}${person.avatar}`,
+                            },
+                        },
+                    }),
+                }}
+            />
             <Heading
                 marginBottom="l"
                 variant="display-strong-s">
                 {blog.title}
             </Heading>
-			<Flex
-				fillWidth flex={1} direction="column">
-				<Posts page="blog" range={[1,3]} locale={locale} thumbnail/>
-				<Posts page="blog" range={[4]} columns="2" locale={locale}/>
-			</Flex>
+            <Flex
+                fillWidth flex={1} direction="column">
+                <Posts page="blog" range={[1,3]} locale={locale} thumbnail/>
+                <Posts page="blog" range={[4]} columns="2" locale={locale}/>
+            </Flex>
         </Flex>
     );
 }

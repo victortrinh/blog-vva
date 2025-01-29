@@ -18,68 +18,68 @@ interface SmartLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 const SmartLink = forwardRef<HTMLAnchorElement, SmartLinkProps>(({ 
-        href,
-        prefixIcon,
-        suffixIcon,
-        iconSize='xs',
-        style,
-        className,
-        selected,
-        unstyled = false,
-        children,
+    href,
+    prefixIcon,
+    suffixIcon,
+    iconSize='xs',
+    style,
+    className,
+    selected,
+    unstyled = false,
+    children,
+    ...props
+}, ref) => {
+    const isExternal = href.startsWith('http') || href.startsWith('//');
+
+    const content = (
+        <>
+            {prefixIcon && <Icon name={prefixIcon} size={iconSize} />}
+            {children}
+            {suffixIcon && <Icon name={suffixIcon} size={iconSize} />}
+        </>
+    );
+
+    const commonProps = {
+        ref,
+        className: classNames(className || '', {
+            'px-4 mx-4': !unstyled,
+        }),
+        style: !unstyled ? {
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 'var(--static-space-8)',
+            borderRadius: 'var(--radius-s)',
+            ...(selected && { textDecoration: 'underline' }),
+            ...style
+        } : { 
+            textDecoration: 'none',
+            color: 'inherit',
+            ...style
+        },
         ...props
-    }, ref) => {
-        const isExternal = href.startsWith('http') || href.startsWith('//');
+    };
 
-        const content = (
-            <>
-                {prefixIcon && <Icon name={prefixIcon} size={iconSize} />}
-                {children}
-                {suffixIcon && <Icon name={suffixIcon} size={iconSize} />}
-            </>
-        );
-
-        const commonProps = {
-            ref,
-            className: classNames(className || '', {
-                'px-4 mx-4': !unstyled,
-            }),
-            style: !unstyled ? {
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 'var(--static-space-8)',
-                borderRadius: 'var(--radius-s)',
-                ...(selected && { textDecoration: 'underline' }),
-                ...style
-            } : { 
-                textDecoration: 'none',
-                color: 'inherit',
-                ...style
-            },
-            ...props
-        };
-
-        if (isExternal) {
-            return (
-                <a
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                    {...commonProps}>
-                    {content}
-                </a>
-            );
-        }
-
+    if (isExternal) {
         return (
-            <Link
+            <a
                 href={href}
-                {...commonProps}
-                {...props}>
+                target="_blank"
+                rel="noreferrer"
+                {...commonProps}>
                 {content}
-            </Link>
+            </a>
         );
     }
+
+    return (
+        <Link
+            href={href}
+            {...commonProps}
+            {...props}>
+            {content}
+        </Link>
+    );
+}
 );
 
 SmartLink.displayName = 'SmartLink';

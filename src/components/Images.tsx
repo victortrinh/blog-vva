@@ -15,12 +15,12 @@ interface Props {
 
 export const Images = ({ columns = 2, images }: Props) => {
     return <Grid
-    columns={`repeat(${columns}, 1fr)`} mobileColumns="1col"
-    fillWidth marginTop="24" gap="m">
-    {images.map(({ src, alt }, index) => (
-        <div key={index}>
-            <img alt={alt} src={src} width="100%" />
-        </div>
-    ))}
-</Grid>
+        columns={`repeat(${columns}, 1fr)`} mobileColumns="1col"
+        fillWidth marginTop="24" gap="m">
+        {images.map(({ src, alt }, index) => (
+            <div key={index}>
+                <img alt={alt} src={src} width="100%" />
+            </div>
+        ))}
+    </Grid>
 }

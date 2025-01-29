@@ -53,21 +53,21 @@ const Carousel: React.FC<CarouselProps> = ({
     return (
         <Flex fillWidth gap="12" direction="column">
             <Flex onClick={handleImageClick}>
-                    <SmartImage
-                        sizes={sizes}
-                        priority
-                        tabIndex={0}
-                        radius="l"
-                        alt={images[activeIndex]?.alt}
-                        aspectRatio={aspectRatio}
-                        src={images[activeIndex]?.src}
-                        style={{
-                            border: '1px solid var(--neutral-alpha-weak)',
-                            ...(images.length > 1 && {
-                                cursor: 'pointer',
-                            }),
-                        }}
-                    />
+                <SmartImage
+                    sizes={sizes}
+                    priority
+                    tabIndex={0}
+                    radius="l"
+                    alt={images[activeIndex]?.alt}
+                    aspectRatio={aspectRatio}
+                    src={images[activeIndex]?.src}
+                    style={{
+                        border: '1px solid var(--neutral-alpha-weak)',
+                        ...(images.length > 1 && {
+                            cursor: 'pointer',
+                        }),
+                    }}
+                />
             </Flex>
             {images.length > 1 && (
                 <>

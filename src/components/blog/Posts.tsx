@@ -25,9 +25,9 @@ export function Posts({
 
     const displayedPosts = range
         ? sortedPosts.slice(
-              range[0] - 1,
-              range.length === 2 ? range[1] : sortedPosts.length 
-          )
+            range[0] - 1,
+            range.length === 2 ? range[1] : sortedPosts.length 
+        )
         : sortedPosts;
 
     return (
