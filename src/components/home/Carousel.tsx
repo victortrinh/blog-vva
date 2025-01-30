@@ -31,11 +31,8 @@ export const Carousel = () => (
         {images.map(({ src, alt }) => (
             <MantineCarousel.Slide key={alt}>
                 <SmartImage
-                    priority
-                    tabIndex={0}
-                    radius="l"
                     alt={alt}
-                    aspectRatio="16 / 5"
+                    aspectRatio="16 / 6"
                     src={src}
                 />
             </MantineCarousel.Slide>
