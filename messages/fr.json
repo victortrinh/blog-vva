@@ -13,6 +13,9 @@
         "headline": "Bienvenue sur mon blog culinaire",
         "subline": "Visitez mon blog pour découvrir des recettes délicieuses, des conseils de cuisine et des critiques de restaurants"
     },
+    "about" : {
+        "label": "À propos"
+    },
     "recipes": {
         "label": "Recettes",
         "title": "Recettes pour un rendez-vous romantique",
@@ -27,14 +30,6 @@
         "label": "Avis sur les restaurants",
         "title": "Avis sur les restaurants : des critiques honnêtes pour les amateurs de gastronomie",
         "description": "Découvrez les meilleurs avis sur les restaurants avec des perspectives authentiques sur la cuisine, l'ambiance et le service. Trouvez des pépites cachées et des lieux incontournables près de chez vous ou partout dans le monde."
-    },
-    "work": {
-        "label": "Travail",
-        "title": "Mes projets",
-        "description": "Projets de design et développement par {name}"
-    },
-    "projectCard": {
-        "label": "Lire l'étude de cas"
     },
     "common": {
         "view": "Voir {type}",

@@ -13,6 +13,9 @@
         "headline": "Welcome to my food blog",
         "subline": "Visit my blog for delicious recipes, cooking tips, and restaurant reviews"
     },
+    "about": {
+        "label": "About"
+    },
     "recipes": {
         "label": "Recipes",
         "title": "Date Night Recipes",
@@ -27,14 +30,6 @@
         "label": "Restaurant reviews",
         "title": "Restaurant Reviews: Honest Insights for Food Lovers",
         "description": "Explore top restaurant reviews with genuine insights on food, ambiance, and service. Discover hidden gems and must-visit dining spots near you or around the world."
-    },
-    "work": {
-        "label": "Work",
-        "title": "My projects",
-        "description": "Design and dev projects by {name}"
-    },
-    "projectCard": {
-        "label": "Read Case Study"
     },
     "common": {
         "view": "View {type}",

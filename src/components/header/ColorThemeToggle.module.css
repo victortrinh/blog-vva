@@ -1,9 +1,14 @@
 button.control {
     padding-left: var(--mantine-spacing-md);
     padding-right: var(--mantine-spacing-md);
+    height: 100%;
 
     @media (max-width: $mantine-breakpoint-sm) {
         height: 42px;
+    }
+
+    @mixin hover {
+        background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
     }
 }
 
