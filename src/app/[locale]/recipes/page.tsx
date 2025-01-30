@@ -1,5 +1,5 @@
 import { Posts } from "@/components/blog/Posts";
-import { baseURL, renderContent } from "@/app/resources"
+import { baseURL } from "@/app/resources"
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Title, Container } from "@mantine/core";
@@ -11,10 +11,9 @@ export async function generateMetadata(
 ) {
     const { locale } = await params;
     const t = await getTranslations();
-    const { recipes } = renderContent(t);
 
-    const title = recipes.title;
-    const description = recipes.description;
+    const title = t("recipes.title");
+    const description = t("recipes.description");
     const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
     return {
@@ -56,7 +55,7 @@ interface InnerRecipesProps {
 
 const InnerRecipes = ({locale}: InnerRecipesProps) => {
     const t = useTranslations();
-    const { person, recipes } = renderContent(t);
+
     return (
         <Container>
             <script
@@ -66,23 +65,23 @@ const InnerRecipes = ({locale}: InnerRecipesProps) => {
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Blog",
-                        headline: recipes.title,
-                        description: recipes.description,
+                        headline: t("recipes.title"),
+                        description: t("recipes.description"),
                         url: `https://${baseURL}/recipes`,
-                        image: `${baseURL}/og?title=${encodeURIComponent(recipes.title)}`,
+                        image: `${baseURL}/og?title=${encodeURIComponent(t("recipes.title"))}`,
                         author: {
                             "@type": "Person",
-                            name: person.name,
+                            name: t("person.name"),
                             image: {
                                 "@type": "ImageObject",
-                                url: `${baseURL}${person.avatar}`,
+                                url: `${baseURL}${t("person.avatar")}`,
                             },
                         },
                     }),
                 }}
             />
             <Title order={1}>
-                {recipes.title}
+                {t("recipes.title")}
             </Title>
             <Posts page="recipes" locale={locale} columns={4} thumbnail/>
         </Container>

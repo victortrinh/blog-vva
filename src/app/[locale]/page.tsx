@@ -1,10 +1,10 @@
 import React from "react";
 
-import { baseURL, routes, renderContent } from "@/app/resources"; 
+import { baseURL, routes } from "@/app/resources"; 
 import { Posts } from "@/components/blog/Posts";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { Text, Title, Flex } from "@mantine/core";
+import { Text, Title, Flex, Container } from "@mantine/core";
 
 type Params = Promise<{ locale: string }>
 
@@ -13,9 +13,8 @@ export async function generateMetadata(
 ) {
     const { locale } = await params;
     const t = await getTranslations();
-    const { home } = renderContent(t);
-    const title = home.title;
-    const description = home.description;
+    const title = t("home.title");
+    const description = t("home.description");
     const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
     return {
@@ -57,7 +56,7 @@ interface InnerHomeProps {
 
 const InnerHome = ({locale}: InnerHomeProps) => {
     const t = useTranslations();
-    const { home, person } = renderContent(t);
+
     return (
         <>
             <script
@@ -67,63 +66,45 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "WebPage",
-                        name: home.title,
-                        description: home.description,
+                        name: t("home.title"),
+                        description: t("home.description"),
                         url: `https://${baseURL}`,
-                        image: `${baseURL}/og?title=${encodeURIComponent(home.title)}`,
+                        image: `${baseURL}/og?title=${encodeURIComponent(t("home.title"))}`,
                         publisher: {
                             "@type": "Person",
-                            name: person.name,
+                            name: t("person.name"),
                             image: {
                                 "@type": "ImageObject",
-                                url: `${baseURL}${person.avatar}`,
+                                url: `${baseURL}${t("person.avatar")}`,
                             },
                         },
                     }),
                 }}
             />
-            <Flex  direction="column" gap="m">
-                <Flex
-                    direction="column"
-                    gap="m">
-                    <Title>
-                        {home.headline}
-                    </Title>
-                    <Text>
-                        {home.subline}
-                    </Text>
+            <Container size="responsive">
+                <Flex  direction="column" gap="m">
+                    <Flex
+                        direction="column"
+                        gap="m">
+                        <Title>
+                            {t("home.headline")}
+                        </Title>
+                        <Text>
+                            {t("home.subline")}
+                        </Text>
+                    </Flex>
                 </Flex>
-            </Flex>
-            {routes["/recipes"] && (
-                <Flex
-                    gap="24"
-                    direction="column">
-                    <Title order={2}>
-                        Latest recipes
-                    </Title>
-                    <Posts page="recipes" range={[1,4]} columns={4} locale={locale} thumbnail />
-                </Flex>
-            )}
-            {routes["/tips"] && (
-                <Flex
-                    gap="24"
-                    direction="column">
-                    <Title order={2}>
-                        Latest tips
-                    </Title>
-                    <Posts page="tips" range={[1,4]} columns={4} locale={locale} thumbnail />
-                </Flex>
-            )}
-            {routes["/reviews"] && (
-                <Flex
-                    gap="24"
-                    direction="column">
-                    <Title order={2}>
-                        Latest reviews
-                    </Title>
-                    <Posts page="reviews" range={[1,4]} columns={4} locale={locale} thumbnail />
-                </Flex>
-            )}
+                {routes["/recipes"] && (
+                    <Flex
+                        gap="24"
+                        direction="column">
+                        <Title order={2}>
+                            Latest recipes
+                        </Title>
+                        <Posts page="recipes" range={[1,3]} columns={3} locale={locale} thumbnail />
+                    </Flex>
+                )}
+            </Container>
         </>
     );
 }

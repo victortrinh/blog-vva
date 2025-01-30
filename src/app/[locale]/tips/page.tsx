@@ -1,5 +1,5 @@
 import { Posts } from "@/components/blog/Posts";
-import { baseURL, renderContent } from "@/app/resources"
+import { baseURL } from "@/app/resources"
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Title, Container } from "@mantine/core";
@@ -11,10 +11,9 @@ export async function generateMetadata(
 ) {
     const { locale } = await params;
     const t = await getTranslations();
-    const { tips } = renderContent(t);
 
-    const title = tips.title;
-    const description = tips.description;
+    const title =t("tips.title");
+    const description = t("tips.description");
     const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
     return {
@@ -56,7 +55,7 @@ interface InnerTipsProps {
 
 const InnerTips = ({ locale }: InnerTipsProps) => {
     const t = useTranslations();
-    const { person, tips } = renderContent(t);
+
     return (
         <Container>
             <script
@@ -66,23 +65,23 @@ const InnerTips = ({ locale }: InnerTipsProps) => {
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Blog",
-                        headline: tips.title,
-                        description: tips.description,
+                        headline: t("tips.title"),
+                        description: t("tips.description"),
                         url: `https://${baseURL}/tips`,
-                        image: `${baseURL}/og?title=${encodeURIComponent(tips.title)}`,
+                        image: `${baseURL}/og?title=${encodeURIComponent(t("tips.title"))}`,
                         author: {
                             "@type": "Person",
-                            name: person.name,
+                            name: t("person.name"),
                             image: {
                                 "@type": "ImageObject",
-                                url: `${baseURL}${person.avatar}`,
+                                url: `${baseURL}${t("person.avatar")}`,
                             },
                         },
                     }),
                 }}
             />
             <Title order={1}>
-                {tips.title}
+                {t("tips.title")}
             </Title>
             <Posts page="tips" columns={4} locale={locale} thumbnail/>
         </Container>

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { CustomMDX } from "@/components/mdx"
 import { getPosts, Metadata } from "@/app/utils/utils"
-import { baseURL, renderContent } from "@/app/resources"
+import { baseURL } from "@/app/resources"
 import { setRequestLocale } from "next-intl/server"
 import { routing } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
@@ -103,7 +103,6 @@ interface InnerBlogProps {
 
 const InnerBlog = ({ post, locale }: InnerBlogProps) => {
     const t = useTranslations();
-    const { person } = renderContent(t);
 
     return (
         <section>
@@ -125,7 +124,7 @@ const InnerBlog = ({ post, locale }: InnerBlogProps) => {
                             url: `https://${baseURL}/${locale}/recipes/${post.slug}`,
                             author: {
                                 "@type": "Person",
-                                name: person.name,
+                                name: t("person.name"),
                             },
                         }),
                     }}

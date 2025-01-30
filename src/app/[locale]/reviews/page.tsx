@@ -1,5 +1,5 @@
 import { Posts } from "@/components/blog/Posts";
-import { baseURL, renderContent } from "@/app/resources"
+import { baseURL } from "@/app/resources"
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Title, Flex } from "@mantine/core";
@@ -11,10 +11,9 @@ export async function generateMetadata(
 ) {
     const { locale } = await params;
     const t = await getTranslations();
-    const { reviews } = renderContent(t);
 
-    const title = reviews.title;
-    const description = reviews.description;
+    const title = t("reviews.title");
+    const description = t("reviews.description");
     const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
     return {
@@ -56,7 +55,7 @@ interface InnerReviewsProps {
 
 const InnerReviews = ({ locale }: InnerReviewsProps) => {
     const t = useTranslations();
-    const { person, reviews } = renderContent(t);
+
     return (
         <Flex direction="column">
             <script
@@ -66,23 +65,23 @@ const InnerReviews = ({ locale }: InnerReviewsProps) => {
                     __html: JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Blog",
-                        headline: reviews.title,
-                        description: reviews.description,
+                        headline: t("reviews.title"),
+                        description: t("reviews.description"),
                         url: `https://${baseURL}/reviews`,
-                        image: `${baseURL}/og?title=${encodeURIComponent(reviews.title)}`,
+                        image: `${baseURL}/og?title=${encodeURIComponent(t("reviews.title"))}`,
                         author: {
                             "@type": "Person",
-                            name: person.name,
+                            name: t("person.name"),
                             image: {
                                 "@type": "ImageObject",
-                                url: `${baseURL}${person.avatar}`,
+                                url: `${baseURL}${t("person.avatar")}`,
                             },
                         },
                     }),
                 }}
             />
             <Title order={1}>
-                {reviews.title}
+                {t("reviews.title")}
             </Title>
             <Posts page="reviews"  columns={4} locale={locale} thumbnail/>
         </Flex>

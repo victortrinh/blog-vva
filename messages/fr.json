@@ -1,6 +1,10 @@
 {
     "person": {
-        "role": "Ingénieur Designer"
+        "avatar": "/images/avatar.jpg",
+        "firstName": "Victor",
+        "lastName": "Vu",
+        "name": "Victor Vu",
+        "role": "Wannabe influencer"
     },
     "home": {
         "label": "Accueil",

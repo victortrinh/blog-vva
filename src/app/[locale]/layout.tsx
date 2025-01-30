@@ -7,11 +7,11 @@ import { baseURL } from "@/app/resources"
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { renderContent } from "@/app/resources";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/react"
 import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
+import { theme } from "@/theme/theme";
 
 type Params = Promise<{ locale: string }>;
 
@@ -22,13 +22,12 @@ type Props = {
 export async function generateMetadata({ params }: Props) {
     const { locale } = await params;
     const t = await getTranslations();
-    const { home } = renderContent(t);
 
     // TODO: Add metadata for the home page
     return {
         metadataBase: new URL(`https://${baseURL}/${locale}`),
-        title: home.title,
-        description: home.description,
+        title: t("home.title"),
+        description: t("home.description"),
         openGraph: {
             title: "Date my dish",
             description: "Flirt with flavors and make your taste buds dance with these delicious recipes.",
@@ -82,7 +81,7 @@ export default async function RootLayout({
                 </head>
                 <body>
                     <Analytics />
-                    <MantineProvider>
+                    <MantineProvider theme={theme} defaultColorScheme="auto">
                         <Notifications />
                         <Header />
                         <main>{children}</main>

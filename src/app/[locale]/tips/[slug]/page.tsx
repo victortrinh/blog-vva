@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import { CustomMDX } from "@/components/mdx"
 import { getPosts, Metadata } from "@/app/utils/utils"
-import { baseURL, renderContent } from "@/app/resources"
+import { baseURL } from "@/app/resources"
 import { setRequestLocale } from "next-intl/server"
 import { routing } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
@@ -99,7 +99,6 @@ interface InnerBlogProps {
 
 const InnerBlog = ({ post, locale }: InnerBlogProps) => {
     const t = useTranslations();
-    const { person } = renderContent(t);
 
     return (
         <Container>
@@ -120,7 +119,7 @@ const InnerBlog = ({ post, locale }: InnerBlogProps) => {
                         url: `https://${baseURL}/${locale}/tips/${post.slug}`,
                         author: {
                             "@type": "Person",
-                            name: person.name,
+                            name: t("person.name"),
                         },
                     }),
                 }}
@@ -140,8 +139,8 @@ const InnerBlog = ({ post, locale }: InnerBlogProps) => {
             <Flex
                 gap="12"
                 align="center">
-                { person.avatar && (
-                    <Avatar src={person.avatar} alt={person.firstName} />
+                { t("person.avatar") && (
+                    <Avatar src={t("person.avatar")} alt={t("person.firstName")} />
                 )}
                 <Text>
                     {formatDate(post.metadata.publishedAt)}

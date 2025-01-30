@@ -101,6 +101,7 @@ const SmartImage: React.FC<SmartImageProps> = ({
                         : height
                             ? `${height}rem`
                             : "100%",
+                    width: "100%",
                     aspectRatio,
                     cursor: enlarge ? "pointer" : "default",
                     ...calculateTransform(),

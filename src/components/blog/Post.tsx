@@ -30,8 +30,7 @@ export default function Post({ post, thumbnail }: PostProps) {
                 direction="column"
                 gap="32">
                 {post.metadata.image && thumbnail && (
-                    <Flex
-                        className={styles.image}>
+                    <Flex className={styles.image}>
                         <SmartImage
                             sizes="640px"
                             src={post.metadata.image}

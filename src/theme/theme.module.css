@@ -1,0 +1,19 @@
+.responsiveContainer {
+  max-width: 33.75em;
+
+  @media (min-width: 48em) {
+    max-width: 45em;
+  }
+
+  @media (min-width: 62em) {
+    max-width: 57.5em;
+  }
+
+  @media (min-width: 75em) {
+    max-width: 68.75em;
+  }
+
+  @media (min-width: 88em) {
+    max-width: 80em;
+  }
+}
