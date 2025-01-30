@@ -2,13 +2,6 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-type Team = {
-    name: string;
-    role: string;
-    avatar: string;
-    linkedIn: string;
-};
-
 export type Metadata = {
     title: string;
     publishedAt: string;
@@ -16,7 +9,6 @@ export type Metadata = {
     image?: string;
     images: string[];
     tag?: string;
-    team: Team[];
 };
 
 function getMDXFiles(dir: string) {
@@ -41,8 +33,7 @@ function readMDXFile(filePath: string) {
         summary: data.summary || "",
         image: data.image || "",
         images: data.images || [],
-        tag: data.tag || [],
-        team: data.team || [],
+        tag: data.tag || []
     };
 
     return { metadata, content };

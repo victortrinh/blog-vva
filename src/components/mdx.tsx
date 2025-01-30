@@ -69,7 +69,7 @@ function createImage({ alt, src, ...props }: any) {
     }
 
     return (
-        <img className="recipe-image" alt={alt} src={src} {...props} />
+        <img width="100%" className="recipe-image" alt={alt} src={src} {...props} />
     );
 }
 

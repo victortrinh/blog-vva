@@ -106,7 +106,7 @@ const InnerBlog = ({ post, locale }: InnerBlogProps) => {
 
     return (
         <section>
-            <Container>
+            <Container size="responsive">
                 <script
                     type="application/ld+json"
                     suppressHydrationWarning

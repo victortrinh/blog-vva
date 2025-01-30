@@ -35,7 +35,7 @@ export default function Post({ post, thumbnail }: PostProps) {
                             sizes="640px"
                             src={post.metadata.image}
                             alt={"Thumbnail of " + post.metadata.title}
-                            aspectRatio="16 / 9"
+                            aspectRatio="9 / 12"
                         />
                     </Flex>
                 )}

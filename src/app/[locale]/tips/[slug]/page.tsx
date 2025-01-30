@@ -101,7 +101,7 @@ const InnerBlog = ({ post, locale }: InnerBlogProps) => {
     const t = useTranslations();
 
     return (
-        <Container>
+        <Container size="responsive">
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
