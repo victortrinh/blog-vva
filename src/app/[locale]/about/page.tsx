@@ -1,6 +1,6 @@
 import { Container, Title, Text } from "@mantine/core"
 
-export const About = () => {
+const About = () => {
     return (
         <section>
             <Container size="responsive">
@@ -14,3 +14,5 @@ export const About = () => {
         </section>
     )
 }
+
+export default About;
