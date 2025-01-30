@@ -4,6 +4,7 @@ import { baseURL, routes } from "@/app/resources";
 import { Posts } from "@/components/blog/Posts";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
+import { Carousel } from "@/components";
 import { Text, Title, Flex, Container } from "@mantine/core";
 
 type Params = Promise<{ locale: string }>
@@ -81,6 +82,7 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                     }),
                 }}
             />
+            <Carousel />
             <Container size="responsive">
                 <Flex  direction="column" gap="m">
                     <Flex
