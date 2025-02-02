@@ -1,1 +1,1 @@
-export { routes, baseURL } from "@/app/resources/config"
+export { baseURL } from "@/app/resources/config"
