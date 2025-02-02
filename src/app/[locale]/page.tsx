@@ -84,7 +84,7 @@ const InnerHome = ({locale}: InnerHomeProps) => {
             />
             <Flex direction="column" gap="xl">
                 <Carousel />
-                <Container size="responsive">
+                <Container size="responsive" pb="32px">
                     <Flex direction="column" gap="md" ta="center" justify="center" align="center">
                         <Title order={2} fw="normal" tt="uppercase">
                             {t("about.headline")}
