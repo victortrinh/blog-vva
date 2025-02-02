@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import { Heading, Flex, Text, Carousel } from '@/once-ui/components';
-
-import { baseURL, routes, renderContent } from '@/app/resources'; 
-import { Posts } from '@/components/blog/Posts';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { baseURL } from "@/app/resources"; 
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { Carousel, Section } from "@/components";
+import { Text, Title, Flex, Container, Button, Divider, SimpleGrid } from "@mantine/core";
+import Link from "next/link";
 
 type Params = Promise<{ locale: string }>
 
@@ -14,9 +14,8 @@ export async function generateMetadata(
 ) {
     const { locale } = await params;
     const t = await getTranslations();
-    const { home } = renderContent(t);
-    const title = home.title;
-    const description = home.description;
+    const title = t("home.title");
+    const description = t("about.subline");
     const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
     return {
@@ -25,7 +24,7 @@ export async function generateMetadata(
         openGraph: {
             title,
             description,
-            type: 'website',
+            type: "website",
             url: `https://${baseURL}/${locale}`,
             images: [
                 {
@@ -35,7 +34,7 @@ export async function generateMetadata(
             ],
         },
         twitter: {
-            card: 'summary_large_image',
+            card: "summary_large_image",
             title,
             description,
             images: [ogImage],
@@ -58,112 +57,56 @@ interface InnerHomeProps {
 
 const InnerHome = ({locale}: InnerHomeProps) => {
     const t = useTranslations();
-    const { home, person } = renderContent(t);
+
     return (
-        <Flex
-            maxWidth="xl" fillWidth gap="l"
-            direction="column" alignItems="center">
+        <>
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'WebPage',
-                        name: home.title,
-                        description: home.description,
+                        "@context": "https://schema.org",
+                        "@type": "WebPage",
+                        name: t("home.title"),
+                        description: t("about.subline"),
                         url: `https://${baseURL}`,
-                        image: `${baseURL}/og?title=${encodeURIComponent(home.title)}`,
+                        image: `${baseURL}/og?title=${encodeURIComponent(t("home.title"))}`,
                         publisher: {
-                            '@type': 'Person',
-                            name: person.name,
+                            "@type": "Person",
+                            name: t("person.name"),
                             image: {
-                                '@type': 'ImageObject',
-                                url: `${baseURL}${person.avatar}`,
+                                "@type": "ImageObject",
+                                url: `${baseURL}${t("person.avatar")}`,
                             },
                         },
                     }),
                 }}
             />
-            <Carousel
-                aspectRatio="16 / 5"
-                indicator="line"
-                images={[
-                    {
-                        alt: 'Spaghetti carbonara',
-                        src: '/images/recipes/spaghetti-carbonara.jpg'
-                    },
-                    {
-                        alt: 'Le petit bouchon',
-                        src: '/images/reviews/le-petit-bouchon.jpg'
-                    },
-                    {
-                        alt: 'Crispy roasted vegetables',
-                        src: '/images/tips/crispy-roasted-vegetables.jpg'
-                    }
-                ]}
-            />
-            <Flex
-                fillWidth
-                direction="column"
-                paddingY="l" gap="m">
-                <Flex
-                    direction="column"
-                    fillWidth gap="m">
-                    <Heading
-                        wrap="balance"
-                        variant="display-strong-l">
-                        {home.headline}
-                    </Heading>
-                    <Flex fillWidth>
-                        <Text
-                            wrap="balance"
-                            onBackground="neutral-weak"
-                            variant="heading-default-xl">
-                            {home.subline}
+            <Flex direction="column" gap="xl">
+                <Carousel />
+                <Container size="responsive">
+                    <Flex direction="column" gap="md" ta="center" justify="center" align="center">
+                        <Title order={2} fw="normal" tt="uppercase">
+                            {t("about.headline")}
+                        </Title>
+                        <Divider w="120px" my="sm" />
+                        <Text>
+                            {t("about.subline")}
                         </Text>
+                        <Button mt="24px" component={Link} href={`/${locale}/about`} fw="normal" size="lg" tt="uppercase">
+                            {t("about.cta")}
+                        </Button>
+                        <Divider my="lg" w="100%" />
+                        <Title>{t("home.headline")}</Title>
+                        <Divider my="xs" />
+                        <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} w="100%">
+                            <Section href={`/${locale}/recipes`} src="/images/recipes/calamari/ogImage.png" cta={t("recipes.appetizers")} />
+                            <Section href={`/${locale}/recipes`} src="/images/recipes/calamari/DSCF2266.jpg" cta={t("recipes.mains")}  />
+                            <Section href={`/${locale}/recipes`} src="/images/recipes/spaghetti-carbonara.jpg" cta={t("recipes.desserts")}  />
+                        </SimpleGrid>
                     </Flex>
-                </Flex>
+                </Container>
             </Flex>
-            {routes['/recipes'] && (
-                <Flex
-                    fillWidth gap="24"
-                    direction="column">
-                    <Heading
-                        as="h2"
-                        variant="display-strong-xs"
-                        wrap="balance">
-                        Latest recipes
-                    </Heading>
-                    <Posts page="recipes" range={[1,4]} columns="4" locale={locale} thumbnail />
-                </Flex>
-            )}
-            {routes['/tips'] && (
-                <Flex
-                    fillWidth gap="24"
-                    direction="column">
-                    <Heading
-                        as="h2"
-                        variant="display-strong-xs"
-                        wrap="balance">
-                        Latest tips
-                    </Heading>
-                    <Posts page="tips" range={[1,4]} columns="4" locale={locale} thumbnail />
-                </Flex>
-            )}
-            {routes['/reviews'] && (
-                <Flex
-                    fillWidth gap="24"
-                    direction="column">
-                    <Heading
-                        as="h2"
-                        variant="display-strong-xs"
-                        wrap="balance">
-                        Latest reviews
-                    </Heading>
-                    <Posts page="reviews" range={[1,4]} columns="4" locale={locale} thumbnail />
-                </Flex>
-            )}
-        </Flex>
+        </>
     );
 }

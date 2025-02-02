@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/once-ui/components";
+import { Button } from "@mantine/core";
 import { useTranslations } from "next-intl";
 
 interface Props {
@@ -13,7 +13,7 @@ export const GoToRecipeButton = ({id}: Props) => {
     const onClick = () => {
         const element = document.getElementById(id);
         element?.scrollIntoView({
-            behavior: 'smooth'
+            behavior: "smooth"
         }); 
     }
 

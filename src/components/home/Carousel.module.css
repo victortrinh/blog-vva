@@ -1,0 +1,23 @@
+.indicator {
+  width: 12px;
+  height: 4px;
+  transition: width 250ms ease;
+  background: var(--mantine-color-white);
+
+  &[data-active] {
+    width: 40px;
+  }
+}
+
+.control {
+  background: var(--mantine-color-white);
+}
+
+.headline, .subline {
+  letter-spacing: 0.6px;
+  text-shadow: 0px 0px 15px #000;
+}
+
+.subline {
+  font-weight: normal;
+}

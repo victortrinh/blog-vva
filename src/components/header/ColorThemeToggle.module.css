@@ -1,0 +1,38 @@
+button.control {
+    padding-left: var(--mantine-spacing-md);
+    padding-right: var(--mantine-spacing-md);
+    height: 100%;
+
+    @media (max-width: $mantine-breakpoint-sm) {
+        height: 42px;
+    }
+
+    @mixin hover {
+        background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    }
+}
+
+.icon {
+    width: 22px;
+    height: 22px;
+}
+  
+.dark {
+    @mixin dark {
+        display: none;
+    }
+
+    @mixin light {
+        display: block;
+    }
+}
+
+.light {
+    @mixin light {
+        display: none;
+    }
+
+    @mixin dark {
+        display: block;
+    }
+}

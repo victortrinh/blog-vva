@@ -1,8 +1,8 @@
-import { Flex, Heading } from '@/once-ui/components';
-import { Posts } from '@/components/blog/Posts';
-import { baseURL, renderContent } from '@/app/resources'
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { Posts } from "@/components/blog/Posts";
+import { baseURL } from "@/app/resources"
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { Title, Flex } from "@mantine/core";
 
 type Params = Promise<{ locale: string }>;
 
@@ -11,10 +11,9 @@ export async function generateMetadata(
 ) {
     const { locale } = await params;
     const t = await getTranslations();
-    const { reviews } = renderContent(t);
 
-    const title = reviews.title;
-    const description = reviews.description;
+    const title = t("reviews.title");
+    const description = t("reviews.description");
     const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
     return {
@@ -23,7 +22,7 @@ export async function generateMetadata(
         openGraph: {
             title,
             description,
-            type: 'website',
+            type: "website",
             url: `https://${baseURL}/${locale}/reviews`,
             images: [
                 {
@@ -33,7 +32,7 @@ export async function generateMetadata(
             ],
         },
         twitter: {
-            card: 'summary_large_image',
+            card: "summary_large_image",
             title,
             description,
             images: [ogImage],
@@ -56,40 +55,35 @@ interface InnerReviewsProps {
 
 const InnerReviews = ({ locale }: InnerReviewsProps) => {
     const t = useTranslations();
-    const { person, reviews } = renderContent(t);
+
     return (
-        <Flex
-            fillWidth maxWidth="xl"
-            direction="column">
+        <Flex direction="column">
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'Blog',
-                        headline: reviews.title,
-                        description: reviews.description,
+                        "@context": "https://schema.org",
+                        "@type": "Blog",
+                        headline: t("reviews.title"),
+                        description: t("reviews.description"),
                         url: `https://${baseURL}/reviews`,
-                        image: `${baseURL}/og?title=${encodeURIComponent(reviews.title)}`,
+                        image: `${baseURL}/og?title=${encodeURIComponent(t("reviews.title"))}`,
                         author: {
-                            '@type': 'Person',
-                            name: person.name,
+                            "@type": "Person",
+                            name: t("person.name"),
                             image: {
-                                '@type': 'ImageObject',
-                                url: `${baseURL}${person.avatar}`,
+                                "@type": "ImageObject",
+                                url: `${baseURL}${t("person.avatar")}`,
                             },
                         },
                     }),
                 }}
             />
-            <Heading
-                as="h1"
-                marginBottom="l"
-                variant="display-strong-s">
-                {reviews.title}
-            </Heading>
-            <Posts page="reviews"  columns='4' locale={locale} thumbnail/>
+            <Title order={1}>
+                {t("reviews.title")}
+            </Title>
+            <Posts page="reviews"  columns={4} locale={locale} thumbnail/>
         </Flex>
     );
 }

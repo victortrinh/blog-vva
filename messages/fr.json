@@ -1,44 +1,54 @@
 {
     "person": {
-        "role": "Ingénieur Designer"
+        "avatar": "/images/avatar.jpg",
+        "firstName": "Victor",
+        "lastName": "Vu",
+        "name": "Victor Vu",
+        "role": "Wannabe influencer"
     },
     "home": {
         "label": "Accueil",
-        "title": "Le blog culinaire de {name}",
+        "title": "Date my dish",
         "description": "Site mettant en avant ma passion pour la cuisine, les recettes et les avis sur les restaurants",
         "headline": "Bienvenue sur mon blog culinaire",
         "subline": "Visitez mon blog pour découvrir des recettes délicieuses, des conseils de cuisine et des critiques de restaurants"
     },
-    "blog": {
-        "label": "Blog",
-        "title": "Écrire sur le design et la tech...",
-        "description": "Lisez ce que {name} a fait récemment"
+    "about" : {
+        "label": "À propos",
+        "headline": "À propos de Date My Dish",
+        "subline": "Ce blog est votre guide incontournable pour cuisiner de délicieux repas qui laissent une impression durable et créent des moments inoubliables, que ce soit pour un dîner en amoureux ou une occasion spéciale.",
+        "cta": "En savoir plus"
     },
     "recipes": {
         "label": "Recettes",
-        "title": "Recettes pour un rendez-vous romantique",
-        "description": "Pimentez votre soirée avec des recettes irrésistibles conçues pour impressionner et éveiller la passion. Découvrez des plats qui créent une atmosphère romantique parfaite et vous rapprochent."
+        "title": "Recettes pour une soirée romantique",
+        "description": "Pimentez votre soirée avec des recettes irrésistibles conçues pour impressionner et raviver la passion. Découvrez des plats qui créent l'atmosphère romantique parfaite et vous rapprochent.",
+        "headline": "Idées de repas romantiques",
+        "subline": "Des plats pour créer l'ambiance lors de toute occasion spéciale",
+        "cta": "Impressionnez votre rendez-vous maintenant",
+        "appetizers": "Entrées",
+"mains": "Plats principaux",
+"desserts": "Desserts"
     },
     "tips": {
-        "label": "Conseils de cuisine",
-        "title": "Conseils de cuisine essentiels : maîtrisez l'art des repas délicieux",
-        "description": "Améliorez vos compétences culinaires avec des conseils d'experts. Apprenez à sublimer les saveurs, gagner du temps et réaliser des plats dignes d'un restaurant depuis le confort de votre maison."
+        "label": "Astuces de cuisine",
+        "title": "Astuces essentielles : maîtrisez l'art des plats délicieux",
+        "description": "Transformez vos compétences culinaires grâce à des astuces d'experts. Apprenez à sublimer les saveurs, gagner du temps et réaliser des plats dignes d’un restaurant depuis chez vous.",
+        "headline": "Améliorez vos talents culinaires",
+        "subline": "Des conseils simples pour cuisiner avec confiance et saveur",
+        "cta": "Plus d'infos maintenant"
     },
     "reviews": {
         "label": "Avis sur les restaurants",
-        "title": "Avis sur les restaurants : des critiques honnêtes pour les amateurs de gastronomie",
-        "description": "Découvrez les meilleurs avis sur les restaurants avec des perspectives authentiques sur la cuisine, l'ambiance et le service. Trouvez des pépites cachées et des lieux incontournables près de chez vous ou partout dans le monde."
-    },
-    "work": {
-        "label": "Travail",
-        "title": "Mes projets",
-        "description": "Projets de design et développement par {name}"
-    },
-    "projectCard": {
-        "label": "Lire l'étude de cas"
+        "title": "Avis de restaurants : des critiques honnêtes pour les amateurs de gastronomie",
+        "description": "Découvrez les meilleurs avis de restaurants avec des retours authentiques sur la cuisine, l’ambiance et le service. Trouvez des pépites cachées et des restaurants incontournables près de chez vous ou à travers le monde.",
+        "headline": "Avis sur les restaurants",
+        "subline": "Trouvez votre prochain restaurant préféré avec des recommandations sincères",
+        "cta": "Voir plus"
     },
     "common": {
-        "view": "Voir {type}"
+        "view": "Voir {type}",
+        "copy": "Copier"
     },
     "recipe": {
         "jump": "Passer à la recette",

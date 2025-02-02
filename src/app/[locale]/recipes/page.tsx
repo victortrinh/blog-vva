@@ -1,8 +1,8 @@
-import { Flex, Heading } from '@/once-ui/components';
-import { Posts } from '@/components/blog/Posts';
-import { baseURL, renderContent } from '@/app/resources'
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { Posts } from "@/components/blog/Posts";
+import { baseURL } from "@/app/resources"
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { Title, Container } from "@mantine/core";
 
 type Params = Promise<{ locale: string }>;
 
@@ -11,10 +11,9 @@ export async function generateMetadata(
 ) {
     const { locale } = await params;
     const t = await getTranslations();
-    const { recipes } = renderContent(t);
 
-    const title = recipes.title;
-    const description = recipes.description;
+    const title = t("recipes.title");
+    const description = t("recipes.description");
     const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
     return {
@@ -23,7 +22,7 @@ export async function generateMetadata(
         openGraph: {
             title,
             description,
-            type: 'website',
+            type: "website",
             url: `https://${baseURL}/${locale}/recipes`,
             images: [
                 {
@@ -33,7 +32,7 @@ export async function generateMetadata(
             ],
         },
         twitter: {
-            card: 'summary_large_image',
+            card: "summary_large_image",
             title,
             description,
             images: [ogImage],
@@ -56,40 +55,35 @@ interface InnerRecipesProps {
 
 const InnerRecipes = ({locale}: InnerRecipesProps) => {
     const t = useTranslations();
-    const { person, recipes } = renderContent(t);
+
     return (
-        <Flex
-            fillWidth maxWidth="xl"
-            direction="column">
+        <Container size="responsive">
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'Blog',
-                        headline: recipes.title,
-                        description: recipes.description,
+                        "@context": "https://schema.org",
+                        "@type": "Blog",
+                        headline: t("recipes.title"),
+                        description: t("recipes.description"),
                         url: `https://${baseURL}/recipes`,
-                        image: `${baseURL}/og?title=${encodeURIComponent(recipes.title)}`,
+                        image: `${baseURL}/og?title=${encodeURIComponent(t("recipes.title"))}`,
                         author: {
-                            '@type': 'Person',
-                            name: person.name,
+                            "@type": "Person",
+                            name: t("person.name"),
                             image: {
-                                '@type': 'ImageObject',
-                                url: `${baseURL}${person.avatar}`,
+                                "@type": "ImageObject",
+                                url: `${baseURL}${t("person.avatar")}`,
                             },
                         },
                     }),
                 }}
             />
-            <Heading
-                as="h1"
-                marginBottom="l"
-                variant="display-strong-s">
-                {recipes.title}
-            </Heading>
-            <Posts page="recipes" locale={locale} columns="4" thumbnail/>
-        </Flex>
+            <Title order={1}>
+                {t("recipes.title")}
+            </Title>
+            <Posts page="recipes" locale={locale} columns={4} thumbnail/>
+        </Container>
     );
 }

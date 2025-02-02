@@ -1,0 +1,19 @@
+.section {
+    text-decoration: none;
+    margin: 0;
+    height: fit-content;
+    position: relative;
+
+    &:hover {
+        .image {
+            opacity: 0.75;
+        }
+    }
+}
+
+.cta {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}

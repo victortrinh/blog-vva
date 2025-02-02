@@ -1,6 +1,6 @@
 "use client";
 
-import { Grid } from "@/once-ui/components";
+import { SimpleGrid } from "@mantine/core";
 import Image from "next/image";
 
 interface Image {
@@ -14,13 +14,12 @@ interface Props {
 }
 
 export const Images = ({ columns = 2, images }: Props) => {
-    return <Grid
-        columns={`repeat(${columns}, 1fr)`} mobileColumns="1col"
-        fillWidth marginTop="24" gap="m">
+    return <SimpleGrid
+        cols={{ base: 1, sm: 2, md: columns }} mt={24}>
         {images.map(({ src, alt }, index) => (
             <div key={index}>
                 <img alt={alt} src={src} width="100%" />
             </div>
         ))}
-    </Grid>
+    </SimpleGrid>
 }

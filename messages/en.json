@@ -1,44 +1,52 @@
 {
     "person": {
+        "avatar": "/images/avatar.jpg",
+        "firstName": "Victor",
+        "lastName": "Vu",
+        "name": "Victor Vu",
         "role": "Wannabe influencer"
     },
     "home": {
         "label": "Home",
-        "title": "{name}'s food blog",
-        "description": "Website showcasing my passion for food, cooking, and restaurant reviews",
-        "headline": "Welcome to my food blog",
-        "subline": "Visit my blog for delicious recipes, cooking tips, and restaurant reviews"
+        "title": "Date my dish",
+        "headline": "The pleasure starts the moment it touches your stomach"
     },
-    "blog": {
-        "label": "Blog",
-        "title": "Writing about design and tech...",
-        "description": "Read what {name} has been up to recently"
+    "about": {
+        "label": "About",
+        "headline": "About Date My Dish",
+        "subline": "This blog is your go-to guide for cooking delicious meals that help you create lasting impressions and unforgettable moments, whether you're cooking for a date night or a special occasion.",
+        "cta": "Find out more"
     },
     "recipes": {
         "label": "Recipes",
         "title": "Date Night Recipes",
-        "description": "Spice up your evening with irresistible date night recipes designed to impress and ignite passion. Discover dishes that create the perfect romantic atmosphere and bring you closer together."
+        "description": "Spice up your evening with irresistible date night recipes designed to impress and ignite passion. Discover dishes that create the perfect romantic atmosphere and bring you closer together.",
+        "headline": "Romantic Meal Ideas",
+        "subline": "Dishes to set the mood for any special occasion",
+        "cta": "Impress your date now",
+        "appetizers": "Appetizers",
+        "mains": "Mains",
+        "desserts": "Desserts"
     },
     "tips": {
         "label": "Cooking Tips",
         "title": "Essential Cooking Tips: Master the Art of Delicious Meals",
-        "description": "Transform your kitchen skills with expert cooking tips. Learn how to enhance flavors, save time, and create restaurant-quality dishes from the comfort of your home."
+        "description": "Transform your kitchen skills with expert cooking tips. Learn how to enhance flavors, save time, and create restaurant-quality dishes from the comfort of your home.",
+        "headline": "Elevate Your Cooking Skills",
+        "subline": " Easy tips to help you cook with confidence and flavor",
+        "cta": "More info now"
     },
     "reviews": {
         "label": "Restaurant reviews",
         "title": "Restaurant Reviews: Honest Insights for Food Lovers",
-        "description": "Explore top restaurant reviews with genuine insights on food, ambiance, and service. Discover hidden gems and must-visit dining spots near you or around the world."
-    },
-    "work": {
-        "label": "Work",
-        "title": "My projects",
-        "description": "Design and dev projects by {name}"
-    },
-    "projectCard": {
-        "label": "Read Case Study"
+        "description": "Explore top restaurant reviews with genuine insights on food, ambiance, and service. Discover hidden gems and must-visit dining spots near you or around the world.",
+        "headline": "Dine-In Reviews",
+        "subline": "Find your next favorite spot with honest recommendations",
+        "cta": "View more"
     },
     "common": {
-        "view": "View {type}"
+        "view": "View {type}",
+        "copy": "Copy"
     },
     "recipe": {
         "jump": "Jump to recipe",

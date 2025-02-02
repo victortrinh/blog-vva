@@ -1,14 +1,15 @@
-import { notFound } from 'next/navigation'
-import { CustomMDX } from '@/components/mdx'
-import { getPosts, Metadata } from '@/app/utils/utils'
-import { Avatar, Button, Flex, Heading, Text } from '@/once-ui/components'
-
-import { baseURL, renderContent } from '@/app/resources'
-import { setRequestLocale } from 'next-intl/server'
-import { routing } from '@/i18n/routing';
-import { useTranslations } from 'next-intl';
-import { formatDate } from '@/app/utils/formatDate'
-import { GoToRecipeButton } from '@/components/recipes/GoToRecipeButton'
+import { notFound } from "next/navigation"
+import { CustomMDX } from "@/components/mdx"
+import { getPosts, Metadata } from "@/app/utils/utils"
+import { baseURL } from "@/app/resources"
+import { setRequestLocale } from "next-intl/server"
+import { routing } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
+import { formatDate } from "@/app/utils/formatDate";
+import { GoToRecipeButton } from "@/components/recipes/GoToRecipeButton";
+import { Button, Text, Title, Flex, Container } from "@mantine/core"
+import Link from "next/link";
+import { IconChevronLeft } from "@tabler/icons-react";
 
 type Params = Promise<{ locale: string, slug: string }>;
 
@@ -24,7 +25,7 @@ export async function generateStaticParams() {
 
     // Fetch posts for each locale
     for (const locale of locales) {
-        const posts = getPosts(['src', 'app', '[locale]', 'recipes', 'posts', locale]);
+        const posts = getPosts(["src", "app", "[locale]", "recipes", "posts", locale]);
         allPosts.push(...posts.map(post => ({
             slug: post.slug,
             locale: locale,
@@ -36,7 +37,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: BlogParams) {
     const { locale, slug } = await params;
-    const post = getPosts(['src', 'app', '[locale]', 'recipes', 'posts', locale]).find((post) => post.slug === slug)
+    const post = getPosts(["src", "app", "[locale]", "recipes", "posts", locale]).find((post) => post.slug === slug)
 
     if (!post) {
         return
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: BlogParams) {
         openGraph: {
             title,
             description,
-            type: 'article',
+            type: "article",
             publishedTime,
             url: `https://${baseURL}/${locale}/recipes/${post.slug}`,
             images: [
@@ -69,7 +70,7 @@ export async function generateMetadata({ params }: BlogParams) {
             ],
         },
         twitter: {
-            card: 'summary_large_image',
+            card: "summary_large_image",
             title,
             description,
             images: [ogImage],
@@ -80,7 +81,7 @@ export async function generateMetadata({ params }: BlogParams) {
 export default async function Blog({params}: BlogParams) {
     const { locale, slug } = await params;
     setRequestLocale(locale);
-    const post = getPosts(['src', 'app', '[locale]', 'recipes', 'posts', locale]).find((post) => post.slug === slug)
+    const post = getPosts(["src", "app", "[locale]", "recipes", "posts", locale]).find((post) => post.slug === slug)
 
     if (!post) {
         notFound()
@@ -102,67 +103,58 @@ interface InnerBlogProps {
 
 const InnerBlog = ({ post, locale }: InnerBlogProps) => {
     const t = useTranslations();
-    const { person } = renderContent(t);
 
     return (
-        <Flex as="section"
-            fillWidth maxWidth="m"
-            direction="column"
-            gap="m">
-            <script
-                type="application/ld+json"
-                suppressHydrationWarning
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'BlogPosting',
-                        headline: post.metadata.title,
-                        datePublished: post.metadata.publishedAt,
-                        dateModified: post.metadata.publishedAt,
-                        description: post.metadata.summary,
-                        image: post.metadata.image
-                            ? `https://${baseURL}${post.metadata.image}`
-                            : `https://${baseURL}/og?title=${post.metadata.title}`,
-                        url: `https://${baseURL}/${locale}/recipes/${post.slug}`,
-                        author: {
-                            '@type': 'Person',
-                            name: person.name,
-                        },
-                    }),
-                }}
-            />
-            <Button
-                href={`/${locale}/recipes`}
-                variant="tertiary"
-                size="s"
-                prefixIcon="chevronLeft">
-                Recipes
-            </Button>
-            <Heading
-                variant="display-strong-s">
-                {post.metadata.title}
-            </Heading>
-            <Flex
-                gap="12"
-                alignItems="center">
-                { person.avatar && (
-                    <Avatar
-                        size="s"
-                        src={person.avatar}/>
-                )}
-                <Text
-                    variant="body-default-s"
-                    onBackground="neutral-weak">
-                    {formatDate(post.metadata.publishedAt)}
-                </Text>
-            </Flex>
-            <GoToRecipeButton id={post.slug} />
-            <Flex
-                as="article"
-                direction="column"
-                fillWidth>
-                <CustomMDX source={post.content} />
-            </Flex>
-        </Flex>
+        <section>
+            <Container size="responsive">
+                <script
+                    type="application/ld+json"
+                    suppressHydrationWarning
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "BlogPosting",
+                            headline: post.metadata.title,
+                            datePublished: post.metadata.publishedAt,
+                            dateModified: post.metadata.publishedAt,
+                            description: post.metadata.summary,
+                            image: post.metadata.image
+                                ? `https://${baseURL}${post.metadata.image}`
+                                : `https://${baseURL}/og?title=${post.metadata.title}`,
+                            url: `https://${baseURL}/${locale}/recipes/${post.slug}`,
+                            author: {
+                                "@type": "Person",
+                                name: t("person.name"),
+                            },
+                        }),
+                    }}
+                />
+                <Button
+                    component={Link}
+                    href={`/${locale}/recipes`}
+                    variant="default"
+                    size="xs"
+                    leftSection={<IconChevronLeft size={14} />}
+                >
+                    {t("recipes.label")}
+                </Button>
+                <Title>
+                    {post.metadata.title}
+                </Title>
+                <Flex
+                    gap="12"
+                    align="center">
+                    <Text>
+                        {formatDate(post.metadata.publishedAt)}
+                    </Text>
+                </Flex>
+                <GoToRecipeButton id={post.slug} />
+                <article>
+                    <Flex  direction="column">
+                        <CustomMDX source={post.content} />
+                    </Flex>
+                </article>
+            </Container>
+        </section>
     )
 }

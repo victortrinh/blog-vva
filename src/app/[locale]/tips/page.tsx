@@ -1,8 +1,8 @@
-import { Flex, Heading } from '@/once-ui/components';
-import { Posts } from '@/components/blog/Posts';
-import { baseURL, renderContent } from '@/app/resources'
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { useTranslations } from 'next-intl';
+import { Posts } from "@/components/blog/Posts";
+import { baseURL } from "@/app/resources"
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { Title, Container } from "@mantine/core";
 
 type Params = Promise<{ locale: string }>;
 
@@ -11,10 +11,9 @@ export async function generateMetadata(
 ) {
     const { locale } = await params;
     const t = await getTranslations();
-    const { tips } = renderContent(t);
 
-    const title = tips.title;
-    const description = tips.description;
+    const title =t("tips.title");
+    const description = t("tips.description");
     const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
     return {
@@ -23,7 +22,7 @@ export async function generateMetadata(
         openGraph: {
             title,
             description,
-            type: 'website',
+            type: "website",
             url: `https://${baseURL}/${locale}/tips`,
             images: [
                 {
@@ -33,7 +32,7 @@ export async function generateMetadata(
             ],
         },
         twitter: {
-            card: 'summary_large_image',
+            card: "summary_large_image",
             title,
             description,
             images: [ogImage],
@@ -56,40 +55,35 @@ interface InnerTipsProps {
 
 const InnerTips = ({ locale }: InnerTipsProps) => {
     const t = useTranslations();
-    const { person, tips } = renderContent(t);
+
     return (
-        <Flex
-            fillWidth maxWidth="xl"
-            direction="column">
+        <Container size="responsive">
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'Blog',
-                        headline: tips.title,
-                        description: tips.description,
+                        "@context": "https://schema.org",
+                        "@type": "Blog",
+                        headline: t("tips.title"),
+                        description: t("tips.description"),
                         url: `https://${baseURL}/tips`,
-                        image: `${baseURL}/og?title=${encodeURIComponent(tips.title)}`,
+                        image: `${baseURL}/og?title=${encodeURIComponent(t("tips.title"))}`,
                         author: {
-                            '@type': 'Person',
-                            name: person.name,
+                            "@type": "Person",
+                            name: t("person.name"),
                             image: {
-                                '@type': 'ImageObject',
-                                url: `${baseURL}${person.avatar}`,
+                                "@type": "ImageObject",
+                                url: `${baseURL}${t("person.avatar")}`,
                             },
                         },
                     }),
                 }}
             />
-            <Heading
-                as="h1"
-                marginBottom="l"
-                variant="display-strong-s">
-                {tips.title}
-            </Heading>
-            <Posts page="tips" columns="4" locale={locale} thumbnail/>
-        </Flex>
+            <Title order={1}>
+                {t("tips.title")}
+            </Title>
+            <Posts page="tips" columns={4} locale={locale} thumbnail/>
+        </Container>
     );
 }

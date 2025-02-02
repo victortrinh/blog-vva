@@ -1,13 +1,14 @@
-import { notFound } from 'next/navigation'
-import { CustomMDX } from '@/components/mdx'
-import { getPosts, Metadata } from '@/app/utils/utils'
-import { Avatar, Button, Flex, Heading, Text } from '@/once-ui/components'
-
-import { baseURL, renderContent } from '@/app/resources'
-import { setRequestLocale } from 'next-intl/server'
-import { routing } from '@/i18n/routing';
-import { useTranslations } from 'next-intl';
-import { formatDate } from '@/app/utils/formatDate'
+import { notFound } from "next/navigation"
+import { CustomMDX } from "@/components/mdx"
+import { getPosts, Metadata } from "@/app/utils/utils"
+import { baseURL } from "@/app/resources"
+import { setRequestLocale } from "next-intl/server"
+import { routing } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
+import { formatDate } from "@/app/utils/formatDate"
+import { Avatar, Button, Text, Title, Flex } from "@mantine/core"
+import Link from "next/link"
+import { IconChevronLeft } from "@tabler/icons-react"
 
 type Params = Promise<{ locale: string, slug: string }>;
 
@@ -23,7 +24,7 @@ export async function generateStaticParams() {
 
     // Fetch posts for each locale
     for (const locale of locales) {
-        const posts = getPosts(['src', 'app', '[locale]', 'reviews', 'posts', locale]);
+        const posts = getPosts(["src", "app", "[locale]", "reviews", "posts", locale]);
         allPosts.push(...posts.map(post => ({
             slug: post.slug,
             locale: locale,
@@ -35,7 +36,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params } : BlogParams) {
     const { locale, slug } = await params;
-    const post = getPosts(['src', 'app', '[locale]', 'reviews', 'posts', locale]).find((post) => post.slug === slug)
+    const post = getPosts(["src", "app", "[locale]", "reviews", "posts", locale]).find((post) => post.slug === slug)
 
     if (!post) {
         return
@@ -57,7 +58,7 @@ export async function generateMetadata({ params } : BlogParams) {
         openGraph: {
             title,
             description,
-            type: 'article',
+            type: "article",
             publishedTime,
             url: `https://${baseURL}/${locale}/reviews/${post.slug}`,
             images: [
@@ -67,7 +68,7 @@ export async function generateMetadata({ params } : BlogParams) {
             ],
         },
         twitter: {
-            card: 'summary_large_image',
+            card: "summary_large_image",
             title,
             description,
             images: [ogImage],
@@ -78,7 +79,7 @@ export async function generateMetadata({ params } : BlogParams) {
 export default async function Blog({ params } : BlogParams) {
     const { locale, slug } = await params;
     setRequestLocale(locale);
-    const post = getPosts(['src', 'app', '[locale]', 'reviews', 'posts', locale]).find((post) => post.slug === slug)
+    const post = getPosts(["src", "app", "[locale]", "reviews", "posts", locale]).find((post) => post.slug === slug)
 
     if (!post) {
         notFound()
@@ -100,11 +101,9 @@ interface InnerBlogProps {
 
 const InnerBlog = ({post, locale}: InnerBlogProps) => {
     const t = useTranslations();
-    const { person } = renderContent(t);
 
     return (
-        <Flex as="section"
-            fillWidth maxWidth="m"
+        <Flex
             direction="column"
             gap="m">
             <script
@@ -112,8 +111,8 @@ const InnerBlog = ({post, locale}: InnerBlogProps) => {
                 suppressHydrationWarning
                 dangerouslySetInnerHTML={{
                     __html: JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'BlogPosting',
+                        "@context": "https://schema.org",
+                        "@type": "BlogPosting",
                         headline: post.metadata.title,
                         datePublished: post.metadata.publishedAt,
                         dateModified: post.metadata.publishedAt,
@@ -123,43 +122,39 @@ const InnerBlog = ({post, locale}: InnerBlogProps) => {
                             : `https://${baseURL}/og?title=${post.metadata.title}`,
                         url: `https://${baseURL}/${locale}/reviews/${post.slug}`,
                         author: {
-                            '@type': 'Person',
-                            name: person.name,
+                            "@type": "Person",
+                            name: t("person.name"),
                         },
                     }),
                 }}
             />
             <Button
+                component={Link}
                 href={`/${locale}/reviews`}
-                variant="tertiary"
-                size="s"
-                prefixIcon="chevronLeft">
-                Reviews
+                variant="default"
+                size="xs"
+                leftSection={<IconChevronLeft size={14} />}
+            >
+                {t("reviews.label")}
             </Button>
-            <Heading
-                variant="display-strong-s">
+            <Title order={1}>
                 {post.metadata.title}
-            </Heading>
+            </Title>
             <Flex
                 gap="12"
-                alignItems="center">
-                { person.avatar && (
-                    <Avatar
-                        size="s"
-                        src={person.avatar}/>
+                align="center">
+                { t("person.avatar") && (
+                    <Avatar src={t("person.avatar")} alt={t("person.firstName")} />
                 )}
-                <Text
-                    variant="body-default-s"
-                    onBackground="neutral-weak">
+                <Text>
                     {formatDate(post.metadata.publishedAt)}
                 </Text>
             </Flex>
-            <Flex
-                as="article"
-                direction="column"
-                fillWidth>
-                <CustomMDX source={post.content} />
-            </Flex>
+            <article>
+                <Flex direction="column">
+                    <CustomMDX source={post.content} />
+                </Flex>
+            </article>
         </Flex>
     )
 }

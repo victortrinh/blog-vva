@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
-import React, { ReactNode } from 'react';
+import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc";
+import React, { ComponentProps, PropsWithChildren, ReactNode } from "react";
 
-import { SmartLink, Text } from '@/once-ui/components';
-import { HeadingLink } from '@/components';
+import { HeadingLink, SmartLink } from "@/components";
 
-import { TextProps } from '@/once-ui/interfaces';
-import { Images } from './Images';
-import { Recipe } from './recipes/Recipe';
+import { Text, TextProps } from "@mantine/core";
+import { Images } from "./Images";
+import { Recipe } from "./recipes/Recipe";
 
 type TableProps = {
     data: {
@@ -44,7 +43,7 @@ type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
 };
 
 function CustomLink({ href, children, ...props }: CustomLinkProps) {
-    if (href.startsWith('/')) {
+    if (href.startsWith("/")) {
         return (
             <SmartLink href={href} {...props}>
                 {children}
@@ -52,7 +51,7 @@ function CustomLink({ href, children, ...props }: CustomLinkProps) {
         );
     }
 
-    if (href.startsWith('#')) {
+    if (href.startsWith("#")) {
         return <a href={href} {...props}>{children}</a>;
     }
 
@@ -70,7 +69,7 @@ function createImage({ alt, src, ...props }: any) {
     }
 
     return (
-        <img className="recipe-image" alt={alt} src={src} {...props} />
+        <img width="100%" className="recipe-image" alt={alt} src={src} {...props} />
     );
 }
 
@@ -79,18 +78,18 @@ function slugify(str: string): string {
         .toString()
         .toLowerCase()
         .trim() // Remove whitespace from both ends of a string
-        .replace(/\s+/g, '-') // Replace spaces with -
-        .replace(/&/g, '-and-') // Replace & with 'and'
-        .replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
-        .replace(/\-\-+/g, '-') // Replace multiple - with single -
+        .replace(/\s+/g, "-") // Replace spaces with -
+        .replace(/&/g, "-and-") // Replace & with 'and'
+        .replace(/[^\w\-]+/g, "") // Remove all non-word characters except for -
+        .replace(/\-\-+/g, "-") // Replace multiple - with single -
 }
 
 function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
-    const CustomHeading = ({ children, ...props }: TextProps) => {
+    const CustomHeading = ({ children, ...props }: Omit<ComponentProps<typeof HeadingLink>, "id" | "level">) => {
         const slug = slugify(children as string);
+
         return (
             <HeadingLink
-                style={{marginTop: 'var(--static-space-24)', marginBottom: 'var(--static-space-12)'}}
                 level={level}
                 id={slug}
                 {...props}>
@@ -104,13 +103,9 @@ function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
     return CustomHeading;
 }
 
-function createParagraph({ children }: TextProps) {
+function createParagraph({ children }: PropsWithChildren<TextProps>) {
     return (
-        <Text style={{lineHeight: '150%'}}
-            variant="body-default-m"
-            onBackground="neutral-medium"
-            marginTop="8"
-            marginBottom="12">
+        <Text>
             {children}
         </Text>
     );
