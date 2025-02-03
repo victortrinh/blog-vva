@@ -9,12 +9,12 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Container } from "../Container";
 import { useRef } from "react";
-import Autoplay from "embla-carousel-autoplay"
+import Autoplay from "embla-carousel-autoplay";
 
 export const Carousel = () => {
-    const autoplay = useRef(Autoplay({ delay: 2000 }));
     const t = useTranslations();
     const params = useParams();
+    const autoplay = useRef(Autoplay({ delay: 2000 }))
 
     const aspectRatio = useMatches({
         base: 1/1,

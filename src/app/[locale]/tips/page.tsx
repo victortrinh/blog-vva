@@ -14,7 +14,7 @@ interface Params {
 export async function generateMetadata( {params}: Params) {
     const t = await getTranslations();
 
-    const title =t("tips.title");
+    const title = t("tips.title");
     const description = t("tips.description");
     
     return await generateMetadataForPage({ title, description, params });
