@@ -12,14 +12,20 @@ export function LanguagePicker() {
     const pathname = usePathname() ?? "";
 
     function handleLanguageChange(locale: string) {
-        console.log(locale);
-
         startTransition(() => {
-            router.replace(
-                pathname,
-                {locale}
-            )
+            router.replace(pathname, {locale})
         })
+    }
+
+    const getFlag = (locale?: string | string[]) => {
+        switch (locale) {
+        case "en":
+            return "🇺🇸";
+        case "fr":
+            return "🇫🇷";
+        default:
+            return "🇺🇸";
+        }
     }
 
     return (
@@ -33,13 +39,13 @@ export function LanguagePicker() {
         >
             <Menu.Target>
                 <UnstyledButton className={classes.control} data-expanded={opened || undefined}>
-                    {params?.locale ?? routing.defaultLocale}
+                    {getFlag(params?.locale)}
                 </UnstyledButton>
             </Menu.Target>
             <Menu.Dropdown>
                 {routing.locales.map((locale) => (
                     <Menu.Item key={locale} onClick={() => handleLanguageChange(locale)}>
-                        {locale.toUpperCase()}
+                        {getFlag(locale)}
                     </Menu.Item>
                 ))}
             </Menu.Dropdown>

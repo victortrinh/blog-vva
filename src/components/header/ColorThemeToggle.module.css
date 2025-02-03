@@ -5,12 +5,22 @@ button.control {
 
     @media (max-width: $mantine-breakpoint-sm) {
         height: 42px;
+        width: 100%;
+        align-items: baseline;
     }
 
     @mixin hover {
         background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
     }
+
+   > span {
+        @media (max-width: $mantine-breakpoint-sm) {
+            justify-content: flex-start;
+        }
+    }
 }
+
+
 
 .icon {
     width: 22px;

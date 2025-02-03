@@ -24,9 +24,6 @@ export const Header = () => {
     const { locale } = params;
 
     const items = <>
-        <Link href={`/${locale}/`} className={styles.link}>
-            {t("home.label")}
-        </Link>
         <Link href={`/${locale}/about`} className={styles.link}>
             {t("about.label")}
         </Link>
@@ -42,10 +39,12 @@ export const Header = () => {
             <header className={styles.header}>
                 <Container h="100%">
                     <Group justify="space-between" h="100%">
-                        <Flex gap="xs" align="center" justify="center">
-                            <Image src="/images/main-logo.png" width={40} height={40} alt="Date my dish" />
-                            <Title pt="8px" component={Text} fz="h1" ff="monospace" lts="-1px">Date my Dish</Title>
-                        </Flex>
+                        <Link className={styles.logo} href={`/${locale}/`}>
+                            <Flex gap="xs" align="center" justify="center">
+                                <Image src="/images/main-logo.png" width={40} height={40} alt="Date my dish" />
+                                <Title pt="8px" component={Text} fz="h1" ff="monospace" lts="-1px">Date my Dish</Title>
+                            </Flex>
+                        </Link>
 
                         <Group h="100%" gap={0} visibleFrom="sm">
                             {items}

@@ -4,10 +4,6 @@ button.control {
     height: 100%;
     padding-left: var(--mantine-spacing-md);
     padding-right: var(--mantine-spacing-md);
-    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
-    font-weight: 900;
-    text-transform: uppercase;
-    font-size: var(--mantine-font-size-md);
     transition: background-color 150ms ease;
   
     &[data-expanded] {
