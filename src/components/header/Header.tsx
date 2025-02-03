@@ -4,12 +4,13 @@ import { useParams } from "next/navigation";
 import React from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { Burger, Divider, Drawer, Group, ScrollArea } from "@mantine/core";
+import { Burger, Divider, Drawer, Flex, Group, ScrollArea, Title, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import styles from "./Header.module.css";
 import { LanguagePicker } from "./LanguagePicker";
 import { ColorThemeToggle } from "./ColorThemeToggle";
 import { Container } from "../Container";
+import Image from "next/image";
 
 export const Header = () => {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
@@ -41,7 +42,10 @@ export const Header = () => {
             <header className={styles.header}>
                 <Container h="100%">
                     <Group justify="space-between" h="100%">
-                        <div>Logo</div>
+                        <Flex gap="xs" align="center" justify="center">
+                            <Image src="/images/main-logo.png" width={40} height={40} alt="Date my dish" />
+                            <Title pt="8px" component={Text} fz="h1" ff="monospace" lts="-1px">Date my Dish</Title>
+                        </Flex>
 
                         <Group h="100%" gap={0} visibleFrom="sm">
                             {items}

@@ -18,8 +18,8 @@ export const Carousel = () => {
 
     const aspectRatio = useMatches({
         base: 1/1,
-        sm: 16/7,
-        md: 3/1,
+        sm: 16/8,
+        md: 16/7,
     });
 
     const withControls = useMatches({

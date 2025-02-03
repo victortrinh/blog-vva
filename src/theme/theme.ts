@@ -22,6 +22,10 @@ export const greatVibes = Great_Vibes({
 })
 
 export const theme = createTheme({
+    primaryColor: "dusty-burgundy",
+    colors: {
+        "dusty-burgundy": ["#CE7685", "#C06776", "#B35766", "#A14A55","#94404C", "#873944", "#752E3B", "#682732", "#5A1F2A", "#4C1C24"],
+    },
     fontFamily: openSans.style.fontFamily,
     fontFamilyMonospace: greatVibes.style.fontFamily,
     headings: {
