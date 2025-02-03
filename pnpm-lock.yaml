@@ -35,6 +35,9 @@ importers:
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
+      embla-carousel-autoplay:
+        specifier: ^7.1.0
+        version: 7.1.0(embla-carousel@8.5.2)
       embla-carousel-react:
         specifier: ^7.1.0
         version: 7.1.0(react@19.0.0)
@@ -996,6 +999,11 @@ packages:
   easy-table@1.2.0:
     resolution: {integrity: sha512-OFzVOv03YpvtcWGe5AayU5G2hgybsg3iqA6drU8UaoZyB9jLGMTrz9+asnLp/E+6qPh88yEI1gvyZFZ41dmgww==}
 
+  embla-carousel-autoplay@7.1.0:
+    resolution: {integrity: sha512-nYfgSGn3ek44OzwO0t/Ptuxq4PNPD5l7Y9X7JjLYI/DN1uGjqxz9L73YYqR6YCRDnTYJ88s9fep48dzBnSG4vQ==}
+    peerDependencies:
+      embla-carousel: 7.1.0
+
   embla-carousel-react@7.1.0:
     resolution: {integrity: sha512-tbYRPRZSDNd2QLNqYDcArAakGIxtUbhS7tkP0dGXktXHGgcX+3ji3VrOUTOftBiujZrMV8kRxtrRUe/1soloIQ==}
     peerDependencies:
@@ -1003,6 +1011,9 @@ packages:
 
   embla-carousel@7.1.0:
     resolution: {integrity: sha512-Bh8Pa8NWzgugLkf8sAGexQlBCNDFaej5BXiKgQdRJ1mUC9NWBrw9Z23YVPVGkguWoz5LMjZXXFVGCobl3UPt/Q==}
+
+  embla-carousel@8.5.2:
+    resolution: {integrity: sha512-xQ9oVLrun/eCG/7ru3R+I5bJ7shsD8fFwLEY7yPe27/+fDHCNj0OT5EoG5ZbFyOxOcG6yTwW8oTz/dWyFnyGpg==}
 
   emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
@@ -3303,12 +3314,18 @@ snapshots:
     optionalDependencies:
       wcwidth: 1.0.1
 
+  embla-carousel-autoplay@7.1.0(embla-carousel@8.5.2):
+    dependencies:
+      embla-carousel: 8.5.2
+
   embla-carousel-react@7.1.0(react@19.0.0):
     dependencies:
       embla-carousel: 7.1.0
       react: 19.0.0
 
   embla-carousel@7.1.0: {}
+
+  embla-carousel@8.5.2: {}
 
   emoji-regex@9.2.2: {}
 

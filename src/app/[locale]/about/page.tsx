@@ -1,9 +1,10 @@
-import { Container, Title, Text } from "@mantine/core"
+import { Container } from "@/components";
+import { Title, Text } from "@mantine/core"
 
 const About = () => {
     return (
         <section>
-            <Container size="responsive">
+            <Container>
                 <Title>
                     About
                 </Title>

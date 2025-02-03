@@ -4,11 +4,12 @@ import { useParams } from "next/navigation";
 import React from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { Burger, Container, Divider, Drawer, Group, ScrollArea } from "@mantine/core";
+import { Burger, Divider, Drawer, Group, ScrollArea } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import styles from "./Header.module.css";
 import { LanguagePicker } from "./LanguagePicker";
 import { ColorThemeToggle } from "./ColorThemeToggle";
+import { Container } from "../Container";
 
 export const Header = () => {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
@@ -38,7 +39,7 @@ export const Header = () => {
     return (
         <>
             <header className={styles.header}>
-                <Container size="responsive" h="100%">
+                <Container h="100%">
                     <Group justify="space-between" h="100%">
                         <div>Logo</div>
 

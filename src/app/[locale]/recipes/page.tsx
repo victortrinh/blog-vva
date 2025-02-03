@@ -2,47 +2,25 @@ import { Posts } from "@/components/blog/Posts";
 import { baseURL } from "@/app/resources"
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { Title, Container } from "@mantine/core";
+import { Title } from "@mantine/core";
+import { Container } from "@/components";
+import { generateMetadataForPage } from "@/app/utils";
+import { LocaleParams } from "@/types";
 
-type Params = Promise<{ locale: string }>;
+interface Params {
+    params: LocaleParams;
+}
 
-export async function generateMetadata(
-    {params}: { params: Params }
-) {
-    const { locale } = await params;
+export async function generateMetadata({params}: Params) {
     const t = await getTranslations();
 
     const title = t("recipes.title");
     const description = t("recipes.description");
-    const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
-    return {
-        title,
-        description,
-        openGraph: {
-            title,
-            description,
-            type: "website",
-            url: `https://${baseURL}/${locale}/recipes`,
-            images: [
-                {
-                    url: ogImage,
-                    alt: title,
-                },
-            ],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title,
-            description,
-            images: [ogImage],
-        },
-    };
+    return await generateMetadataForPage({ title, description, params });
 }
 
-export default async function Recipes(
-    { params }: { params: Params}
-) {
+export default async function Recipes({ params }: Params) {
     const { locale } = await params;
     setRequestLocale(locale);
 
@@ -57,7 +35,7 @@ const InnerRecipes = ({locale}: InnerRecipesProps) => {
     const t = useTranslations();
 
     return (
-        <Container size="responsive">
+        <Container>
             <script
                 type="application/ld+json"
                 suppressHydrationWarning

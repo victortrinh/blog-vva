@@ -20,6 +20,7 @@
     "@next/third-parties": "^15.1.6",
     "@tabler/icons-react": "^3.29.0",
     "classnames": "^2.5.1",
+    "embla-carousel-autoplay": "^7.1.0",
     "embla-carousel-react": "^7.1.0",
     "gray-matter": "^4.0.3",
     "next": "^15.1.6",
@@ -46,5 +47,10 @@
   },
   "trustedDependencies": [
     "@parcel/watcher"
-  ]
+  ],
+  "browser": {
+    "fs": false,
+    "path": false
+  },
+  "packageManager": "pnpm@10.2.0+sha512.0d27364e0139c6aadeed65ada153135e0ca96c8da42123bd50047f961339dc7a758fc2e944b428f52be570d1bd3372455c1c65fa2e7aa0bfbf931190f9552001"
 }

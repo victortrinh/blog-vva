@@ -3,46 +3,23 @@ import { baseURL } from "@/app/resources"
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import { Title, Flex } from "@mantine/core";
+import { generateMetadataForPage } from "@/app/utils";
+import { LocaleParams } from "@/types";
 
-type Params = Promise<{ locale: string }>;
+interface Params {
+    params: LocaleParams;
+}
 
-export async function generateMetadata(
-    {params}: { params: Params}
-) {
-    const { locale } = await params;
+export async function generateMetadata({params}: Params) {
     const t = await getTranslations();
 
     const title = t("reviews.title");
     const description = t("reviews.description");
-    const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
-    return {
-        title,
-        description,
-        openGraph: {
-            title,
-            description,
-            type: "website",
-            url: `https://${baseURL}/${locale}/reviews`,
-            images: [
-                {
-                    url: ogImage,
-                    alt: title,
-                },
-            ],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title,
-            description,
-            images: [ogImage],
-        },
-    };
+    return await generateMetadataForPage({ title, description, params });
 }
 
-export default async function Reviews(
-    { params }: { params: Params}
-) {
+export default async function Reviews({ params }: Params) {
     const { locale } = await params;
     setRequestLocale(locale);
 

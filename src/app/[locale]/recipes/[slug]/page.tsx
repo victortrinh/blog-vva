@@ -3,82 +3,28 @@ import { CustomMDX } from "@/components/mdx"
 import { getPosts, Metadata } from "@/app/utils/utils"
 import { baseURL } from "@/app/resources"
 import { setRequestLocale } from "next-intl/server"
-import { routing } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { formatDate } from "@/app/utils/formatDate";
-import { GoToRecipeButton } from "@/components/recipes/GoToRecipeButton";
-import { Button, Text, Title, Flex, Container } from "@mantine/core"
+import { Button, Text, Title, Flex } from "@mantine/core"
 import Link from "next/link";
 import { IconChevronLeft } from "@tabler/icons-react";
-
-type Params = Promise<{ locale: string, slug: string }>;
+import { Container, GoToRecipeButton } from "@/components"
+import { generateMetadataForFolder, generateStaticParamsForFolder } from "@/app/utils"
+import { LocaleAndSlugParams } from "@/types"
 
 interface BlogParams {
-	params: Params;
+	params: LocaleAndSlugParams;
 }
 
 export async function generateStaticParams() {
-    const locales = routing.locales;
-    
-    // Create an array to store all posts from all locales
-    const allPosts = [];
-
-    // Fetch posts for each locale
-    for (const locale of locales) {
-        const posts = getPosts(["src", "app", "[locale]", "recipes", "posts", locale]);
-        allPosts.push(...posts.map(post => ({
-            slug: post.slug,
-            locale: locale,
-        })));
-    }
-
-    return allPosts;
+    return generateStaticParamsForFolder("recipes");
 }
 
 export async function generateMetadata({ params }: BlogParams) {
-    const { locale, slug } = await params;
-    const post = getPosts(["src", "app", "[locale]", "recipes", "posts", locale]).find((post) => post.slug === slug)
-
-    if (!post) {
-        return
-    }
-
-    const {
-        title,
-        publishedAt: publishedTime,
-        summary: description,
-        image,
-    } = post.metadata;
-
-    const ogImage = image
-        ? `https://${baseURL}${image}`
-        : `https://${baseURL}/og?title=${title}`;
-
-    return {
-        title,
-        description,
-        openGraph: {
-            title,
-            description,
-            type: "article",
-            publishedTime,
-            url: `https://${baseURL}/${locale}/recipes/${post.slug}`,
-            images: [
-                {
-                    url: ogImage,
-                },
-            ],
-        },
-        twitter: {
-            card: "summary_large_image",
-            title,
-            description,
-            images: [ogImage],
-        },
-    }
+    return await generateMetadataForFolder("recipes", params);
 }
 
-export default async function Blog({params}: BlogParams) {
+export default async function Page({params}: BlogParams) {
     const { locale, slug } = await params;
     setRequestLocale(locale);
     const post = getPosts(["src", "app", "[locale]", "recipes", "posts", locale]).find((post) => post.slug === slug)
@@ -106,7 +52,7 @@ const InnerBlog = ({ post, locale }: InnerBlogProps) => {
 
     return (
         <section>
-            <Container size="responsive">
+            <Container>
                 <script
                     type="application/ld+json"
                     suppressHydrationWarning

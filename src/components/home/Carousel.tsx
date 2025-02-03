@@ -3,12 +3,16 @@
 import { Carousel as MantineCarousel } from "@mantine/carousel";
 
 import classes from "./Carousel.module.css";
-import { AspectRatio, Overlay, useMatches, Title, Button, Flex, Container } from "@mantine/core";
+import { AspectRatio, Overlay, useMatches, Title, Button, Flex } from "@mantine/core";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { Container } from "../Container";
+import { useRef } from "react";
+import Autoplay from "embla-carousel-autoplay"
 
 export const Carousel = () => {
+    const autoplay = useRef(Autoplay({ delay: 2000 }));
     const t = useTranslations();
     const params = useParams();
 
@@ -83,6 +87,9 @@ export const Carousel = () => {
             withControls={withControls}
             loop
             classNames={classes}
+            plugins={[autoplay.current]}
+            onMouseEnter={autoplay.current.stop}
+            onMouseLeave={autoplay.current.reset}
         >
             {images.map(({ src, alt, headline, subline, cta, href }) => (
                 <MantineCarousel.Slide key={alt}>
@@ -92,7 +99,7 @@ export const Carousel = () => {
                             src={src}
                         />
                         <Overlay color="#000" backgroundOpacity={0.30}>
-                            <Container size="responsive" h="100%" w="100%">
+                            <Container h="100%" w="100%">
                                 <Flex ta="center" tt="uppercase" direction="column" align="center" justify="center" h="100%" w="100%" gap="md">
                                     <Title fz={headlineFz} c="white" className={classes.headline}>{headline}</Title>
                                     <Title fz={textFz} c="white" order={2} className={classes.subline}>{subline}</Title>

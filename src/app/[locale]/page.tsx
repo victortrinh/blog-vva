@@ -3,8 +3,8 @@ import React from "react";
 import { baseURL } from "@/app/resources"; 
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { Carousel, Section } from "@/components";
-import { Text, Title, Flex, Container, Button, Divider, SimpleGrid } from "@mantine/core";
+import { Carousel, Container, Section } from "@/components";
+import { Text, Title, Flex, Button, Divider, SimpleGrid } from "@mantine/core";
 import Link from "next/link";
 
 type Params = Promise<{ locale: string }>
@@ -84,7 +84,7 @@ const InnerHome = ({locale}: InnerHomeProps) => {
             />
             <Flex direction="column" gap="xl">
                 <Carousel />
-                <Container size="responsive" pb="32px">
+                <Container pb="32px">
                     <Flex direction="column" gap="md" ta="center" justify="center" align="center">
                         <Title order={2} fw="normal" tt="uppercase">
                             {t("about.headline")}
