@@ -9,7 +9,7 @@
     "home": {
         "label": "Home",
         "title": "Date my dish",
-        "headline": "The pleasure starts the moment it touches your stomach"
+        "headline": "The <Highlight>pleasure</Highlight> starts the moment it <Highlight>touches</Highlight> your stomach"
     },
     "about": {
         "label": "About",

@@ -97,7 +97,9 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                             {t("about.cta")}
                         </Button>
                         <Divider my="lg" w="100%" />
-                        <Title>{t("home.headline")}</Title>
+                        <Title>
+                            {t.rich("home.headline", { Highlight: (chunks) => <Text component="span" fz="52px" ff="monospace">{chunks}</Text> })}
+                        </Title>
                         <Divider my="xs" />
                         <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} w="100%">
                             <Section href={`/${locale}/recipes`} src="/images/recipes/calamari/ogImage.png" cta={t("recipes.appetizers")} />

@@ -9,7 +9,7 @@
     "home": {
         "label": "Accueil",
         "title": "Date my dish",
-        "headline": "Le plaisir commence dès qu'il touche votre estomac."
+        "headline": "Le <Highlight>plaisir</Highlight> commence dès qu'il <Highlight>touche</Highlight> votre estomac."
     },
     "about" : {
         "label": "À propos",
