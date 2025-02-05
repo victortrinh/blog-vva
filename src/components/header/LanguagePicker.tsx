@@ -20,11 +20,11 @@ export function LanguagePicker() {
     const getFlag = (locale?: string | string[]) => {
         switch (locale) {
         case "en":
-            return "🇺🇸";
+            return <span className="flag flag-xs flag-country-us" />;
         case "fr":
-            return "🇫🇷";
+            return <span className="flag flag-xs flag-country-fr" />;
         default:
-            return "🇺🇸";
+            return <span className="flag flag-xs flag-country-us" />;
         }
     }
 
