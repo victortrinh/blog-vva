@@ -1,21 +1,22 @@
 .container {
+    --bg-color: #CE7685;
     margin-top: 180px;
     position: relative;
 }
 
 .image {
-    border: 8px solid #CE7685;
+    border: 6px solid var(--bg-color);
     border-radius: 100%;
     overflow: hidden;
     transform: translateX(-50%)
 }
 
 .header {
-    background-color: #CE7685;
+    background-color: var(--bg-color);
 }
 
 .recipe {
-    border: 8px solid #CE7685;
+    border: 6px solid var(--bg-color);
     padding: 24px;
     display: grid;
     grid-template-columns: 400px 1fr;
