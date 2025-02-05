@@ -1,13 +1,15 @@
 import { Container } from "@/components";
-import { Title, Text } from "@mantine/core"
+import { PageTitle } from "@/components/PageTitle";
+import { Text } from "@mantine/core"
+import { useTranslations } from "next-intl";
 
 const About = () => {
+    const t = useTranslations();
+
     return (
         <section>
             <Container>
-                <Title>
-                    About
-                </Title>
+                <PageTitle>{t("about.label")}</PageTitle>
                 <Text>
                     This is the about page.
                 </Text>

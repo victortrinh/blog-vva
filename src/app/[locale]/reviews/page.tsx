@@ -2,9 +2,9 @@ import { Posts } from "@/components/blog/Posts";
 import { baseURL } from "@/app/resources"
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { Title, Flex } from "@mantine/core";
 import { generateMetadataForPage } from "@/app/utils";
 import { LocaleParams } from "@/types";
+import { Container, PageTitle } from "@/components";
 
 interface Params {
     params: LocaleParams;
@@ -34,7 +34,7 @@ const InnerReviews = ({ locale }: InnerReviewsProps) => {
     const t = useTranslations();
 
     return (
-        <Flex direction="column">
+        <>
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
@@ -57,10 +57,12 @@ const InnerReviews = ({ locale }: InnerReviewsProps) => {
                     }),
                 }}
             />
-            <Title order={1}>
-                {t("reviews.title")}
-            </Title>
-            <Posts page="reviews"  columns={4} locale={locale} thumbnail/>
-        </Flex>
+            <Container>
+                <PageTitle>
+                    {t("reviews.label")}
+                </PageTitle>
+                <Posts page="reviews" columns={3} locale={locale} thumbnail/>
+            </Container>
+        </>
     );
 }

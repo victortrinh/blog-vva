@@ -2,9 +2,12 @@
 
 import { useTranslations } from "next-intl";
 
-import styles from "./Recipe.module.scss";
-import { SmartImage }from "@/components";
-import { Title } from "@mantine/core";
+import styles from "./Recipe.module.css";
+import { ActionIcon, AspectRatio, Center, Divider, Text, Title } from "@mantine/core";
+import { UnorderedList } from "../mdx/UnorderedList";
+import { OrderedList } from "../mdx/OrderedList";
+import { Fragment } from "react";
+import { IconArrowUp } from "@tabler/icons-react";
 
 interface Ingredient {
     name: string;
@@ -22,31 +25,48 @@ interface Props {
 export const Recipe = ({id, title, src, ingredients, instructions }: Props) => {
     const t = useTranslations();
 
-    return <div id={id} className={styles.container}>
-        <Title>{title}</Title>
-        <SmartImage alt={id} src={src} height={20} />
+    const onClick = () => {
+        const element = document.getElementById("top");
+        element?.scrollIntoView({
+            behavior: "smooth"
+        }); 
+    }
+
+    return <div className={styles.container}>
+        <Center id={id} pos="absolute" top="-125px" left="50%" className={styles.image}>
+            <AspectRatio ratio={1/1} h="250px" w="250px">
+                <img src={src} alt={id} />
+            </AspectRatio>
+        </Center>
+        <Center pt="150px" pb="20px" className={styles.header}>
+            <Title c="white" order={2} fz="h1">{title}</Title>
+        </Center>
         <div className={styles.recipe}>
             <aside className={styles.ingredients}>
-                <Title>{t("recipe.ingredients")}</Title>
-                {ingredients.map(({ name, steps }) => (
-                    <div key={name}>
-                        <p>{name}</p>
-                        <ul>
+                <Title order={3} fz="h2">{t("recipe.ingredients")}</Title>
+                {ingredients.map(({ name, steps }, index) => (
+                    <Fragment key={name}>
+                        <Text mt="20px">{name}</Text>
+                        <UnorderedList>
                             {steps.map((step, index) => (
                                 <li key={index}>{step}</li>
                             ))}
-                        </ul>
-                    </div>
+                        </UnorderedList>
+                        {index < ingredients.length - 1 && <Divider />}
+                    </Fragment>
                 ))}
             </aside>
             <article>
-                <Title>{t("recipe.instructions")}</Title>
-                <ol>
+                <Title fz="h2" order={3} pb="20px">{t("recipe.instructions")}</Title>
+                <OrderedList>
                     {instructions.map((instruction, index) => (
                         <li key={index}>{instruction}</li>
                     ))}
-                </ol>
+                </OrderedList>
             </article>
         </div>
+        <ActionIcon onClick={onClick} size="xl" pos="fixed" bottom="24px" right="24px" variant="filled" radius="xl" aria-label="Up">
+            <IconArrowUp  />
+        </ActionIcon>
     </div>
 }

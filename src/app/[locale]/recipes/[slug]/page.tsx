@@ -4,11 +4,8 @@ import { getPosts, Metadata } from "@/app/utils/utils"
 import { baseURL } from "@/app/resources"
 import { setRequestLocale } from "next-intl/server"
 import { useTranslations } from "next-intl";
-import { formatDate } from "@/app/utils/formatDate";
-import { Button, Text, Title, Flex } from "@mantine/core"
-import Link from "next/link";
-import { IconChevronLeft } from "@tabler/icons-react";
-import { Container, GoToRecipeButton } from "@/components"
+import { Flex } from "@mantine/core"
+import { Container, GoToRecipeButton, PageTitle } from "@/components"
 import { generateMetadataForFolder, generateStaticParamsForFolder } from "@/app/utils"
 import { LocaleAndSlugParams } from "@/types"
 
@@ -52,51 +49,35 @@ const InnerBlog = ({ post, locale }: InnerBlogProps) => {
 
     return (
         <section>
-            <Container>
-                <script
-                    type="application/ld+json"
-                    suppressHydrationWarning
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            "@context": "https://schema.org",
-                            "@type": "BlogPosting",
-                            headline: post.metadata.title,
-                            datePublished: post.metadata.publishedAt,
-                            dateModified: post.metadata.publishedAt,
-                            description: post.metadata.summary,
-                            image: post.metadata.image
-                                ? `https://${baseURL}${post.metadata.image}`
-                                : `https://${baseURL}/og?title=${post.metadata.title}`,
-                            url: `https://${baseURL}/${locale}/recipes/${post.slug}`,
-                            author: {
-                                "@type": "Person",
-                                name: t("person.name"),
-                            },
-                        }),
-                    }}
-                />
-                <Button
-                    component={Link}
-                    href={`/${locale}/recipes`}
-                    variant="default"
-                    size="xs"
-                    leftSection={<IconChevronLeft size={14} />}
-                >
-                    {t("recipes.label")}
-                </Button>
-                <Title>
+            <script
+                type="application/ld+json"
+                suppressHydrationWarning
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BlogPosting",
+                        headline: post.metadata.title,
+                        datePublished: post.metadata.publishedAt,
+                        dateModified: post.metadata.publishedAt,
+                        description: post.metadata.summary,
+                        image: post.metadata.image
+                            ? `https://${baseURL}${post.metadata.image}`
+                            : `https://${baseURL}/og?title=${post.metadata.title}`,
+                        url: `https://${baseURL}/${locale}/recipes/${post.slug}`,
+                        author: {
+                            "@type": "Person",
+                            name: t("person.name"),
+                        },
+                    }),
+                }}
+            />
+            <Container pb="72px" id="top">
+                <PageTitle pb="12px">
                     {post.metadata.title}
-                </Title>
-                <Flex
-                    gap="12"
-                    align="center">
-                    <Text>
-                        {formatDate(post.metadata.publishedAt)}
-                    </Text>
-                </Flex>
-                <GoToRecipeButton id={post.slug} />
+                </PageTitle>
+                <GoToRecipeButton id={post.slug} mb="32px" />
                 <article>
-                    <Flex  direction="column">
+                    <Flex direction="column" gap="md">
                         <CustomMDX source={post.content} />
                     </Flex>
                 </article>

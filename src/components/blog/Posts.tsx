@@ -33,7 +33,7 @@ export function Posts({
     return (
         <>
             {displayedPosts.length > 0 && (
-                <SimpleGrid cols={{ base: 1, sm: 2, md: columns }}>
+                <SimpleGrid spacing="xl" verticalSpacing="xl" cols={{ base: 1, sm: 2, md: columns }}>
                     {displayedPosts.map((post) => (
                         <Post
                             key={post.slug}

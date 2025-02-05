@@ -5,8 +5,11 @@ import React, { ComponentProps, PropsWithChildren, ReactNode } from "react";
 import { HeadingLink, SmartLink } from "@/components";
 
 import { Text, TextProps } from "@mantine/core";
+import { MdxImage } from "./mdx/MdxImage";
 import { Images } from "./Images";
 import { Recipe } from "./recipes/Recipe";
+import { UnorderedList } from "./mdx/UnorderedList";
+import { OrderedList } from "./mdx/OrderedList";
 
 type TableProps = {
     data: {
@@ -62,17 +65,6 @@ function CustomLink({ href, children, ...props }: CustomLinkProps) {
     );
 }
 
-function createImage({ alt, src, ...props }: any) {
-    if (!src) {
-        console.error("SmartImage requires a valid 'src' property.");
-        return null;
-    }
-
-    return (
-        <img width="100%" className="recipe-image" alt={alt} src={src} {...props} />
-    );
-}
-
 function slugify(str: string): string {
     return str
         .toString()
@@ -119,7 +111,9 @@ const components = {
     h4: createHeading(4) as any,
     h5: createHeading(5) as any,
     h6: createHeading(6) as any,
-    img: createImage as any,
+    ol: OrderedList,
+    ul: UnorderedList,
+    img: MdxImage,
     a: CustomLink as any,
     Table,
     Images,

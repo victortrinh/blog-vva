@@ -1,0 +1,37 @@
+.container {
+    margin-top: 180px;
+    position: relative;
+}
+
+.image {
+    border: 8px solid #CE7685;
+    border-radius: 100%;
+    overflow: hidden;
+    transform: translateX(-50%)
+}
+
+.header {
+    background-color: #CE7685;
+}
+
+.recipe {
+    border: 8px solid #CE7685;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 24px;
+}
+
+.ingredients {
+    margin-right: 40px;
+}
+
+@media (max-width: $mantine-breakpoint-md) {
+    .recipe {
+        grid-template-columns: 1fr;
+    }
+
+    .ingredients {
+        margin-right: 0;
+    }
+}

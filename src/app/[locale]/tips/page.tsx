@@ -2,8 +2,7 @@ import { Posts } from "@/components/blog/Posts";
 import { baseURL } from "@/app/resources"
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { Title } from "@mantine/core";
-import { Container } from "@/components";
+import { Container, PageTitle } from "@/components";
 import { generateMetadataForPage } from "@/app/utils";
 import { LocaleParams } from "@/types";
 
@@ -58,10 +57,10 @@ const InnerTips = ({ locale }: InnerTipsProps) => {
                     }),
                 }}
             />
-            <Title order={1}>
-                {t("tips.title")}
-            </Title>
-            <Posts page="tips" columns={4} locale={locale} thumbnail/>
+            <PageTitle>
+                {t("tips.label")}
+            </PageTitle>
+            <Posts page="tips" columns={3} locale={locale} thumbnail />
         </Container>
     );
 }

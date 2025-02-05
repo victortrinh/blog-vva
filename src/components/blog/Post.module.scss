@@ -1,4 +1,8 @@
-.hover {
+.link {
+    text-decoration: none;
+    margin: 0;
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+
     &:hover {
         .image {
             opacity: 0.5;

@@ -14,7 +14,7 @@ import Autoplay from "embla-carousel-autoplay";
 export const Carousel = () => {
     const t = useTranslations();
     const params = useParams();
-    const autoplay = useRef(Autoplay({ delay: 2000 }))
+    const autoplay = useRef(Autoplay({ delay: 3000 }))
 
     const aspectRatio = useMatches({
         base: 1/1,
@@ -85,6 +85,7 @@ export const Carousel = () => {
             align="start"
             withIndicators
             withControls={withControls}
+            controlSize={40}
             loop
             classNames={classes}
             plugins={[autoplay.current]}

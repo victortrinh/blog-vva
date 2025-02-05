@@ -23,11 +23,14 @@ export const Header = () => {
 
     const { locale } = params;
 
-    const items = <>
-        <Link href={`/${locale}/about`} className={styles.link}>
+    const items = (onClose?: () => void) => <>
+        <Link href={`/${locale}/`} onClick={onClose} className={styles.link}>
+            {t("home.label")}
+        </Link>
+        <Link href={`/${locale}/about`} onClick={onClose} className={styles.link}>
             {t("about.label")}
         </Link>
-        <Link href={`/${locale}/recipes`} className={styles.link}>
+        <Link href={`/${locale}/recipes`} onClick={onClose} className={styles.link}>
             {t("recipes.label")}
         </Link>
         <LanguagePicker />
@@ -42,12 +45,12 @@ export const Header = () => {
                         <Link className={styles.logo} href={`/${locale}/`}>
                             <Flex gap="xs" align="center" justify="center">
                                 <Image src="/images/main-logo.png" width={40} height={40} alt="Date my dish" />
-                                <Title pt="8px" component={Text} fz="h1" ff="monospace" lts="-1px">Date my Dish</Title>
+                                <Title lh="100%" fw="800" component={Text} fz="h2" tt="uppercase" lts="-1px">Date my Dish</Title>
                             </Flex>
                         </Link>
 
                         <Group h="100%" gap={0} visibleFrom="sm">
-                            {items}
+                            {items()}
                         </Group>
                         <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
                     </Group>
@@ -63,9 +66,9 @@ export const Header = () => {
                 zIndex={1000000}
             >
                 <ScrollArea h="calc(100vh - 80px" mx="-md">
-                    <Divider my="sm" />
+                    <Divider mb="sm" />
 
-                    {items}
+                    {items(closeDrawer)}
                 </ScrollArea>
             </Drawer>
         </>

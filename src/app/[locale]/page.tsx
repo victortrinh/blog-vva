@@ -84,7 +84,7 @@ const InnerHome = ({locale}: InnerHomeProps) => {
             />
             <Flex direction="column">
                 <Carousel />
-                <Box bg="var(--mantine-color-gray-light)" w="100%" py="64px">
+                <Box bg="var(--mantine-color-gray-light)" w="100%" py="72px">
                     <Container>
                         <Flex direction="column" gap="md" ta="center" justify="center" align="center">
                             <Title order={2} fw="normal" tt="uppercase">
@@ -100,14 +100,14 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                         </Flex>
                     </Container>
                 </Box>
-                <Container py="32px">
+                <Container py="72px">
                     <Title ta="center">
                         {t.rich("home.headline", { Highlight: (chunks) => <Text component="span" fz="52px" ff="monospace">{chunks}</Text> })}
                     </Title>
                 </Container>
-                <Box bg="var(--mantine-color-gray-light)" w="100%" py="64px">
+                <Box bg="var(--mantine-color-gray-light)" w="100%" py="72px">
                     <Container>
-                        <SimpleGrid cols={{ base: 1, sm: 2, md: 3 }} w="100%">
+                        <SimpleGrid spacing="72px" verticalSpacing="72px" cols={{ base: 1, sm: 2, md: 3 }} w="100%">
                             <Section href={`/${locale}/recipes`} src="/images/recipes/calamari/ogImage.png" cta={t("recipes.appetizers")} />
                             <Section href={`/${locale}/recipes`} src="/images/recipes/calamari/DSCF2266.jpg" cta={t("recipes.mains")}  />
                             <Section href={`/${locale}/recipes`} src="/images/recipes/spaghetti-carbonara.jpg" cta={t("recipes.desserts")}  />

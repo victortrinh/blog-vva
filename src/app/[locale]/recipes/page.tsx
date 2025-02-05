@@ -2,8 +2,7 @@ import { Posts } from "@/components/blog/Posts";
 import { baseURL } from "@/app/resources"
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { Title } from "@mantine/core";
-import { Container } from "@/components";
+import { Container, PageTitle } from "@/components";
 import { generateMetadataForPage } from "@/app/utils";
 import { LocaleParams } from "@/types";
 
@@ -58,10 +57,8 @@ const InnerRecipes = ({locale}: InnerRecipesProps) => {
                     }),
                 }}
             />
-            <Title order={1}>
-                {t("recipes.title")}
-            </Title>
-            <Posts page="recipes" locale={locale} columns={4} thumbnail/>
+            <PageTitle>{t("recipes.title")}</PageTitle>
+            <Posts page="recipes" locale={locale} columns={3} thumbnail/>
         </Container>
     );
 }
