@@ -57,7 +57,7 @@ const InnerReviews = ({ locale }: InnerReviewsProps) => {
                     }),
                 }}
             />
-            <Container>
+            <Container pb="72px">
                 <PageTitle>
                     {t("reviews.label")}
                 </PageTitle>

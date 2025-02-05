@@ -3,11 +3,11 @@
 import React from "react";
 import styles from "@/components/HeadingLink.module.scss";
 import { notify } from "@/app/utils";
-import { ActionIcon, Title, Tooltip, Flex } from "@mantine/core";
+import { ActionIcon, Title, Tooltip, Flex, FlexProps } from "@mantine/core";
 import { IconExternalLink } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
-interface HeadingLinkProps {
+interface HeadingLinkProps extends FlexProps {
     id: string;
     level: 1 | 2 | 3 | 4 | 5 | 6;
     children: React.ReactNode;
@@ -18,7 +18,8 @@ export const HeadingLink: React.FC<HeadingLinkProps> = ({
     id,
     level,
     children,
-    style
+    style,
+    ...props
 }) => {
     const t = useTranslations();
     const copyURL = (id: string): void => {
@@ -37,7 +38,8 @@ export const HeadingLink: React.FC<HeadingLinkProps> = ({
             onClick={() => copyURL(id)}
             className={styles.control}
             align="center"
-            gap="4">
+            gap="4"
+            {...props}>
             <Title
                 className={styles.text}
                 id={id}

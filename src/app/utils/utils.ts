@@ -9,6 +9,7 @@ export type Metadata = {
     image?: string;
     images: string[];
     tag?: string;
+    subtag?: string;
 };
 
 function getMDXFiles(dir: string) {

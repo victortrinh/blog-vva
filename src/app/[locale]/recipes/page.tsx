@@ -2,9 +2,10 @@ import { Posts } from "@/components/blog/Posts";
 import { baseURL } from "@/app/resources"
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { Container, PageTitle } from "@/components";
+import { Container, HeadingLink, PageTitle } from "@/components";
 import { generateMetadataForPage } from "@/app/utils";
 import { LocaleParams } from "@/types";
+import { Divider } from "@mantine/core";
 
 interface Params {
     params: LocaleParams;
@@ -34,7 +35,7 @@ const InnerRecipes = ({locale}: InnerRecipesProps) => {
     const t = useTranslations();
 
     return (
-        <Container>
+        <Container pb="72px">
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
@@ -58,6 +59,13 @@ const InnerRecipes = ({locale}: InnerRecipesProps) => {
                 }}
             />
             <PageTitle>{t("recipes.title")}</PageTitle>
+            <HeadingLink mb="md" id="appetizer" level={2}>{t("recipes.appetizers")}</HeadingLink>
+            <Posts page="recipes" locale={locale} columns={3} thumbnail/>
+            <Divider my="xl" />
+            <HeadingLink mb="md" id="mains" level={2}>{t("recipes.mains")}</HeadingLink>
+            <Posts page="recipes" locale={locale} columns={3} thumbnail/>
+            <Divider my="xl" />
+            <HeadingLink mb="md" id="desserts" level={2}>{t("recipes.desserts")}</HeadingLink>
             <Posts page="recipes" locale={locale} columns={3} thumbnail/>
         </Container>
     );

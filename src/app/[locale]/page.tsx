@@ -108,9 +108,9 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                 <Box bg="var(--mantine-color-gray-light)" w="100%" py="72px">
                     <Container>
                         <SimpleGrid spacing="72px" verticalSpacing="72px" cols={{ base: 1, sm: 2, md: 3 }} w="100%">
-                            <Section href={`/${locale}/recipes`} src="/images/recipes/calamari/ogImage.png" cta={t("recipes.appetizers")} />
-                            <Section href={`/${locale}/recipes`} src="/images/recipes/calamari/DSCF2266.jpg" cta={t("recipes.mains")}  />
-                            <Section href={`/${locale}/recipes`} src="/images/recipes/spaghetti-carbonara.jpg" cta={t("recipes.desserts")}  />
+                            <Section href={`/${locale}/recipes#appetizers`} src="/images/recipes/calamari/ogImage.png" cta={t("recipes.appetizers")} />
+                            <Section href={`/${locale}/recipes#mains`} src="/images/recipes/calamari/DSCF2266.jpg" cta={t("recipes.mains")}  />
+                            <Section href={`/${locale}/recipes#desserts`} src="/images/recipes/spaghetti-carbonara.jpg" cta={t("recipes.desserts")}  />
                         </SimpleGrid>
                     </Container>
                 </Box>
