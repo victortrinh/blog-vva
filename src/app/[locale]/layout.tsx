@@ -82,7 +82,7 @@ export default async function RootLayout({
                 </head>
                 <body>
                     <Analytics />
-                    <MantineProvider theme={theme} defaultColorScheme="auto">
+                    <MantineProvider theme={theme} defaultColorScheme="light">
                         <Notifications />
                         <Header />
                         <main>{children}</main>

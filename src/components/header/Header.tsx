@@ -8,7 +8,6 @@ import { Burger, Divider, Drawer, Flex, Group, ScrollArea, Title, Text } from "@
 import { useDisclosure } from "@mantine/hooks";
 import styles from "./Header.module.css";
 import { LanguagePicker } from "./LanguagePicker";
-import { ColorThemeToggle } from "./ColorThemeToggle";
 import { Container } from "../Container";
 import Image from "next/image";
 
@@ -34,7 +33,6 @@ export const Header = () => {
             {t("recipes.label")}
         </Link>
         <LanguagePicker />
-        <ColorThemeToggle />
     </>
 
     return (
