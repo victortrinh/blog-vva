@@ -38,7 +38,7 @@ export const Recipe = ({id, title, src, ingredients, instructions }: Props) => {
                 <img src={src} alt={id} />
             </AspectRatio>
         </Center>
-        <Center pt="150px" pb="20px" className={styles.header}>
+        <Center pt="150px" px="lg" pb="20px" className={styles.header}>
             <Title c="white" order={2} fz="h1">{title}</Title>
         </Center>
         <div className={styles.recipe}>
