@@ -4,11 +4,9 @@ import { getPosts, Metadata } from "@/app/utils/utils"
 import { baseURL } from "@/app/resources"
 import { setRequestLocale } from "next-intl/server"
 import { useTranslations } from "next-intl";
-import { formatDate } from "@/app/utils/formatDate"
-import { Avatar, Button, Text, Title, Flex } from "@mantine/core"
-import Link from "next/link"
-import { IconChevronLeft } from "@tabler/icons-react"
+import { Flex } from "@mantine/core"
 import { generateMetadataForFolder, generateStaticParamsForFolder } from "@/app/utils"
+import { PageTitle, Container } from "@/components"
 
 type Params = Promise<{ locale: string, slug: string }>;
 
@@ -51,9 +49,7 @@ const InnerBlog = ({post, locale}: InnerBlogProps) => {
     const t = useTranslations();
 
     return (
-        <Flex
-            direction="column"
-            gap="m">
+        <section>
             <script
                 type="application/ld+json"
                 suppressHydrationWarning
@@ -76,33 +72,16 @@ const InnerBlog = ({post, locale}: InnerBlogProps) => {
                     }),
                 }}
             />
-            <Button
-                component={Link}
-                href={`/${locale}/reviews`}
-                variant="default"
-                size="xs"
-                leftSection={<IconChevronLeft size={14} />}
-            >
-                {t("reviews.label")}
-            </Button>
-            <Title order={1}>
-                {post.metadata.title}
-            </Title>
-            <Flex
-                gap="12"
-                align="center">
-                { t("person.avatar") && (
-                    <Avatar src={t("person.avatar")} alt={t("person.firstName")} />
-                )}
-                <Text>
-                    {formatDate(post.metadata.publishedAt)}
-                </Text>
-            </Flex>
-            <article>
-                <Flex direction="column">
-                    <CustomMDX source={post.content} />
-                </Flex>
-            </article>
-        </Flex>
+            <Container pb="72px" id="top">
+                <PageTitle pb="12px">
+                    {post.metadata.title}
+                </PageTitle>
+                <article>
+                    <Flex direction="column" gap="md">
+                        <CustomMDX source={post.content} />
+                    </Flex>
+                </article>
+            </Container>
+        </section>
     )
 }

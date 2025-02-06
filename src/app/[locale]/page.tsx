@@ -105,7 +105,7 @@ const InnerHome = ({locale}: InnerHomeProps) => {
                         {t.rich("home.headline", { Highlight: (chunks) => <Text component="span" fz="52px" ff="monospace">{chunks}</Text> })}
                     </Title>
                 </Container>
-                <Box bg="var(--mantine-color-gray-light)" w="100%" py="72px">
+                <Box bg="var(--mantine-color-gray-light)" w="100%" pt="72px" pb="85px">
                     <Container>
                         <SimpleGrid spacing="72px" verticalSpacing="72px" cols={{ base: 1, sm: 2, md: 3 }} w="100%">
                             <Section href={`/${locale}/recipes#appetizers`} src="/images/recipes/calamari/ogImage.png" cta={t("recipes.appetizers")} />
